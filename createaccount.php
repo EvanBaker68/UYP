@@ -18,27 +18,27 @@
 
   <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
     <div class="container">
-      <a class="navbar-brand" href="index.html">University For Young People</a>
+      <a class="navbar-brand" href="index.php">University For Young People</a>
       <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarNav"><span class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <a class="nav-link" href="index.html">Home</a>
+              <a class="nav-link" href="index.php">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" href="createaccount.html">Sign Up</a>
+              <a class="nav-link active" href="createaccount.php">Sign Up</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="admin.html">Student Login</a>
+              <a class="nav-link" href="admin.php">Student Login</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="studentsignup.html">Admin Login</a>
+              <a class="nav-link" href="studentsignup.php">Admin Login</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="about.html">About</a>
+              <a class="nav-link" href="about.php">About</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="help.html">Help</a>
+              <a class="nav-link" href="help.php">Help</a>
             </li>
             </ul>
         </div>
@@ -204,7 +204,7 @@
               <input type="text" class="form-control form-control-lg" placeholder="Phone Number">
             </div>
           </form class="mb-4">
-          <form action="studentsignup.html" method="get">
+          <form action="studentsignup.php" method="get">
           <input type="submit" value="Next" class="btn btn-outline-secondary btn-block">
         </form>
         </div>
