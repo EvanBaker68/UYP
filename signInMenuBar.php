@@ -11,12 +11,6 @@
               <a class="nav-link" href="createaccount.php">Sign Up</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="admin.php">Student Login</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="studentsignup.php">Admin Login</a>
-            </li>
-            <li class="nav-item">
               <a class="nav-link" href="about.php">About</a>
             </li>
             <li class="nav-item">

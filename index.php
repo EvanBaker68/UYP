@@ -7,38 +7,52 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
   <link rel="stylesheet" href="css/style.css">
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <title>UYP</title>
 </head>
 <body>
 
-  <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
-    <div class="container">
-      <a class="navbar-brand" href="index.php">University For Young People</a>
-      <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarNav"><span class="navbar-toggler-icon"></span></button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-              <a class="nav-link active" href="index.php">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="createaccount.php">Sign Up</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="admin.php">Student Login</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="studentsignup.php">Admin Login</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="about.php">About</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="help.php">Help</a>
-            </li>
-            </ul>
+
+
+<?php 
+setcookie("menubar", 0, time() + 86400, "/");
+include 'menubar.php'; 
+?>
+
+<div class="container">
+<div class="login-form">
+<div class="main-div">
+    <div class="panel">
+   <h2>Login</h2>
+   <p>Please enter your email and password</p>
+   </div>
+    <form id="Login">
+
+        <div class="form-group">
+
+
+            <input type="email" class="form-control" id="inputEmail" placeholder="Email Address">
+
         </div>
-      </div>
-    </nav>
+
+        <div class="form-group">
+
+            <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+
+        </div>
+        <button type="submit" class="btn btn-primary">Login</button>
+    </form>
+            <div class="forgot">
+        <a href="reset.php">Forgot password</a>
+        </div>
+        <div>
+        <a href="studentsignup.php">Register</a>
+        </div>
+    </div>
+</div></div></div>
+
 
 
   <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
