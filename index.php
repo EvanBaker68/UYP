@@ -24,33 +24,36 @@ include 'menubar.php';
 <div class="container">
 <div class="login-form">
 <div class="main-div">
-    <div class="panel">
+<div class="panel">
    <h2>Login</h2>
    <p>Please enter your email and password</p>
+
    </div>
-    <form id="Login">
+    <form id="Login" action="verifyLogin.php" method="post">
 
         <div class="form-group">
-
-
-            <input type="email" class="form-control" id="inputEmail" placeholder="Email Address">
-
+            <input type="email" name="Username" class="form-control" id="inputEmail" placeholder="Email Address">
         </div>
 
         <div class="form-group">
-
-            <input type="password" class="form-control" id="inputPassword" placeholder="Password">
-
+            <input type="password" name="password" class="form-control" id="inputPassword" placeholder="Password">
         </div>
+        <span class="text-danger"><?php if (isset($_COOKIE("loginerror"))) 
+        echo "<div class="container"><div class="alert alert-danger">Sorry there were errors loging into your account.Please try again later.</div></div>";
+
+        ?></span>
+
         <button type="submit" class="btn btn-primary">Login</button>
     </form>
-            <div class="forgot">
+    
+    <div class="forgot">
         <a href="reset.php">Forgot password</a>
         </div>
         <div>
         <a href="studentsignup.php">Register</a>
         </div>
     </div>
+
 </div></div></div>
 
 
