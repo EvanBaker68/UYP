@@ -21,40 +21,36 @@ setcookie("menubar", 0, time() + 86400, "/");
 include 'menubar.php'; 
 ?>
 
-<div class="container">
-<div class="login-form">
-<div class="main-div">
-<div class="panel">
-   <h2>Login</h2>
-   <p>Please enter your email and password</p>
-
-   </div>
-    <form id="Login" action="verifyLogin.php" method="post">
-
-        <div class="form-group">
-            <input type="email" name="Username" class="form-control" id="inputEmail" placeholder="Email Address">
-        </div>
-
-        <div class="form-group">
-            <input type="password" name="password" class="form-control" id="inputPassword" placeholder="Password">
-        </div>
-        <span class="text-danger"><?php if (isset($_COOKIE("loginerror"))) 
-        echo "<div class="container"><div class="alert alert-danger">Sorry there were errors loging into your account.Please try again later.</div></div>";
+    <div class="container">
+ 
+      <form class="form-signin" action="verifyLogin.php" method="post">
+      
+        <h2 class="text-center">Please Login</h2>
+        <div>
+        <label for="inputEmail" class="sr-only">Email address</label>
+        <input type="text" id="inputEmail" name="Username" class="form-control" placeholder="Email address" required autofocus>
+      </div>
+        
+        <div>
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Password" required>
+      </div>
+        <span class="text-danger"><?php if (isset($_COOKIE["loginerror"]) && $_COOKIE["loginerror"] == 1) 
+        echo '<div class="container"><div class="alert alert-danger">Either the entered username or password is incorrect. Please try again.</div></div>';
 
         ?></span>
+         <button name="submit" class="btn btn-success btn-block" type="submit">Login</button>
+      </form>
 
-        <button type="submit" class="btn btn-primary">Login</button>
-    </form>
-    
-    <div class="forgot">
+      <div class="forgot">
         <a href="reset.php">Forgot password</a>
-        </div>
-        <div>
+      </div>
+      <div>
         <a href="studentsignup.php">Register</a>
-        </div>
+      </div>
     </div>
-
-</div></div></div>
+        
+</div>
 
 
 
