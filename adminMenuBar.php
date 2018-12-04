@@ -5,22 +5,25 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <a class="nav-link active" href="index.php">Home</a>
+              <a class="nav-link" href="adminDash.php">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="createaccount.php">Sign Up</a>
+              <a class="nav-link" href="pendingStudents.php">Pending Student Applications</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="admin.php">Student Login</a>
+              <a class="nav-link" href="studentList.php">Students</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="studentsignup.php">Admin Login</a>
+              <a class="nav-link" href="classList.php">Classes</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="about.php">About</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="help.php">Help</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="logout.php">Log Out</a>
             </li>
             </ul>
         </div>

@@ -8,7 +8,7 @@
               <a class="nav-link " href="index.php">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="createaccount.php">Sign Up</a>
+              <a class="nav-link" href="studentApp.php">Sign Up</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="about.php">About</a>
