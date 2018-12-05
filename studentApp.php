@@ -30,6 +30,10 @@ include 'menubar.php';
           <p>* indicates a required field.</p>
           <?php if (isset($_COOKIE["emptyFields"]) && $_COOKIE["emptyFields"] == 1) 
           echo '<div class="container"><div class="alert alert-danger">One or more required fields is missing.</div></div>';
+          if (isset($_COOKIE["invalidBirthday"]) && $_COOKIE["invalidBirthday"] == 1) 
+          echo '<div class="container"><div class="alert alert-danger">Please enter a valid birthday.</div></div>';
+        if (isset($_COOKIE["invalidEmail"]) && $_COOKIE["invalidEmail"] == 1) 
+          echo '<div class="container"><div class="alert alert-danger">Please enter a valid email.</div></div>';
           ?>
             <div class="row">
               <div class="col-4">
@@ -43,8 +47,8 @@ include 'menubar.php';
                   </div>
               </div>
               <div class="form-group col-2 pb-10">
-                <select class="form-control" id="state" name="state">
-                  <option value="" selected disabled hidden>MI</option>
+                <select class="form-control" id="MI" name="MI">
+                  <option value="" selected hidden>MI</option>
                   <?php
                     $letter = "A";
                     for($x = 0; $x < 26; $x++){
@@ -74,7 +78,7 @@ include 'menubar.php';
               </div>
           <div class="form-group col-2 pb-10">
                 <select class="form-control" id="state" name="state">
-                  <option value="" selected disabled hidden>State*</option>
+                  <option value="" selected hidden>State*</option>
                   <option value="AK">Alaska</option>
                   <option value="AL">Alabama</option>
                   <option value="AR">Arkansas</option>
@@ -139,7 +143,7 @@ include 'menubar.php';
           <div class="row">
             <div class="form-group col-4 pb-10">
                   <select class="form-control" id="race" name="race">
-                    <option value="" selected disabled hidden>Race</option>
+                    <option value="" selected hidden>Race</option>
                     <option value="N/A">Choose not to answer</option>
                     <option value="White">White</option>
                     <option value="White">Black or African American</option>
@@ -151,7 +155,7 @@ include 'menubar.php';
               </div>
           <div class="form-group col-2 pb-10">
                 <select class="form-control" id="gender" name="gender">
-                  <option value="" selected disabled hidden>Gender*</option>
+                  <option value="" selected hidden>Gender*</option>
                   <option value="Male">Male</option>
                   <option value="Female">Female</option>
                 </select>
@@ -176,7 +180,7 @@ include 'menubar.php';
               </div>
               <div class="form-group col-4 pb-10">
                   <select class="form-control" id="upcomingGrade" name="upcomingGrade">
-                    <option value="" selected disabled hidden>Grade in upcoming fall</option>
+                    <option value="" selected hidden>Grade in upcoming fall*</option>
                     <?php
                     for ($x = 4; $x <= 12; $x++) {
 
@@ -190,7 +194,7 @@ include 'menubar.php';
         <div class="row">
           <div class="form-group col-6 pb-10">
               <select class="form-control" id="expectedGradYear" name="expectedGradYear">
-                    <option value="" selected disabled hidden>Expected High School Graduation Year</option>
+                    <option value="" selected hidden>Expected High School Graduation Year</option>
                     <option value="N/A">I Don't Know</option>
                 <?php
                 $year = date("Y");
@@ -223,11 +227,9 @@ include 'menubar.php';
             <div class="form-group">
               <input type="text" class="form-control form-control-lg" placeholder="Student Email Address" name="studentEmail">
             </div>
-          <form class="mb-4">
             <div class="form-group">
               <input type="text" class="form-control form-control-lg" placeholder="Student Phone Number" name="studentPhone">
             </div>
-          </form class="mb-4">
           <div>
             <p>Do you have any siblings in the program?</p>
             <label class="radio-inline"><input type="radio" name="sibling" value="0">Yes</label>
@@ -236,20 +238,23 @@ include 'menubar.php';
           <div>
             <div class="form-group">
             <p>If so, please list their names</p>
-            <input type="text" class="form-control form-control-lg" name="sibling1" placeholder="Sibling 1">
+            <input type="text" class="form-control form-control-lg" name="sibling1" placeholder="Sibling 1 Full Name">
             </div>
             <div class="form-group">
-            <input type="text" class="form-control form-control-lg" name="sibling2" placeholder="Sibling 2">
+            <input type="text" class="form-control form-control-lg" name="sibling2" placeholder="Sibling 2 Full Name">
             </div>
             <div class="form-group">
-            <input type="text" class="form-control form-control-lg" name="sibling3" placeholder="Sibling 3">
+            <input type="text" class="form-control form-control-lg" name="sibling3" placeholder="Sibling 3 Full Name">
+            </div>
+            <div class="form-group">
+            <input type="text" class="form-control form-control-lg" name="sibling4" placeholder="Sibling 4 Full Name">
             </div>
           </div>
         <div>
         <p>Have you been accepted to a GT program?</p>
-        <label class="radio-inline"><input type="radio" id="GT1" name="GT" value="0">Yes</label>
-        <label class="radio-inline"><input type="radio" id="GT2" name="GT" value="1" checked>No</label>
-        <label class="radio-inline"><input type="radio" id="GT3" name="GT" value="2">I don't know</label>
+        <label class="radio-inline"><input type="radio" id="GT1" name="GT" value="Yes">Yes</label>
+        <label class="radio-inline"><input type="radio" id="GT2" name="GT" value="No" checked>No</label>
+        <label class="radio-inline"><input type="radio" id="GT3" name="GT" value="I don't know">I don't know</label>
         </div>
         <div>
           <h3>Information for parent/guardian #1</h3>
@@ -259,6 +264,71 @@ include 'menubar.php';
             <div class="form-group">
               <input type="text" class="form-control form-control-lg" placeholder="Address*" name="parent1address">
             </div>
+        <div class="row">
+              <div class="form-group col-2">
+                <input type="text" class="form-control form-control-lg" placeholder="City*" name="parent1city">
+              </div>
+          <div class="form-group col-2 pb-10">
+                <select class="form-control" id="state" name="parent1state">
+                  <option value="" selected hidden>State*</option>
+                  <option value="AK">Alaska</option>
+                  <option value="AL">Alabama</option>
+                  <option value="AR">Arkansas</option>
+                  <option value="AZ">Arizona</option>
+                  <option value="CA">California</option>
+                  <option value="CO">Colorado</option>
+                  <option value="CT">Connecticut</option>
+                  <option value="DC">District of Columbia</option>
+                  <option value="DE">Delaware</option>
+                  <option value="FL">Florida</option>
+                  <option value="GA">Georgia</option>
+                  <option value="HI">Hawaii</option>
+                  <option value="IA">Iowa</option>
+                  <option value="ID">Idaho</option>
+                  <option value="IL">Illinois</option>
+                  <option value="IN">Indiana</option>
+                  <option value="KS">Kansas</option>
+                  <option value="KY">Kentucky</option>
+                  <option value="LA">Louisiana</option>
+                  <option value="MA">Massachusetts</option>
+                  <option value="MD">Maryland</option>
+                  <option value="ME">Maine</option>
+                  <option value="MI">Michigan</option>
+                  <option value="MN">Minnesota</option>
+                  <option value="MO">Missouri</option>
+                  <option value="MS">Mississippi</option>
+                  <option value="MT">Montana</option>
+                  <option value="NC">North Carolina</option>
+                  <option value="ND">North Dakota</option>
+                  <option value="NE">Nebraska</option>
+                  <option value="NH">New Hampshire</option>
+                  <option value="NJ">New Jersey</option>
+                  <option value="NM">New Mexico</option>
+                  <option value="NV">Nevada</option>
+                  <option value="NY">New York</option>
+                  <option value="OH">Ohio</option>
+                  <option value="OK">Oklahoma</option>
+                  <option value="OR">Oregon</option>
+                  <option value="PA">Pennsylvania</option>
+                  <option value="PR">Puerto Rico</option>
+                  <option value="RI">Rhode Island</option>
+                  <option value="SC">South Carolina</option>
+                  <option value="SD">South Dakota</option>
+                  <option value="TN">Tennessee</option>
+                  <option value="TX">Texas</option>
+                  <option value="UT">Utah</option>
+                  <option value="VA">Virginia</option>
+                  <option value="VT">Vermont</option>
+                  <option value="WA">Washington</option>
+                  <option value="WI">Wisconsin</option>
+                  <option value="WV">West Virginia</option>
+                  <option value="WY">Wyoming</option>
+                </select>
+            </div>
+              <div class="form-group">
+                <input type="text" class="form-control form-control-lg" placeholder="Zip Code*" name="parent1zip">
+              </div>
+          </div>
             <div class="form-group">
               <input type="text" class="form-control form-control-lg" placeholder="Email Address*" name="parent1email">
             </div>
@@ -285,6 +355,71 @@ include 'menubar.php';
             <div class="form-group">
               <input type="text" class="form-control form-control-lg" placeholder="Address" name="parent2address">
             </div>
+        <div class="row">
+              <div class="form-group col-2">
+                <input type="text" class="form-control form-control-lg" placeholder="City*" name="parent2city">
+              </div>
+          <div class="form-group col-2 pb-10">
+                <select class="form-control" id="state" name="parent2state">
+                  <option value="" selected hidden>State*</option>
+                  <option value="AK">Alaska</option>
+                  <option value="AL">Alabama</option>
+                  <option value="AR">Arkansas</option>
+                  <option value="AZ">Arizona</option>
+                  <option value="CA">California</option>
+                  <option value="CO">Colorado</option>
+                  <option value="CT">Connecticut</option>
+                  <option value="DC">District of Columbia</option>
+                  <option value="DE">Delaware</option>
+                  <option value="FL">Florida</option>
+                  <option value="GA">Georgia</option>
+                  <option value="HI">Hawaii</option>
+                  <option value="IA">Iowa</option>
+                  <option value="ID">Idaho</option>
+                  <option value="IL">Illinois</option>
+                  <option value="IN">Indiana</option>
+                  <option value="KS">Kansas</option>
+                  <option value="KY">Kentucky</option>
+                  <option value="LA">Louisiana</option>
+                  <option value="MA">Massachusetts</option>
+                  <option value="MD">Maryland</option>
+                  <option value="ME">Maine</option>
+                  <option value="MI">Michigan</option>
+                  <option value="MN">Minnesota</option>
+                  <option value="MO">Missouri</option>
+                  <option value="MS">Mississippi</option>
+                  <option value="MT">Montana</option>
+                  <option value="NC">North Carolina</option>
+                  <option value="ND">North Dakota</option>
+                  <option value="NE">Nebraska</option>
+                  <option value="NH">New Hampshire</option>
+                  <option value="NJ">New Jersey</option>
+                  <option value="NM">New Mexico</option>
+                  <option value="NV">Nevada</option>
+                  <option value="NY">New York</option>
+                  <option value="OH">Ohio</option>
+                  <option value="OK">Oklahoma</option>
+                  <option value="OR">Oregon</option>
+                  <option value="PA">Pennsylvania</option>
+                  <option value="PR">Puerto Rico</option>
+                  <option value="RI">Rhode Island</option>
+                  <option value="SC">South Carolina</option>
+                  <option value="SD">South Dakota</option>
+                  <option value="TN">Tennessee</option>
+                  <option value="TX">Texas</option>
+                  <option value="UT">Utah</option>
+                  <option value="VA">Virginia</option>
+                  <option value="VT">Vermont</option>
+                  <option value="WA">Washington</option>
+                  <option value="WI">Wisconsin</option>
+                  <option value="WV">West Virginia</option>
+                  <option value="WY">Wyoming</option>
+                </select>
+            </div>
+              <div class="form-group">
+                <input type="text" class="form-control form-control-lg" placeholder="Zip Code*" name="parent2zip">
+              </div>
+          </div>
             <div class="form-group">
               <input type="text" class="form-control form-control-lg" placeholder="Email Address" name="parent2email">
             </div>
