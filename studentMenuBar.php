@@ -8,19 +8,16 @@
               <a class="nav-link active" href="index.php">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="createaccount.php">Sign Up</a>
+              <a class="nav-link" href="updateStudentInfo.php">Update Information</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="admin.php">Student Login</a>
+              <a class="nav-link" href="classView.php">View Classes</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="studentsignup.php">Admin Login</a>
+              <a class="nav-link" href="classRegister.php">Register For Classes</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="about.php">About</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="help.php">Help</a>
+              <a class="nav-link" href="logout.php">Log Out</a>
             </li>
             </ul>
         </div>

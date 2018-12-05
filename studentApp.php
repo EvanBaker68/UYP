@@ -30,14 +30,14 @@ include 'menubar.php';
               <div class="col-4">
                 <form class="mb-4">
                   <div class="form-group">
-                    <input type="text" class="form-control form-control-lg" placeholder="First Name">
+                    <input type="text" class="form-control form-control-lg" placeholder="First Name*" name="fname">
                   </div>
                 </form>
               </div>
               <div class="col-4">
                 <form>
                   <div class="form-group">
-                    <input type="text" class="form-control form-control-lg" placeholder="Last Name">
+                    <input type="text" class="form-control form-control-lg" placeholder="Last Name*" name="fname">
                   </div>
                 </form>
               </div>
@@ -58,23 +58,23 @@ include 'menubar.php';
             </div>
           <form class="mb-10">
               <div class="form-group">
-                <input type="text" class="form-control form-control-lg" placeholder="Preferred Name">
+                <input type="text" class="form-control form-control-lg" placeholder="Preferred Name*">
               </div>
           </form>
           <form class="my-10">
               <div class="form-group">
-                <input type="text" class="form-control form-control-lg" placeholder="Address">
+                <input type="text" class="form-control form-control-lg" placeholder="Address*">
               </div>
           </form>
           <div class="row">
           <form class="my-10 col-6">
               <div class="form-group">
-                <input type="text" class="form-control form-control-lg" placeholder="City">
+                <input type="text" class="form-control form-control-lg" placeholder="City*">
               </div>
           </form>
           <div class="form-group col-2 pb-10">
-                <select class="form-control" id="state">
-                  <option value="">State</option>
+            <label for="state">State*</label>
+                <select class="form-control" id="state" name="state">
                   <option value="AK">Alaska</option>
                   <option value="AL">Alabama</option>
                   <option value="AR">Arkansas</option>
@@ -131,7 +131,7 @@ include 'menubar.php';
             </div>
             <form class="mb-4 col-2">
               <div class="form-group">
-                <input type="text" class="form-control form-control-lg" placeholder="Zip Code">
+                <input type="text" class="form-control form-control-lg" placeholder="Zip Code*">
               </div>
             </form>
           </div>
@@ -142,8 +142,8 @@ include 'menubar.php';
           </form>
           <div class="row">
             <div class="form-group col-2 pb-10">
-                  <select class="form-control" id="race">
-                    <option value="">Race</option>
+                  <label for="race">Race*</label>
+                  <select class="form-control" id="race" name="race">
                     <option value="White">White</option>
                     <option value="White">Black or African American</option>
                     <option value="White">Hispanic/Latino</option>
@@ -153,12 +153,70 @@ include 'menubar.php';
                   </select>
               </div>
           <div class="form-group col-2 pb-10">
-                <select class="form-control" id="gender">
-                  <option value="">Gender</option>
+                <label for="gender">Gender*</label>  
+                <select class="form-control" id="gender" name="gender">
                   <option value="Male">Male</option>
                   <option value="Female">Female</option>
                 </select>
             </div>
+        </div>
+        <div>
+          <h3>School Information</h3>
+        <label class="radio-inline"><input type="radio" name="optradio" value="Public" checked>Public School</label>
+        <label class="radio-inline"><input type="radio" name="optradio" value="Private">Private School</label>
+        <label class="radio-inline"><input type="radio" name="optradio" value="Home Schooled">Home-Schooled</label>
+        </div>
+        <div class="row">
+          <div class="col-4">
+            <form class="mb-4">
+              <div class="form-group">
+                <input type="text" name="schoolName" class="form-control form-control-lg" placeholder="School Name*">
+                </div>
+            </form>
+          </div>
+          <div class="col-4">
+                <form>
+                  <div class="form-group">
+                    <input type="text" class="form-control form-control-lg" name="schoolDistrict" placeholder="School District">
+                  </div>
+                </form>
+              </div>
+              <div class="form-group col-4 pb-10">
+                <label for="upcomingGrade">Grade in the upcoming fall</label>
+                  <select class="form-control" id="upcomingGrade" name="upcomingGrade">
+                    <!-- <option value="">Grade in upcoming fall</option> -->
+                    <?php
+                    for ($x = 1; $x <= 12; $x++) {
+
+                      echo '<option value="'.$x.'">'.$x.'</option>';
+                      }
+
+                    ?>
+                  </select>
+              </div>
+        </div>
+        <div class="row">
+          <div class="form-group col-4 pb-10">
+            <label for="upcomingGrade">Expected High School Graduation Year</label>
+              <select class="form-control" id="expectedGradYear" name="expectedGradYear">
+                    <!-- <option value="">Grade in upcoming fall</option> -->
+                <?php
+                $year = date("Y");
+                  for ($x = 0; $x < 30; $x++) {
+
+                    echo '<option value="'.($year + $x).'">'.($year + $x).'</option>';
+                    }
+
+                ?>
+              </select>
+            </div>
+          <div class="col-4">
+            <form class="mb-4">
+              <div class="form-group">
+                <input type="text" name="schoolName" class="form-control form-control-lg" placeholder="School Name*">
+                </div>
+            </form>
+          </div>
         </div>
           <!-- <div class="input-append date form_datetime">
     <input size="16" type="text" value="" readonly>

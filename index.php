@@ -14,10 +14,11 @@
 </head>
 <body>
 
-
-
 <?php 
 setcookie("menubar", 0, time() + 86400, "/");
+ ?>
+
+<?php 
 include 'menubar.php'; 
 ?>
 
