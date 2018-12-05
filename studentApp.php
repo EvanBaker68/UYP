@@ -27,6 +27,7 @@ include 'menubar.php';
         <div class="col-10">
           <h1>Sign Up Today</h1>
           <p>Please fill out this form to register</p>
+          <p>* indicates a required field.</p>
             <div class="row">
               <div class="col-4">
                   <div class="form-group">
@@ -60,8 +61,8 @@ include 'menubar.php';
                 <input type="text" class="form-control form-control-lg" placeholder="City*" name="city">
               </div>
           <div class="form-group col-2 pb-10">
-            <label for="state">State*</label>
                 <select class="form-control" id="state" name="state">
+                  <option value="">State*</option>
                   <option value="AK">Alaska</option>
                   <option value="AL">Alabama</option>
                   <option value="AR">Arkansas</option>
@@ -125,8 +126,8 @@ include 'menubar.php';
             </div>
           <div class="row">
             <div class="form-group col-4 pb-10">
-                  <label for="race">Race</label>
                   <select class="form-control" id="race" name="race">
+                    <option value="">Race</option>
                     <option value="N/A">Choose not to answer</option>
                     <option value="White">White</option>
                     <option value="White">Black or African American</option>
@@ -137,8 +138,8 @@ include 'menubar.php';
                   </select>
               </div>
           <div class="form-group col-2 pb-10">
-                <label for="gender">Gender*</label>  
                 <select class="form-control" id="gender" name="gender">
+                  <option value="">Gender*</option>
                   <option value="Male">Male</option>
                   <option value="Female">Female</option>
                 </select>
@@ -162,9 +163,8 @@ include 'menubar.php';
                   </div>
               </div>
               <div class="form-group col-4 pb-10">
-                <label for="upcomingGrade">Grade in the upcoming fall</label>
                   <select class="form-control" id="upcomingGrade" name="upcomingGrade">
-                    <!-- <option value="">Grade in upcoming fall</option> -->
+                    <option value="">Grade in upcoming fall</option>
                     <?php
                     for ($x = 4; $x <= 12; $x++) {
 
@@ -177,8 +177,8 @@ include 'menubar.php';
         </div>
         <div class="row">
           <div class="form-group col-4 pb-10">
-            <label for="upcomingGrade">Expected High School Graduation Year</label>
               <select class="form-control" id="expectedGradYear" name="expectedGradYear">
+                    <option value="">Expected High School Graduation Year</option>
                     <option value="N/A">I Don't Know</option>
                 <?php
                 $year = date("Y");
@@ -269,9 +269,6 @@ include 'menubar.php';
             </div>
             <div class="form-group">
               <input type="text" class="form-control form-control-lg" placeholder="Email Address" name="parent2email">
-            </div>
-            <div>
-              <p>At least one phone number is required.</p>
             </div>
             <div class="row">
               <div class="form-group col-4">
