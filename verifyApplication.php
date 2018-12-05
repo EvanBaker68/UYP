@@ -16,7 +16,8 @@
  session_start(); 
  $connect = mysqli_connect("localhost", "root", "", "DB3335"); 
  $required = array('fname', 'lname', 'nickname', 'studentAddress', 'city', 'state', 'zip',
- 'birthday', 'gender', 'schoolName', 'upcomingGrade', 'parent1name', 'parent1email', 'parent1address');
+ 'birthday', 'gender', 'schoolName', 'upcomingGrade', 'parent1name', 'parent1email', 'parent1address',
+ 'parent1city', 'parent1zip', 'parent1state');
 
  $required2 = array('parent1Cell', 'parent1Work', 'parent1Home');
 
