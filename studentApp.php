@@ -21,6 +21,7 @@ setcookie("menubar", 0, time() + 86400, "/");
 include 'menubar.php'; 
 ?>
 
+  <form class="form-studentapp" action="verifyApplication.php" method="post">
     <div class="container my-3 text-center">
       <div class="row justify-content-around">
         <div class="col-10">
@@ -28,50 +29,36 @@ include 'menubar.php';
           <p>Please fill out this form to register</p>
             <div class="row">
               <div class="col-4">
-                <form class="mb-4">
                   <div class="form-group">
                     <input type="text" class="form-control form-control-lg" placeholder="First Name*" name="fname">
                   </div>
-                </form>
               </div>
               <div class="col-4">
-                <form>
                   <div class="form-group">
                     <input type="text" class="form-control form-control-lg" placeholder="Last Name*" name="fname">
                   </div>
-                </form>
               </div>
               <div class="col-2">
-                <form class="mb-4">
                   <div class="form-group">
                     <input type="text" class="form-control form-control-lg" placeholder="MI">
                   </div>
-                </form>
               </div>
               <div class="col-2">
-                <form class="mb-4">
                   <div class="form-group">
                     <input type="text" class="form-control form-control-lg" placeholder="Suffix">
                   </div>
-                </form>
               </div>
             </div>
-          <form class="mb-10">
               <div class="form-group">
                 <input type="text" class="form-control form-control-lg" placeholder="Preferred Name*">
               </div>
-          </form>
-          <form class="my-10">
               <div class="form-group">
                 <input type="text" class="form-control form-control-lg" placeholder="Address*">
               </div>
-          </form>
           <div class="row">
-          <form class="my-10 col-6">
-              <div class="form-group">
+              <div class="form-group col-2">
                 <input type="text" class="form-control form-control-lg" placeholder="City*">
               </div>
-          </form>
           <div class="form-group col-2 pb-10">
             <label for="state">State*</label>
                 <select class="form-control" id="state" name="state">
@@ -129,17 +116,13 @@ include 'menubar.php';
                   <option value="WY">Wyoming</option>
                 </select>
             </div>
-            <form class="mb-4 col-2">
               <div class="form-group">
                 <input type="text" class="form-control form-control-lg" placeholder="Zip Code*">
               </div>
-            </form>
           </div>
-          <form class="mb-4">
             <div class="form-group">
               <input type="text" class="form-control form-control-lg" placeholder="Birthdate (Will replace with a date picker)">
             </div>
-          </form>
           <div class="row">
             <div class="form-group col-2 pb-10">
                   <label for="race">Race*</label>
@@ -162,24 +145,20 @@ include 'menubar.php';
         </div>
         <div>
           <h3>School Information</h3>
-        <label class="radio-inline"><input type="radio" name="optradio" value="Public" checked>Public School</label>
-        <label class="radio-inline"><input type="radio" name="optradio" value="Private">Private School</label>
-        <label class="radio-inline"><input type="radio" name="optradio" value="Home Schooled">Home-Schooled</label>
+        <label class="radio-inline"><input type="radio" name="optradio" value="0" checked>Public School</label>
+        <label class="radio-inline"><input type="radio" name="optradio" value="1">Private School</label>
+        <label class="radio-inline"><input type="radio" name="optradio" value="2">Home-Schooled</label>
         </div>
         <div class="row">
           <div class="col-4">
-            <form class="mb-4">
               <div class="form-group">
                 <input type="text" name="schoolName" class="form-control form-control-lg" placeholder="School Name*">
                 </div>
-            </form>
           </div>
           <div class="col-4">
-                <form>
                   <div class="form-group">
                     <input type="text" class="form-control form-control-lg" name="schoolDistrict" placeholder="School District">
                   </div>
-                </form>
               </div>
               <div class="form-group col-4 pb-10">
                 <label for="upcomingGrade">Grade in the upcoming fall</label>
@@ -228,22 +207,82 @@ include 'menubar.php';
         format: "dd MM yyyy - hh:ii"
     });
 </script> -->
-          <form class="mb-4">
             <div class="form-group">
-              <input type="text" class="form-control form-control-lg" placeholder="Email">
+              <input type="text" class="form-control form-control-lg" placeholder="Student Email Address" name="studentEmail">
             </div>
-          </form>
           <form class="mb-4">
             <div class="form-group">
-              <input type="text" class="form-control form-control-lg" placeholder="Phone Number">
+              <input type="text" class="form-control form-control-lg" placeholder="Student Phone Number" name="studentPhone">
             </div>
           </form class="mb-4">
-          <form action="studentsignup.php" method="get">
-          <input type="submit" value="Next" class="btn btn-outline-secondary btn-block">
-        </form>
+          <div>
+            <p>Do you have any siblings in the program?</p>
+            <label class="radio-inline"><input type="radio" name="optradio" value="0" checked>Yes</label>
+            <label class="radio-inline"><input type="radio" name="optradio" value="1">No</label>
+          </div>
+          <div>
+            <p>If so, list all of their names</p>
+            <div class="form-group">
+            <input type="text" class="form-control form-control-lg" name="sibling1" placeholder="Sibling1">
+            </div>
+            <div class="form-group">
+            <input type="text" class="form-control form-control-lg" name="sibling2" placeholder="Sibling2">
+            </div>
+            <div class="form-group">
+            <input type="text" class="form-control form-control-lg" name="sibling3" placeholder="Sibling3">
+            </div>
+          </div>
+        <div>
+          <h3>Information for parent/guardian #1</h3>
+            <div class="form-group">
+              <input type="text" class="form-control form-control-lg" placeholder="Name*" name="parent1name">
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control form-control-lg" placeholder="Address*" name="parent1address">
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control form-control-lg" placeholder="Email Address*" name="parent1email">
+            </div>
+            <div class="row">
+              <div class="form-group col-4">
+                <input type="text" class="form-control form-control-lg" placeholder="Cell Phone Number" name="parent2email">
+              </div>
+              <div class="form-group col-4">
+                <input type="text" class="form-control form-control-lg" placeholder="Work Phone Number" name="parent2email">
+              </div>
+              <div class="form-group col-4">
+                <input type="text" class="form-control form-control-lg" placeholder="Home Phone Number" name="parent2email">
+              </div>
+            </div>
+        </div>
+        <div>
+          <h3>Information for parent/guardian #2</h3>
+            <div class="form-group">
+              <input type="text" class="form-control form-control-lg" placeholder="Name" name="parent2name">
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control form-control-lg" placeholder="Address" name="parent2address">
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control form-control-lg" placeholder="Email Address" name="parent2email">
+            </div>
+            <div class="row">
+              <div class="form-group col-4">
+                <input type="text" class="form-control form-control-lg" placeholder="Cell Phone Number" name="parent2email">
+              </div>
+              <div class="form-group col-4">
+                <input type="text" class="form-control form-control-lg" placeholder="Work Phone Number" name="parent2email">
+              </div>
+              <div class="form-group col-4">
+                <input type="text" class="form-control form-control-lg" placeholder="Home Phone Number" name="parent2email">
+              </div>
+            </div>
+          <button name="submit" class="btn btn-success btn-block" type="submit">Submit Application</button>
+          <!-- <input type="submit" value="Submit Application" class="btn btn-outline-secondary btn-block"> -->
         </div>
       </div>
     </div>
+  </form>
 
     <!-- <footer id="main-footer" class="text-center p-2 fixed-bottom">
       <div class="container">
