@@ -169,7 +169,7 @@ if($stmt == false){
 
 //Verify that other information is correct
 
- echo "<p>heythere</p>";
+  header('Location: successfulAppSubmission.php');
 
  // $stmt = $connect->prepare("INSERT INTO TEST(username, password) VALUES(?, ?)");
  // $stmt->bind_param("ss",$name, $password);
