@@ -28,6 +28,9 @@ include 'menubar.php';
           <h1>Sign Up Today</h1>
           <p>Please fill out this form to register</p>
           <p>* indicates a required field.</p>
+          <?php if (isset($_COOKIE["emptyFields"]) && $_COOKIE["emptyFields"] == 1) 
+          echo '<div class="container"><div class="alert alert-danger">One or more required fields is missing.</div></div>';
+          ?>
             <div class="row">
               <div class="col-4">
                   <div class="form-group">
@@ -36,7 +39,7 @@ include 'menubar.php';
               </div>
               <div class="col-4">
                   <div class="form-group">
-                    <input type="text" class="form-control form-control-lg" placeholder="Last Name*" name="fname">
+                    <input type="text" class="form-control form-control-lg" placeholder="Last Name*" name="lname">
                   </div>
               </div>
               <div class="col-2">
@@ -122,7 +125,7 @@ include 'menubar.php';
               </div>
           </div>
             <div class="form-group">
-              <input type="text" class="form-control form-control-lg" placeholder="Birthdate (Will replace with a date picker)" name="birthday">
+              <input type="text" class="form-control form-control-lg" placeholder="Birthday* (yyyy-mm-dd format)" name="birthday">
             </div>
           <div class="row">
             <div class="form-group col-4 pb-10">
@@ -176,7 +179,7 @@ include 'menubar.php';
               </div>
         </div>
         <div class="row">
-          <div class="form-group col-4 pb-10">
+          <div class="form-group col-6 pb-10">
               <select class="form-control" id="expectedGradYear" name="expectedGradYear">
                     <option value="">Expected High School Graduation Year</option>
                     <option value="N/A">I Don't Know</option>
@@ -234,6 +237,12 @@ include 'menubar.php';
             </div>
           </div>
         <div>
+        <p>Have you been accepted to a GT program?</p>
+        <label class="radio-inline"><input type="radio" id="GT1" name="GT" value="0">Yes</label>
+        <label class="radio-inline"><input type="radio" id="GT2" name="GT" value="1" checked>No</label>
+        <label class="radio-inline"><input type="radio" id="GT3" name="GT" value="2">I don't know</label>
+        </div>
+        <div>
           <h3>Information for parent/guardian #1</h3>
             <div class="form-group">
               <input type="text" class="form-control form-control-lg" placeholder="Name*" name="parent1name">
@@ -282,9 +291,6 @@ include 'menubar.php';
               </div>
             </div>
           <button name="submit" class="btn btn-success btn-block" type="submit">Submit Application</button>
-          <?php if (isset($_COOKIE["emptyFields"]) && $_COOKIE["emptyFields"] == 1) 
-          echo '<div class="container"><div class="alert alert-danger">Either the entered username or password is incorrect. Please try again.</div></div>';
-          ?></span>
           <!-- <input type="submit" value="Submit Application" class="btn btn-outline-secondary btn-block"> -->
         </div>
       </div>
