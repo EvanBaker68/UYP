@@ -62,6 +62,37 @@ $schoolName = $_POST['schoolName'];
 $parent1name = $_POST['parent1name'];
 $parent1email = $_POST['parent1email'];
 $parent1address = $_POST['parent1address'];
+$MI = $_POST['MI'];
+$suffix = $_POST['suffix'];
+$race = $_POST['race'];
+$schoolType = $_POST['schoolType'];
+$schoolDistrict = $_POST['schoolDistrict'];
+$upcomingGrade = $_POST['upcomingGrade'];
+$expectedGradYear = $_POST['expectedGradYear'];
+$expectedHighSchool = $_POST['expectedHighSchool'];
+$studentEmail = $_POST['studentEmail'];
+$studentPhone = $_POST['studentPhone'];
+$sibling = $_POST['sibling'];
+$sibling1 = $_POST['sibling1'];
+$sibling2 = $_POST['sibling2'];
+$sibling3 = $_POST['sibling3'];
+$GT = $_POST['GT'];
+$parent1name = $_POST['parent1name'];
+$parent1address = $_POST['parent1address'];
+$parent1email = $_POST['parent1email'];
+$parent1Cell = $_POST['parent1Cell'];
+$parent1Work = $_POST['parent1Work'];
+$parent1Home = $_POST['parent1Home'];
+////////////////////////////////////////////////////////////////////////////////////////
+$accepted = false;
+$parent2name = $_POST['parent2name'];
+$parent2address = $_POST['parent2address'];
+$parent2email = $_POST['parent2email'];
+$parent2Cell = $_POST['parent2Cell'];
+$parent2Work = $_POST['parent2Work'];
+$parent2Home = $_POST['parent2Home'];
+
+
 
 
 //Verify that other information is correct

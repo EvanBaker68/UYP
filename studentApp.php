@@ -42,10 +42,19 @@ include 'menubar.php';
                     <input type="text" class="form-control form-control-lg" placeholder="Last Name*" name="lname">
                   </div>
               </div>
-              <div class="col-2">
-                  <div class="form-group">
-                    <input type="text" class="form-control form-control-lg" placeholder="MI" name="MI">
-                  </div>
+              <div class="form-group col-2 pb-10">
+                <select class="form-control" id="state" name="state">
+                  <option value="" selected disabled hidden>MI</option>
+                  <?php
+                    $letter = "A";
+                    for($x = 0; $x < 26; $x++){
+
+                      echo '<option value="'.$letter.'">'.$letter.'</option>';
+                      $letter++;
+                    }
+
+                  ?>
+                </select>
               </div>
               <div class="col-2">
                   <div class="form-group">
@@ -65,7 +74,7 @@ include 'menubar.php';
               </div>
           <div class="form-group col-2 pb-10">
                 <select class="form-control" id="state" name="state">
-                  <option value="">State*</option>
+                  <option value="" selected disabled hidden>State*</option>
                   <option value="AK">Alaska</option>
                   <option value="AL">Alabama</option>
                   <option value="AR">Arkansas</option>
@@ -130,7 +139,7 @@ include 'menubar.php';
           <div class="row">
             <div class="form-group col-4 pb-10">
                   <select class="form-control" id="race" name="race">
-                    <option value="">Race</option>
+                    <option value="" selected disabled hidden>Race</option>
                     <option value="N/A">Choose not to answer</option>
                     <option value="White">White</option>
                     <option value="White">Black or African American</option>
@@ -142,7 +151,7 @@ include 'menubar.php';
               </div>
           <div class="form-group col-2 pb-10">
                 <select class="form-control" id="gender" name="gender">
-                  <option value="">Gender*</option>
+                  <option value="" selected disabled hidden>Gender*</option>
                   <option value="Male">Male</option>
                   <option value="Female">Female</option>
                 </select>
@@ -150,9 +159,9 @@ include 'menubar.php';
         </div>
         <div>
           <h3>School Information</h3>
-        <label class="radio-inline"><input type="radio" id="schoolType1" name="schoolType" value="0" checked>Public School</label>
-        <label class="radio-inline"><input type="radio" id="schoolType2" name="schoolType" value="1">Private School</label>
-        <label class="radio-inline"><input type="radio" id="schoolType3" name="schoolType" value="2">Home-Schooled</label>
+        <label class="radio-inline"><input type="radio" id="schoolType1" name="schoolType" value="Public" checked>Public School</label>
+        <label class="radio-inline"><input type="radio" id="schoolType2" name="schoolType" value="Private">Private School</label>
+        <label class="radio-inline"><input type="radio" id="schoolType3" name="schoolType" value="Home">Home-Schooled</label>
         </div>
         <div class="row">
           <div class="col-4">
@@ -167,7 +176,7 @@ include 'menubar.php';
               </div>
               <div class="form-group col-4 pb-10">
                   <select class="form-control" id="upcomingGrade" name="upcomingGrade">
-                    <option value="">Grade in upcoming fall</option>
+                    <option value="" selected disabled hidden>Grade in upcoming fall</option>
                     <?php
                     for ($x = 4; $x <= 12; $x++) {
 
@@ -181,7 +190,7 @@ include 'menubar.php';
         <div class="row">
           <div class="form-group col-6 pb-10">
               <select class="form-control" id="expectedGradYear" name="expectedGradYear">
-                    <option value="">Expected High School Graduation Year</option>
+                    <option value="" selected disabled hidden>Expected High School Graduation Year</option>
                     <option value="N/A">I Don't Know</option>
                 <?php
                 $year = date("Y");
