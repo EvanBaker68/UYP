@@ -40,24 +40,24 @@ include 'menubar.php';
               </div>
               <div class="col-2">
                   <div class="form-group">
-                    <input type="text" class="form-control form-control-lg" placeholder="MI">
+                    <input type="text" class="form-control form-control-lg" placeholder="MI" name="MI">
                   </div>
               </div>
               <div class="col-2">
                   <div class="form-group">
-                    <input type="text" class="form-control form-control-lg" placeholder="Suffix">
+                    <input type="text" class="form-control form-control-lg" placeholder="Suffix" name="suffix">
                   </div>
               </div>
             </div>
               <div class="form-group">
-                <input type="text" class="form-control form-control-lg" placeholder="Preferred Name*">
+                <input type="text" class="form-control form-control-lg" placeholder="Preferred Name*" name="nickname">
               </div>
               <div class="form-group">
-                <input type="text" class="form-control form-control-lg" placeholder="Address*">
+                <input type="text" class="form-control form-control-lg" placeholder="Address*" name="studentAddress">
               </div>
           <div class="row">
               <div class="form-group col-2">
-                <input type="text" class="form-control form-control-lg" placeholder="City*">
+                <input type="text" class="form-control form-control-lg" placeholder="City*" name="city">
               </div>
           <div class="form-group col-2 pb-10">
             <label for="state">State*</label>
@@ -117,16 +117,17 @@ include 'menubar.php';
                 </select>
             </div>
               <div class="form-group">
-                <input type="text" class="form-control form-control-lg" placeholder="Zip Code*">
+                <input type="text" class="form-control form-control-lg" placeholder="Zip Code*" name="zip">
               </div>
           </div>
             <div class="form-group">
-              <input type="text" class="form-control form-control-lg" placeholder="Birthdate (Will replace with a date picker)">
+              <input type="text" class="form-control form-control-lg" placeholder="Birthdate (Will replace with a date picker)" name="birthday">
             </div>
           <div class="row">
-            <div class="form-group col-2 pb-10">
-                  <label for="race">Race*</label>
+            <div class="form-group col-4 pb-10">
+                  <label for="race">Race</label>
                   <select class="form-control" id="race" name="race">
+                    <option value="N/A">Choose not to answer</option>
                     <option value="White">White</option>
                     <option value="White">Black or African American</option>
                     <option value="White">Hispanic/Latino</option>
@@ -145,9 +146,9 @@ include 'menubar.php';
         </div>
         <div>
           <h3>School Information</h3>
-        <label class="radio-inline"><input type="radio" name="optradio" value="0" checked>Public School</label>
-        <label class="radio-inline"><input type="radio" name="optradio" value="1">Private School</label>
-        <label class="radio-inline"><input type="radio" name="optradio" value="2">Home-Schooled</label>
+        <label class="radio-inline"><input type="radio" id="schoolType1" name="schoolType" value="0" checked>Public School</label>
+        <label class="radio-inline"><input type="radio" id="schoolType2" name="schoolType" value="1">Private School</label>
+        <label class="radio-inline"><input type="radio" id="schoolType3" name="schoolType" value="2">Home-Schooled</label>
         </div>
         <div class="row">
           <div class="col-4">
@@ -165,7 +166,7 @@ include 'menubar.php';
                   <select class="form-control" id="upcomingGrade" name="upcomingGrade">
                     <!-- <option value="">Grade in upcoming fall</option> -->
                     <?php
-                    for ($x = 1; $x <= 12; $x++) {
+                    for ($x = 4; $x <= 12; $x++) {
 
                       echo '<option value="'.$x.'">'.$x.'</option>';
                       }
@@ -178,7 +179,7 @@ include 'menubar.php';
           <div class="form-group col-4 pb-10">
             <label for="upcomingGrade">Expected High School Graduation Year</label>
               <select class="form-control" id="expectedGradYear" name="expectedGradYear">
-                    <!-- <option value="">Grade in upcoming fall</option> -->
+                    <option value="N/A">I Don't Know</option>
                 <?php
                 $year = date("Y");
                   for ($x = 0; $x < 30; $x++) {
@@ -192,8 +193,8 @@ include 'menubar.php';
           <div class="col-4">
             <form class="mb-4">
               <div class="form-group">
-                <input type="text" name="schoolName" class="form-control form-control-lg" placeholder="School Name*">
-                </div>
+                <input type="text" name="expectedHighSchool" class="form-control form-control-lg" placeholder="Expected High School">
+              </div>
             </form>
           </div>
         </div>
@@ -217,19 +218,19 @@ include 'menubar.php';
           </form class="mb-4">
           <div>
             <p>Do you have any siblings in the program?</p>
-            <label class="radio-inline"><input type="radio" name="optradio" value="0" checked>Yes</label>
-            <label class="radio-inline"><input type="radio" name="optradio" value="1">No</label>
+            <label class="radio-inline"><input type="radio" name="sibling" value="0">Yes</label>
+            <label class="radio-inline"><input type="radio" name="sibling" value="1" checked>No</label>
           </div>
           <div>
-            <p>If so, list all of their names</p>
             <div class="form-group">
-            <input type="text" class="form-control form-control-lg" name="sibling1" placeholder="Sibling1">
+            <p>If so, please list their names</p>
+            <input type="text" class="form-control form-control-lg" name="sibling1" placeholder="Sibling 1">
             </div>
             <div class="form-group">
-            <input type="text" class="form-control form-control-lg" name="sibling2" placeholder="Sibling2">
+            <input type="text" class="form-control form-control-lg" name="sibling2" placeholder="Sibling 2">
             </div>
             <div class="form-group">
-            <input type="text" class="form-control form-control-lg" name="sibling3" placeholder="Sibling3">
+            <input type="text" class="form-control form-control-lg" name="sibling3" placeholder="Sibling 3">
             </div>
           </div>
         <div>
@@ -243,15 +244,18 @@ include 'menubar.php';
             <div class="form-group">
               <input type="text" class="form-control form-control-lg" placeholder="Email Address*" name="parent1email">
             </div>
+            <div>
+              <p>At least one phone number is required.</p>
+            </div>
             <div class="row">
               <div class="form-group col-4">
-                <input type="text" class="form-control form-control-lg" placeholder="Cell Phone Number" name="parent2email">
+                <input type="text" class="form-control form-control-lg" placeholder="Cell Phone Number" name="parent1Cell">
               </div>
               <div class="form-group col-4">
-                <input type="text" class="form-control form-control-lg" placeholder="Work Phone Number" name="parent2email">
+                <input type="text" class="form-control form-control-lg" placeholder="Work Phone Number" name="parent1Work">
               </div>
               <div class="form-group col-4">
-                <input type="text" class="form-control form-control-lg" placeholder="Home Phone Number" name="parent2email">
+                <input type="text" class="form-control form-control-lg" placeholder="Home Phone Number" name="parent1Home">
               </div>
             </div>
         </div>
@@ -266,18 +270,24 @@ include 'menubar.php';
             <div class="form-group">
               <input type="text" class="form-control form-control-lg" placeholder="Email Address" name="parent2email">
             </div>
+            <div>
+              <p>At least one phone number is required.</p>
+            </div>
             <div class="row">
               <div class="form-group col-4">
-                <input type="text" class="form-control form-control-lg" placeholder="Cell Phone Number" name="parent2email">
+                <input type="text" class="form-control form-control-lg" placeholder="Cell Phone Number" name="parent2Cell">
               </div>
               <div class="form-group col-4">
-                <input type="text" class="form-control form-control-lg" placeholder="Work Phone Number" name="parent2email">
+                <input type="text" class="form-control form-control-lg" placeholder="Work Phone Number" name="parent2Work">
               </div>
               <div class="form-group col-4">
-                <input type="text" class="form-control form-control-lg" placeholder="Home Phone Number" name="parent2email">
+                <input type="text" class="form-control form-control-lg" placeholder="Home Phone Number" name="parent2Home">
               </div>
             </div>
           <button name="submit" class="btn btn-success btn-block" type="submit">Submit Application</button>
+          <?php if (isset($_COOKIE["emptyFields"]) && $_COOKIE["emptyFields"] == 1) 
+          echo '<div class="container"><div class="alert alert-danger">Either the entered username or password is incorrect. Please try again.</div></div>';
+          ?></span>
           <!-- <input type="submit" value="Submit Application" class="btn btn-outline-secondary btn-block"> -->
         </div>
       </div>
