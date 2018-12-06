@@ -32,8 +32,6 @@ if (isset($_POST['acceptButton'])) {
   $username = $fName.'_'.$lName;
   $extendedUsername = $username;
 
-  var_dump($username);
-  var_dump($_COOKIE['acceptStudent']);
 
   $connect = mysqli_connect("localhost", "root", "", "DB3335");
   $stmt = $connect->prepare("Select COUNT(*) FROM studentLogin WHERE username = ?");
@@ -71,26 +69,79 @@ if (isset($_POST['acceptButton'])) {
   $stmt->execute();
 
 
-  var_dump($studentEmail);
+  if(empty($studentEmail)){
+  		$connect = mysqli_connect("localhost", "root", "", "DB3335"); 
+		$stmt= $connect->prepare("SELECT email FROM parent WHERE studentID = ?");
+		$stmt->bind_param("s",$_COOKIE['acceptStudent']);
+		$stmt->execute();
+		$stmt -> bind_result($email);
+		$stmt -> fetch();
+
+		if(empty($email)){
+			$stmt->fetch();
+			$studentEmail = $email;
+		}
+		else{
+			$studentEmail = $email;
+		}
+  }
+
   $to = $studentEmail; // PUT YOUR EMAIL ADDRESS HERE
   $email_subject = "UYP Acceptance"; // EDIT THE EMAIL SUBJECT LINE HERE
-  $email_body = "You have been accepted to UYP! Congratulations! Here is your username and password to log in to the system.\n
+  $email_body = "Hello ".$fName." ".$lName.", you have been accepted to UYP! Congratulations! Here is your username and password to log in to the system.\n
   Username: ".$extendedUsername."\nPassword: ".$password;
   $headers = "From: noreply@your-domain.com\n";
   mail($to,$email_subject,$email_body,$headers);
 
 
-
+  echo'<br><br><br><br><br><br><br><br><br><br><br><br>
+	<center><h3>The student has been accepted. An email has been sent to them informing them of the acceptance, along with 
+	their login information.</h3></center>';
 
   setcookie("acceptStudent", 0, time() + 86400, "/");
 } 
 
 
 else if (isset($_POST['denyButton'])) {
+  $connect = mysqli_connect("localhost", "root", "", "DB3335"); 
+  $stmt= $connect->prepare("SELECT fName,lName,studentEmail FROM studentApp WHERE studentID = ?");
+  $stmt->bind_param("s",$_COOKIE['acceptStudent']);
+  $stmt->execute();
+  $stmt -> bind_result($fName,$lName,$studentEmail);
+  $stmt -> fetch();
+
+    if(empty($studentEmail)){
+  		$connect = mysqli_connect("localhost", "root", "", "DB3335"); 
+		$stmt= $connect->prepare("SELECT email FROM parent WHERE studentID = ?");
+		$stmt->bind_param("s",$_COOKIE['acceptStudent']);
+		$stmt->execute();
+		$stmt -> bind_result($email);
+		$stmt -> fetch();
+
+		if(empty($email)){
+			$stmt->fetch();
+			$studentEmail = $email;
+		}
+		else{
+			$studentEmail = $email;
+		}
+  }
+
+  $to = $studentEmail; // PUT YOUR EMAIL ADDRESS HERE
+  $email_subject = "UYP Acceptance"; // EDIT THE EMAIL SUBJECT LINE HERE
+  $email_body = "Hello ".$fName." ".$lName.", unfortunately you have been denied from UYP.";
+  $headers = "From: noreply@your-domain.com\n";
+  mail($to,$email_subject,$email_body,$headers);
+
+
+  $connect = mysqli_connect("localhost", "root", "", "DB3335");
   $stmt = $connect->prepare("UPDATE studentApp SET accepted=2 WHERE studentID = ?");
   $stmt->bind_param("s",$_COOKIE['acceptStudent']);
   $stmt->execute();
   setcookie("acceptStudent", 0, time() + 86400, "/");
+
+  echo'<br><br><br><br><br><br><br><br><br><br><br><br>
+	<center><h3>The student has been denied. An email has been sent to them informing them of the denial.</h3></center>';
 } 
 
 else{
