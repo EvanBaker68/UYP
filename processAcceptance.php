@@ -31,7 +31,8 @@ if (isset($_POST['acceptButton'])) {
   $endNum = 1;
   $username = $fName.'_'.$lName;
   $extendedUsername = $username;
-
+  $adminName = $_POST['adminName'];
+  $acceptanceYear = $_POST['acceptanceYear'];
 
   $connect = mysqli_connect("localhost", "root", "", "DB3335");
   $stmt = $connect->prepare("Select COUNT(*) FROM studentLogin WHERE username = ?");
@@ -64,8 +65,8 @@ if (isset($_POST['acceptButton'])) {
   $stmt->execute();
 
   $connect = mysqli_connect("localhost", "root", "", "DB3335");
-  $stmt = $connect->prepare("UPDATE studentApp SET accepted=1 WHERE studentID = ?");
-  $stmt->bind_param("s",$_COOKIE['acceptStudent']);
+  $stmt = $connect->prepare("UPDATE studentApp SET accepted=1, approvalAdminName=?, acceptedYear=? WHERE studentID = ?");
+  $stmt->bind_param("sis",$adminName,$acceptanceYear,$_COOKIE['acceptStudent']);
   $stmt->execute();
 
 

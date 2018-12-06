@@ -302,6 +302,8 @@ YOU CAN USE IT FOR THE UPDATE FIELD FOR BOTH THE STUDENT AND ADMINS-->
               </div>
             </div>
             <form action="processAcceptance.php" method="post">
+            <input type="text" class="form-control form-control-lg" placeholder="Year of acceptance" name="acceptanceYear" >
+            <input type="text" class="form-control form-control-lg" placeholder="Name of admin" name="adminName" >
 			<input class="btn btn-outline-secondary btn-block" type="submit" name="acceptButton" value="Accept" />
 			<input class="btn btn-outline-secondary btn-block" type="submit" name="denyButton" value="Deny" /> 
 			</form>         
