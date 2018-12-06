@@ -31,14 +31,15 @@ include 'menubar.php';
       <form class="form-signin" action="verifyLogin.php" method="post">
       
         <h2 class="text-center">Please Login</h2>
+        <br><br>
         <div>
         <label for="inputEmail" class="sr-only">Email address</label>
         <!-- the "name" field of an input field will determine how you access the field from the php file that processes the
         form. In this case, when the form is passed on to "verifyLogin.php", you can use $_POST['Username'] to access this input field
         because the name field is assigned to "Username", and the method of the form is defined as "post". -->
-        <input type="text" id="inputEmail" name="Username" class="form-control" placeholder="Email address" required autofocus>
+        <input type="text" id="inputEmail" name="Username" class="form-control" placeholder="Username" required autofocus>
       </div>
-        
+        <br>
         <div>
         <label for="inputPassword" class="sr-only">Password</label>
         <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Password" required>
@@ -49,6 +50,7 @@ include 'menubar.php';
         <span class="text-danger"><?php if (isset($_COOKIE["loginerror"]) && $_COOKIE["loginerror"] == 1) 
         echo '<div class="container"><div class="alert alert-danger">Either the entered username or password is incorrect. Please try again.</div></div>';
         ?></span>
+        <br>
          <button name="submit" class="btn btn-success btn-block" type="submit">Login</button>
       </form>
 
@@ -56,9 +58,10 @@ include 'menubar.php';
         <!-- "a href" denotes a link -->
         <a href="reset.php">Forgot password</a>
       </div>
-      <div>
-        <a href="studentsignup.php">Register</a>
-      </div>
+      <br>
+      <form action="studentApp.php">
+    <input type="submit" value="Apply" />
+      </form>
     </div>
         
 </div>

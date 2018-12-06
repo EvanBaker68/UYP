@@ -18,10 +18,8 @@
 <?php 
 include 'menubar.php'; 
 ?>
-
-<?php
-echo '<p>adminDash</p>';
-?>
+<br><br><br><br><br><br><br><br><br><br><br><br>
+<center><h3>Welcome, Admin!</h3></center>
 
 
   <script src="js/jquery.min.js"></script>
