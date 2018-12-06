@@ -4,61 +4,47 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>UYP</title>
-  <link rel="stylesheet" href="css/font-awesome.min.css">
-  <link rel="stylesheet" href="css/bootstrap.css">
-  <link rel="stylesheet" href="css/style.css">
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/style.css">
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <title>UYP</title>
 </head>
 <body>
 
-<?php 
-setcookie("menubar", 0, time() + 86400, "/");
-include 'menubar.php'; 
+<?php
+  
+  $connect = mysqli_connect("localhost", "root", "", "DB3335"); 
+  $stmt= $connect->prepare("SELECT * FROM studentApp WHERE studentID = ?");
+  $stmt->bind_param("s",$_COOKIE['acceptStudent']);
+  $stmt->execute();
+  $stmt -> bind_result($studentID,$fName,$lName,$MI,$suffix,$nickname,$address,$state,$city,$zip,$birthday,
+  	$gender,$race,$typeOfSchool,$schoolName,$schoolDistrict,$upcomingGrade,$expectedGradYear,$expectedHighSchool,
+  	$studentEmail,$hasSibling,$accepted,$GTProgramStatus,$sibling1Name,$sibling2Name,$sibling3Name,$sibling4Name);
+  $stmt -> fetch();
+  // var_dump($student);
 ?>
 
-  <form class="form-studentapp" action="verifyApplication.php" method="post">
-    <div class="container my-3 text-center">
+<div class="container my-3 text-center">
       <div class="row justify-content-around">
         <div class="col-10">
-          <h1>Sign Up Today</h1>
-          <p>Please fill out this form to register</p>
-          <p>* indicates a required field.</p>
-          <?php if (isset($_COOKIE["emptyFields"]) && $_COOKIE["emptyFields"] == 1) 
-          echo '<div class="container"><div class="alert alert-danger">One or more required fields is missing.</div></div>';
-          if (isset($_COOKIE["invalidBirthday"]) && $_COOKIE["invalidBirthday"] == 1) 
-          echo '<div class="container"><div class="alert alert-danger">Please enter a valid birthday.</div></div>';
-        if (isset($_COOKIE["invalidEmail"]) && $_COOKIE["invalidEmail"] == 1) 
-          echo '<div class="container"><div class="alert alert-danger">Please enter a valid email.</div></div>';
-          ?>
             <div class="row">
               <div class="col-4">
                   <div class="form-group">
-                    <input type="text" class="form-control form-control-lg" placeholder="First Name*" name="fname">
+                    <input type="text" class="form-control form-control-lg" placeholder=<?php echo'"First Name: '.$fName.'"';?> name="fname" readonly>
                   </div>
               </div>
               <div class="col-4">
                   <div class="form-group">
-                    <input type="text" class="form-control form-control-lg" placeholder="Last Name*" name="lname">
+                    <input type="text" class="form-control form-control-lg" placeholder=<?php echo'"'.$lName.'"';?> name="lname">
                   </div>
               </div>
               <div class="form-group col-2 pb-10">
-                <select class="form-control" id="MI" name="MI">
-                  <option value="" selected hidden>MI</option>
-                  <?php
-                    $letter = "A";
-                    for($x = 0; $x < 26; $x++){
-
-                      echo '<option value="'.$letter.'">'.$letter.'</option>';
-                      $letter++;
-                    }
-
-                  ?>
-                </select>
+                  <div class="form-group">
+                    <input type="text" class="form-control form-control-lg" placeholder=<?php echo'"'.$MI.'"';?> name="MI">
+                  </div>
               </div>
               <div class="col-2">
                   <div class="form-group">
@@ -439,25 +425,9 @@ include 'menubar.php';
         </div>
       </div>
     </div>
-  </form>
 
-    <!-- <footer id="main-footer" class="text-center p-2 fixed-bottom">
-      <div class="container">
-        <div class="row">
-          <div class="col">
-            <p>Copyright 2018 &copy; University For Young People</p>
-          </div>
-        </div>
-      </div>
-    </footer> -->
 
-    <script type="text/javascript">
-        $(function () {
-            $('#datetimepicker1').datetimepicker();
-        });
-    </script>
-
-  <script src="js/jquery.min.js"></script>
+   <script src="js/jquery.min.js"></script>
   <script src="js/popper.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
 </body>

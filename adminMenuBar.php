@@ -11,7 +11,7 @@
               <a class="nav-link" href="pendingStudents.php">Pending Student Applications</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="studentList.php">Students</a>
+              <a class="nav-link" href="acceptedStudentsTab.php">Accepted Students</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="classList.php">View Classes</a>

@@ -31,16 +31,16 @@
 
  echo "<br><br>";
 
- $result = $connect->query("Select * FROM studentApp WHERE accepted = 0");
+ $result = $connect->query("Select * FROM studentApp WHERE accepted = 1");
 
       echo '<div class="table-responsive" >  
            <table class="table table-bordered"  >  
                 <tr style="width: 100%; background-color: #C0C0C0;">  
                      <th width="10%">User ID</th>  
                      <th width="25%">Name</th>  
-                     <th width="25%">Grade in Fall</th> 
+                     <th width="15%">Grade in Fall</th> 
                      <th width="25%">Current school</th>  
-                     <th width="15%">View Application</th>  
+                     <th width="25%">Update Student Info</th>  
                 </tr>';
 
 
@@ -55,7 +55,7 @@
                      <td class="Type" data-id14="'.$row["studentID"].'" contenteditable>'.$row["fName"].' '.$row["lName"].'</td> 
                      <td class="FirstName" data-id1="'.$row["studentID"].'" contenteditable>'.$row["upcomingGrade"].'</td>  
                      <td class="LastName" data-id2="'.$row["studentID"].'" contenteditable>'.$row["schoolName"].'</td> 
-                     <td><form method="post" action="pendingStudents.php"><button class=" btn-success btn-block" type="submit" value="'.$row["studentID"].'" name="button" >View Student</input></form> </td>
+                     <td><form method="post" action="pendingStudents.php"><button class=" btn-success btn-block" type="submit" value="'.$row["studentID"].'" name="button" >Update Student Info</input></form> </td>
                 </tr>';  
       }  
  }

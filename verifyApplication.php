@@ -90,7 +90,7 @@ $parent1Cell = $_POST['parent1Cell'];
 $parent1Work = $_POST['parent1Work'];
 $parent1Home = $_POST['parent1Home'];
 ////////////////////////////////////////////////////////////////////////////////////////
-$accepted = false;
+$accepted = 0;
 $parent2name = $_POST['parent2name'];
 $parent2address = $_POST['parent2address'];
 $parent2city = $_POST['parent2city'];
@@ -131,9 +131,9 @@ var_dump($id);
 
  $stmt = $connect->prepare("INSERT INTO studentApp(studentID, fName,lName,middleInitial,suffix,nickname
  ,address,state,city,zip,birthday,gender,race,typeOfSchool,schoolName,schoolDistrict
- ,upcomingGrade,expectedGradYear,expectedHighSchool,studentEmail,hasSibling,accepted,GTProgramStatus,
+ ,upcomingGrade,expectedGradYear,expectedHighSchool,studentEmail,studentPhone,hasSibling,accepted,GTProgramStatus,
  sibling1Name, sibling2Name, sibling3Name, sibling4Name) 
- VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+ VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
 if($stmt == false){
   setcookie("incorrectInput", 1, time() + 86400, "/");
@@ -142,7 +142,7 @@ if($stmt == false){
 
  $stmt->bind_param("ssssssssssssssssiissiisssss",$id,$fname, $lname, $MI, $suffix, $nickname, $studentAddress,
  $state, $city, $zip, $birthday, $gender, $race, $schoolType, $schoolName, $schoolDistrict, $upcomingGrade,
- $expectedGradYear, $expectedHighSchool, $studentEmail, $sibling, $accepted, $GT, $sibling1, $sibling2, 
+ $expectedGradYear, $expectedHighSchool, $studentEmail, $studentPhone, $sibling, $accepted, $GT, $sibling1, $sibling2, 
  $sibling3, $sibling4);
  $stmt->execute();
 

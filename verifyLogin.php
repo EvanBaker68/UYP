@@ -10,7 +10,7 @@ $password = $_POST['password'];
 
 
 //Prepares the sql statement which will return the number of rows, as well as the id associated with the given username and password
-$stmt = $connect->prepare("Select COUNT(*), id FROM TEST WHERE username = ? AND password = ?");
+$stmt = $connect->prepare("Select COUNT(*), id FROM studentLogin WHERE username = ? AND password = ?");
 $stmt->bind_param("ss",$username, $password);
 //Executes the query
 $stmt->execute();
