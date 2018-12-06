@@ -47,6 +47,7 @@ include 'menubar.php';
       <!-- "isset" will determine if there exists a value for whatever variable you are checking. This line checks if the "loginerror"
       cookie is set, and if it is set to 1. If so, an alert div is echoed to the screen. This cookie will be set in verifyApplication
       if an error occurs with the login (aka the username and password are not in the database) -->
+        <br>
         <span class="text-danger"><?php if (isset($_COOKIE["loginerror"]) && $_COOKIE["loginerror"] == 1) 
         echo '<div class="container"><div class="alert alert-danger">Either the entered username or password is incorrect. Please try again.</div></div>';
         ?></span>
