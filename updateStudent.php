@@ -22,8 +22,34 @@
   $stmt->execute();
   $stmt -> bind_result($studentID,$fName,$lName,$MI,$suffix,$nickname,$address,$state,$city,$zip,$birthday,
   	$gender,$race,$typeOfSchool,$schoolName,$schoolDistrict,$upcomingGrade,$expectedGradYear,$expectedHighSchool,
-  	$studentEmail,$hasSibling,$accepted,$GTProgramStatus,$sibling1Name,$sibling2Name,$sibling3Name,$sibling4Name);
+  	$studentEmail,$studentPhone,$hasSibling,$accepted,$GTProgramStatus,$sibling1Name,$sibling2Name,$sibling3Name,$sibling4Name);
   $stmt -> fetch();
+
+
+  if(empty($MI)){}
+  	$MI = "N/A";
+    if(empty($suffix))
+  	$suffix = "N/A";
+    if(empty($race))
+  	$race = "N/A";
+    if(empty($schoolDistrict))
+  	$schoolDistrict = "N/A";
+    if(empty($expectedGradYear))
+  	$expectedGradYear = "N/A";
+    if(empty($expectedHighSchool))
+  	$expectedHighSchool = "N/A";
+    if(empty($studentEmail))
+  	$studentEmail = "N/A";
+    if(empty($studentPhone))
+  	$studentPhone = "N/A";
+    if(empty($sibling1Name))
+  	$sibling1Name = "N/A";
+    if(empty($sibling2Name))
+  	$sibling2Name = "N/A";
+    if(empty($sibling3Name))
+  	$sibling3Name = "N/A";
+    if(empty($sibling4Name))
+  	$sibling4Name = "N/A";
   // var_dump($student);
 ?>
 
@@ -38,32 +64,32 @@
               </div>
               <div class="col-4">
                   <div class="form-group">
-                    <input type="text" class="form-control form-control-lg" placeholder=<?php echo'"'.$lName.'"';?> name="lname">
+                    <input type="text" class="form-control form-control-lg" placeholder=<?php echo'"Last Name: '.$lName.'"';?> name="lname" readonly>
                   </div>
               </div>
               <div class="form-group col-2 pb-10">
                   <div class="form-group">
-                    <input type="text" class="form-control form-control-lg" placeholder=<?php echo'"'.$MI.'"';?> name="MI">
+                    <input type="text" class="form-control form-control-lg" placeholder=<?php echo'"MI: '.$MI.'"';?> name="MI" readonly>
                   </div>
               </div>
               <div class="col-2">
                   <div class="form-group">
-                    <input type="text" class="form-control form-control-lg" placeholder="Suffix" name="suffix">
+                    <input type="text" class="form-control form-control-lg" placeholder=<?php echo'"Suffix: '.$suffix.'"';?> name="suffix" readonly>
                   </div>
               </div>
             </div>
               <div class="form-group">
-                <input type="text" class="form-control form-control-lg" placeholder="Preferred Name*" name="nickname">
+                <input type="text" class="form-control form-control-lg" placeholder=<?php echo'"Preferred Name: '.$nickname.'"';?> name="nickname" readonly>
               </div>
               <div class="form-group">
-                <input type="text" class="form-control form-control-lg" placeholder="Address*" name="studentAddress">
+                <input type="text" class="form-control form-control-lg" placeholder=<?php echo'"Address '.$address.'"';?> name="studentAddress" readonly>
               </div>
           <div class="row">
               <div class="form-group col-2">
-                <input type="text" class="form-control form-control-lg" placeholder="City*" name="city">
+                <input type="text" class="form-control form-control-lg" placeholder=<?php echo'"City: '.$city.'"';?> name="city" readonly>
               </div>
           <div class="form-group col-2 pb-10">
-                <select class="form-control" id="state" name="state">
+                <select class="form-control" id="state" name="state" readonly>
                   <option value="" selected hidden>State*</option>
                   <option value="AK">Alaska</option>
                   <option value="AL">Alabama</option>
@@ -120,11 +146,11 @@
                 </select>
             </div>
               <div class="form-group">
-                <input type="text" class="form-control form-control-lg" placeholder="Zip Code*" name="zip">
+                <input type="text" class="form-control form-control-lg" placeholder=<?php echo'"Zip: '.$zip.'"';?> name="zip" readonly>
               </div>
           </div>
             <div class="form-group">
-              <input type="text" class="form-control form-control-lg" placeholder="Birthday* (yyyy-mm-dd format)" name="birthday">
+              <input type="text" class="form-control form-control-lg" placeholder=<?php echo'"Birthday: '.$birthday.'"';?> name="birthday" readonly>
             </div>
           <div class="row">
             <div class="form-group col-4 pb-10">
@@ -156,12 +182,12 @@
         <div class="row">
           <div class="col-4">
               <div class="form-group">
-                <input type="text" name="schoolName" class="form-control form-control-lg" placeholder="School Name*">
+                <input type="text" name="schoolName" class="form-control form-control-lg" placeholder=<?php echo'"School: '.$schoolName.'"';?> readonly>
                 </div>
           </div>
           <div class="col-4">
                   <div class="form-group">
-                    <input type="text" class="form-control form-control-lg" name="schoolDistrict" placeholder="School District">
+                    <input type="text" class="form-control form-control-lg" name="schoolDistrict" placeholder=<?php echo'"School District: '.$schoolDistrict.'"';?> readonly>
                   </div>
               </div>
               <div class="form-group col-4 pb-10">
@@ -195,7 +221,7 @@
           <div class="col-4">
             <form class="mb-4">
               <div class="form-group">
-                <input type="text" name="expectedHighSchool" class="form-control form-control-lg" placeholder="Expected High School">
+                <input type="text" name="expectedHighSchool" class="form-control form-control-lg" placeholder=<?php echo'"Expected High School: '.$expectedHighSchool.'"';?> readonly>
               </div>
             </form>
           </div>
@@ -210,11 +236,15 @@
         format: "dd MM yyyy - hh:ii"
     });
 </script> -->
+
+
+<!--  STILL NEED TO PULL PARENTS FROM DATABASE, INSERT NECESSARY VALUES INTO FIELDS. CHANGE THE DROPDOWS LAST, SO THAT
+YOU CAN USE IT FOR THE UPDATE FIELD FOR BOTH THE STUDENT AND ADMINS-->
             <div class="form-group">
-              <input type="text" class="form-control form-control-lg" placeholder="Student Email Address" name="studentEmail">
+              <input type="text" class="form-control form-control-lg" placeholder=<?php echo'"Student Email Address: '.$studentEmail.'"';?> name="studentEmail" readonly>
             </div>
             <div class="form-group">
-              <input type="text" class="form-control form-control-lg" placeholder="Student Phone Number" name="studentPhone">
+              <input type="text" class="form-control form-control-lg" placeholder=<?php echo'"Student Phone Number: '.$studentPhone.'"';?> name="studentPhone" readonly>
             </div>
           <div>
             <p>Do you have any siblings in the program?</p>
@@ -224,16 +254,16 @@
           <div>
             <div class="form-group">
             <p>If so, please list their names</p>
-            <input type="text" class="form-control form-control-lg" name="sibling1" placeholder="Sibling 1 Full Name">
+            <input type="text" class="form-control form-control-lg" name="sibling1" placeholder=<?php echo'"Sibling 1 Full Name: '.$sibling1Name.'"';?> readonly>
             </div>
             <div class="form-group">
-            <input type="text" class="form-control form-control-lg" name="sibling2" placeholder="Sibling 2 Full Name">
+            <input type="text" class="form-control form-control-lg" name="sibling2" placeholder=<?php echo'"Sibling 2 Full Name: '.$sibling1Name.'"';?> readonly>
             </div>
             <div class="form-group">
-            <input type="text" class="form-control form-control-lg" name="sibling3" placeholder="Sibling 3 Full Name">
+            <input type="text" class="form-control form-control-lg" name="sibling3" placeholder=<?php echo'"Sibling 3 Full Name: '.$sibling1Name.'"';?> readonly>
             </div>
             <div class="form-group">
-            <input type="text" class="form-control form-control-lg" name="sibling4" placeholder="Sibling 4 Full Name">
+            <input type="text" class="form-control form-control-lg" name="sibling4" placeholder=<?php echo'"Sibling 4 Full Name: '.$sibling1Name.'"';?> readonly>
             </div>
           </div>
         <div>
@@ -244,15 +274,42 @@
         </div>
         <div>
           <h3>Information for parent/guardian #1</h3>
+          <?php 
+			  $connect = mysqli_connect("localhost", "root", "", "DB3335"); 
+			  $stmt= $connect->prepare("SELECT * FROM parent WHERE studentID = ?");
+			  $stmt->bind_param("s",$_COOKIE['acceptStudent']);
+			  $stmt->execute();
+			  $stmt -> bind_result($parentName,$studentID,$address,$city,$state,$zip,$email,$cellPhone,$workPhone,$homePhone);
+			  $stmt -> fetch();
+
+			    if(empty($parentName)){}
+			  	$parentName = "N/A";
+			    if(empty($address))
+			  	$address = "N/A";
+			    if(empty($city))
+			  	$city = "N/A";
+			    if(empty($state))
+			  	$state = "N/A";
+			    if(empty($zip))
+			  	$zip = "N/A";
+			    if(empty($email))
+			  	$email = "N/A";
+			    if(empty($cellPhone))
+			  	$cellPhone = "N/A";
+			    if(empty($workPhone))
+			  	$workPhone = "N/A";
+			    if(empty($homePhone))
+			  	$homePhone = "N/A";
+          ?>
             <div class="form-group">
-              <input type="text" class="form-control form-control-lg" placeholder="Name*" name="parent1name">
+              <input type="text" class="form-control form-control-lg" placeholder=<?php echo'"Name: '.$parentName.'"';?> name="parent1name">
             </div>
             <div class="form-group">
-              <input type="text" class="form-control form-control-lg" placeholder="Address*" name="parent1address">
+              <input type="text" class="form-control form-control-lg" placeholder=<?php echo'"Address: '.$address.'"';?> name="parent1address">
             </div>
         <div class="row">
               <div class="form-group col-2">
-                <input type="text" class="form-control form-control-lg" placeholder="City*" name="parent1city">
+                <input type="text" class="form-control form-control-lg" placeholder=<?php echo'"City: '.$city.'"';?> name="parent1city">
               </div>
           <div class="form-group col-2 pb-10">
                 <select class="form-control" id="state" name="parent1state">
@@ -312,38 +369,59 @@
                 </select>
             </div>
               <div class="form-group">
-                <input type="text" class="form-control form-control-lg" placeholder="Zip Code*" name="parent1zip">
+                <input type="text" class="form-control form-control-lg" placeholder=<?php echo'"Zip Code: '.$zip.'"';?> name="parent1zip">
               </div>
           </div>
             <div class="form-group">
-              <input type="text" class="form-control form-control-lg" placeholder="Email Address*" name="parent1email">
+              <input type="text" class="form-control form-control-lg" placeholder=<?php echo'"Email Address: '.$email.'"';?> name="parent1email">
             </div>
             <div>
               <p>At least one phone number is required.</p>
             </div>
             <div class="row">
               <div class="form-group col-4">
-                <input type="text" class="form-control form-control-lg" placeholder="Cell Phone Number" name="parent1Cell">
+                <input type="text" class="form-control form-control-lg" placeholder=<?php echo'"Cell Phone Number: '.$cellPhone.'"';?> name="parent1Cell">
               </div>
               <div class="form-group col-4">
-                <input type="text" class="form-control form-control-lg" placeholder="Work Phone Number" name="parent1Work">
+                <input type="text" class="form-control form-control-lg" placeholder=<?php echo'"Work Phone Number: '.$workPhone.'"';?> name="parent1Work">
               </div>
               <div class="form-group col-4">
-                <input type="text" class="form-control form-control-lg" placeholder="Home Phone Number" name="parent1Home">
+                <input type="text" class="form-control form-control-lg" placeholder=<?php echo'"Home Phone Number: '.$homePhone.'"';?> name="parent1Home">
               </div>
             </div>
         </div>
         <div>
           <h3>Information for parent/guardian #2</h3>
+          <?php 
+          	$stmt -> fetch();
+          		if(empty($parentName)){}
+			  	$parentName = "N/A";
+			    if(empty($address))
+			  	$address = "N/A";
+			    if(empty($city))
+			  	$city = "N/A";
+			    if(empty($state))
+			  	$state = "N/A";
+			    if(empty($zip))
+			  	$zip = "N/A";
+			    if(empty($email))
+			  	$email = "N/A";
+			    if(empty($cellPhone))
+			  	$cellPhone = "N/A";
+			    if(empty($workPhone))
+			  	$workPhone = "N/A";
+			    if(empty($homePhone))
+			  	$homePhone = "N/A";
+          ?>
             <div class="form-group">
-              <input type="text" class="form-control form-control-lg" placeholder="Name" name="parent2name">
+              <input type="text" class="form-control form-control-lg" placeholder=<?php echo'"Name: '.$parentName.'"';?> name="parent2name">
             </div>
             <div class="form-group">
-              <input type="text" class="form-control form-control-lg" placeholder="Address" name="parent2address">
+              <input type="text" class="form-control form-control-lg" placeholder=<?php echo'"Address: '.$address.'"';?> name="parent2address">
             </div>
         <div class="row">
               <div class="form-group col-2">
-                <input type="text" class="form-control form-control-lg" placeholder="City" name="parent2city">
+                <input type="text" class="form-control form-control-lg" placeholder=<?php echo'"City: '.$city.'"';?> name="parent2city">
               </div>
           <div class="form-group col-2 pb-10">
                 <select class="form-control" id="state" name="parent2state">
@@ -403,21 +481,21 @@
                 </select>
             </div>
               <div class="form-group">
-                <input type="text" class="form-control form-control-lg" placeholder="Zip Code" name="parent2zip">
+                <input type="text" class="form-control form-control-lg" placeholder=<?php echo'"Zip Code: '.$zip.'"';?> name="parent2zip">
               </div>
           </div>
             <div class="form-group">
-              <input type="text" class="form-control form-control-lg" placeholder="Email Address" name="parent2email">
+              <input type="text" class="form-control form-control-lg" placeholder=<?php echo'"Email Address: '.$email.'"';?> name="parent2email">
             </div>
             <div class="row">
               <div class="form-group col-4">
-                <input type="text" class="form-control form-control-lg" placeholder="Cell Phone Number" name="parent2Cell">
+                <input type="text" class="form-control form-control-lg" placeholder=<?php echo'"Cell Phone: '.$cellPhone.'"';?> name="parent2Cell">
               </div>
               <div class="form-group col-4">
-                <input type="text" class="form-control form-control-lg" placeholder="Work Phone Number" name="parent2Work">
+                <input type="text" class="form-control form-control-lg" placeholder=<?php echo'"Work Phone: '.$workPhone.'"';?> name="parent2Work">
               </div>
               <div class="form-group col-4">
-                <input type="text" class="form-control form-control-lg" placeholder="Home Phone Number" name="parent2Home">
+                <input type="text" class="form-control form-control-lg" placeholder=<?php echo'"Home Phone: '.$homePhone.'"';?> name="parent2Home">
               </div>
             </div>
           <button name="submit" class="btn btn-success btn-block" type="submit">Submit Application</button>

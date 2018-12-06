@@ -5,7 +5,7 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <a class="nav-link active" href="studentDash.php">Home</a>
+              <a class="nav-link" href="studentDash.php">Home</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="updateStudentInfo.php">Update Information</a>
