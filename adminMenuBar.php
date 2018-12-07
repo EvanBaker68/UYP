@@ -20,6 +20,10 @@
               <a class="nav-link" href="logout.php">Log Out</a>
             </li>
             </ul>
+            <li class="nav-item">
+              <a class="nav-link" href="adminSInfo.php">Enter Student Info</a>
+            </li>
+            </ul>
         </div>
       </div>
     </nav>
