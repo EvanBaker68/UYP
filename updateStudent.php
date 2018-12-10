@@ -15,14 +15,15 @@
 <body>
 
 <?php
+setcookie("menubar", 2, time() + 86400, "/");
+include 'menubar.php'; 
   
   $connect = mysqli_connect("localhost", "root", "", "DB3335"); 
   $stmt= $connect->prepare("SELECT * FROM studentApp WHERE studentID = ?");
   $stmt->bind_param("s",$_COOKIE['acceptStudent']);
   $stmt->execute();
   $stmt -> bind_result($studentID,$fName,$lName,$MI,$suffix,$nickname,$address,$state,$city,$zip,$birthday,
-  	$gender,$race,$typeOfSchool,$schoolName,$schoolDistrict,$upcomingGrade,$expectedGradYear,$expectedHighSchool,
-  	$studentEmail,$studentPhone,$hasSibling,$accepted,$GTProgramStatus,$sibling1Name,$sibling2Name,$sibling3Name,$sibling4Name);
+  	$gender,$race,$typeOfSchool,$schoolName,$schoolDistrict,$upcomingGrade,$expectedGradYear,$expectedHighSchool,$studentEmail,$studentPhone,$hasSibling,$accepted,$GTProgramStatus,$sibling1Name,$sibling2Name,$sibling3Name,$sibling4Name,$approvalAdmin,$acceptedYear);
   $stmt -> fetch();
 
 
@@ -59,37 +60,36 @@
             <div class="row">
               <div class="col-4">
                   <div class="form-group">
-                    <input type="text" class="form-control form-control-lg" placeholder=<?php echo'"First Name: '.$fName.'"';?> name="fname" readonly>
+                    <input type="text" class="form-control form-control-lg" placeholder=<?php echo'"First Name: '.$fName.'"';?> name="fname">
                   </div>
               </div>
               <div class="col-4">
                   <div class="form-group">
-                    <input type="text" class="form-control form-control-lg" placeholder=<?php echo'"Last Name: '.$lName.'"';?> name="lname" readonly>
+                    <input type="text" class="form-control form-control-lg" placeholder=<?php echo'"Last Name: '.$lName.'"';?> name="lname">
                   </div>
               </div>
               <div class="form-group col-2 pb-10">
                   <div class="form-group">
-                    <input type="text" class="form-control form-control-lg" placeholder=<?php echo'"MI: '.$MI.'"';?> name="MI" readonly>
+                    <input type="text" class="form-control form-control-lg" placeholder=<?php echo'"MI: '.$MI.'"';?> name="MI">
                   </div>
               </div>
               <div class="col-2">
                   <div class="form-group">
-                    <input type="text" class="form-control form-control-lg" placeholder=<?php echo'"Suffix: '.$suffix.'"';?> name="suffix" readonly>
-                  </div>
+                    <input type="text" class="form-control form-control-lg" placeholder=<?php echo'"Suffix: '.$suffix.'"';?> name="suffix">
               </div>
             </div>
               <div class="form-group">
-                <input type="text" class="form-control form-control-lg" placeholder=<?php echo'"Preferred Name: '.$nickname.'"';?> name="nickname" readonly>
+                <input type="text" class="form-control form-control-lg" placeholder=<?php echo'"Preferred Name: '.$nickname.'"';?> name="nickname">
               </div>
               <div class="form-group">
-                <input type="text" class="form-control form-control-lg" placeholder=<?php echo'"Address '.$address.'"';?> name="studentAddress" readonly>
+                <input type="text" class="form-control form-control-lg" placeholder=<?php echo'"Address '.$address.'"';?> name="studentAddress">
               </div>
           <div class="row">
               <div class="form-group col-2">
-                <input type="text" class="form-control form-control-lg" placeholder=<?php echo'"City: '.$city.'"';?> name="city" readonly>
+                <input type="text" class="form-control form-control-lg" placeholder=<?php echo'"City: '.$city.'"';?> name="city">
               </div>
           <div class="form-group col-2 pb-10">
-                <select class="form-control" id="state" name="state" readonly>
+                <select class="form-control" id="state" name="state">
                   <option value="" selected hidden>State*</option>
                   <option value="AK" <?php if ($state=="AK") echo 'selected="selected"';?>>Alaska</option>
                   <option value="AL" <?php if ($state=="AL") echo 'selected="selected"';?>>Alabama</option>
@@ -146,11 +146,11 @@
                 </select>
             </div>
               <div class="form-group">
-                <input type="text" class="form-control form-control-lg" placeholder=<?php echo'"Zip: '.$zip.'"';?> name="zip" readonly>
+                <input type="text" class="form-control form-control-lg" placeholder=<?php echo'"Zip: '.$zip.'"';?> name="zip">
               </div>
           </div>
             <div class="form-group">
-              <input type="text" class="form-control form-control-lg" placeholder=<?php echo'"Birthday: '.$birthday.'"';?> name="birthday" readonly>
+              <input type="text" class="form-control form-control-lg" placeholder=<?php echo'"Birthday: '.$birthday.'"';?> name="birthday">
             </div>
           <div class="row">
             <div class="form-group col-4 pb-10">
@@ -241,10 +241,10 @@
 <!--  STILL NEED TO PULL PARENTS FROM DATABASE, INSERT NECESSARY VALUES INTO FIELDS. CHANGE THE DROPDOWS LAST, SO THAT
 YOU CAN USE IT FOR THE UPDATE FIELD FOR BOTH THE STUDENT AND ADMINS-->
             <div class="form-group">
-              <input type="text" class="form-control form-control-lg" placeholder=<?php echo'"Student Email Address: '.$studentEmail.'"';?> name="studentEmail" readonly>
+              <input type="text" class="form-control form-control-lg" placeholder=<?php echo'"Student Email Address: '.$studentEmail.'"';?> name="studentEmail">
             </div>
             <div class="form-group">
-              <input type="text" class="form-control form-control-lg" placeholder=<?php echo'"Student Phone Number: '.$studentPhone.'"';?> name="studentPhone" readonly>
+              <input type="text" class="form-control form-control-lg" placeholder=<?php echo'"Student Phone Number: '.$studentPhone.'"';?> name="studentPhone">
             </div>
           <div>
             <p>Do you have any siblings in the program?</p>
@@ -312,7 +312,7 @@ YOU CAN USE IT FOR THE UPDATE FIELD FOR BOTH THE STUDENT AND ADMINS-->
                 <input type="text" class="form-control form-control-lg" placeholder=<?php echo'"City: '.$city.'"';?> name="parent1city">
               </div>
           <div class="form-group col-2 pb-10">
-                <select class="form-control" id="state" name="state" readonly>
+                <select class="form-control" id="state" name="state">
                   <option value="" selected hidden>State*</option>
                   <option value="AK" <?php if ($state=="AK") echo 'selected="selected"';?>>Alaska</option>
                   <option value="AL" <?php if ($state=="AL") echo 'selected="selected"';?>>Alabama</option>
@@ -424,7 +424,7 @@ YOU CAN USE IT FOR THE UPDATE FIELD FOR BOTH THE STUDENT AND ADMINS-->
                 <input type="text" class="form-control form-control-lg" placeholder=<?php echo'"City: '.$city.'"';?> name="parent2city">
               </div>
           <div class="form-group col-2 pb-10">
-                <select class="form-control" id="state" name="state" readonly>
+                <select class="form-control" id="state" name="state">
                   <option value="" selected hidden>State*</option>
                   <option value="AK" <?php if ($state=="AK") echo 'selected="selected"';?>>Alaska</option>
                   <option value="AL" <?php if ($state=="AL") echo 'selected="selected"';?>>Alabama</option>

@@ -8,7 +8,7 @@
               <a class="nav-link" href="adminDash.php">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="pendingStudents.php">Pending Student Applications</a>
+              <a class="nav-link" href="pendingStudents.php">Pending Applications</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="acceptedStudentsTab.php">Accepted Students</a>

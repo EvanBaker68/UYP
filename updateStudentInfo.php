@@ -74,9 +74,18 @@
                   </div>
               </div>
               <div class="form-group col-2 pb-10">
-                  <div class="form-group">
-                    <input type="text" class="form-control form-control-lg" value=<?php echo $MI;?> name="MI" >
-                  </div>
+                <select class="form-control" id="MI" name="MI">
+                  <option value="" selected hidden>MI</option>
+                  <?php
+                    $letter = "A";
+                    for($x = 0; $x < 26; $x++){
+
+                      echo '<option value="'.$letter.'">'.$letter.'</option>';
+                      $letter++;
+                    }
+
+                  ?>
+                </select>
               </div>
               <div class="col-2">
                   <div class="form-group">
@@ -94,8 +103,62 @@
               <div class="form-group col-2">
                 <input type="text" class="form-control form-control-lg" value=<?php echo $city;?> name="city" >
               </div>
-              <div class="form-group col-2">
-                <input type="text" class="form-control form-control-lg" value=<?php echo'"State: '.$state.'"';?> name="state" >
+              <div class="form-group col-2 pb-10">
+                <select class="form-control" id="state" name="state" readonly>
+                  <option value="" selected hidden>State*</option>
+                  <option value="AK" <?php if ($state=="AK") echo 'selected="selected"';?>>Alaska</option>
+                  <option value="AL" <?php if ($state=="AL") echo 'selected="selected"';?>>Alabama</option>
+                  <option value="AR" <?php if ($state=="AR") echo 'selected="selected"';?>>Arkansas</option>
+                  <option value="AZ" <?php if ($state=="AZ") echo 'selected="selected"';?>>Arizona</option>
+                  <option value="CA" <?php if ($state=="CA") echo 'selected="selected"';?>>California</option>
+                  <option value="CO" <?php if ($state=="CO") echo 'selected="selected"';?>>Colorado</option>
+                  <option value="CT" <?php if ($state=="CT") echo 'selected="selected"';?>>Connecticut</option>
+                  <option value="DC" <?php if ($state=="DC") echo 'selected="selected"';?>>District of Columbia</option>
+                  <option value="DE" <?php if ($state=="DE") echo 'selected="selected"';?>>Delaware</option>
+                  <option value="FL" <?php if ($state=="FL") echo 'selected="selected"';?>>Florida</option>
+                  <option value="GA" <?php if ($state=="GA") echo 'selected="selected"';?>>Georgia</option>
+                  <option value="HI" <?php if ($state=="HI") echo 'selected="selected"';?>>Hawaii</option>
+                  <option value="IA" <?php if ($state=="IA") echo 'selected="selected"';?>>Iowa</option>
+                  <option value="ID" <?php if ($state=="ID") echo 'selected="selected"';?>>Idaho</option>
+                  <option value="IL" <?php if ($state=="IL") echo 'selected="selected"';?>>Illinois</option>
+                  <option value="IN" <?php if ($state=="IN") echo 'selected="selected"';?>>Indiana</option>
+                  <option value="KS" <?php if ($state=="KS") echo 'selected="selected"';?>>Kansas</option>
+                  <option value="KY" <?php if ($state=="KY") echo 'selected="selected"';?>>Kentucky</option>
+                  <option value="LA" <?php if ($state=="LA") echo 'selected="selected"';?>>Louisiana</option>
+                  <option value="MA" <?php if ($state=="MA") echo 'selected="selected"';?>>Massachusetts</option>
+                  <option value="MD" <?php if ($state=="MD") echo 'selected="selected"';?>>Maryland</option>
+                  <option value="ME" <?php if ($state=="ME") echo 'selected="selected"';?>>Maine</option>
+                  <option value="MI" <?php if ($state=="MI") echo 'selected="selected"';?>>Michigan</option>
+                  <option value="MN" <?php if ($state=="MN") echo 'selected="selected"';?>>Minnesota</option>
+                  <option value="MO" <?php if ($state=="MO") echo 'selected="selected"';?>>Missouri</option>
+                  <option value="MS" <?php if ($state=="MS") echo 'selected="selected"';?>>Mississippi</option>
+                  <option value="MT" <?php if ($state=="MT") echo 'selected="selected"';?>>Montana</option>
+                  <option value="NC" <?php if ($state=="NC") echo 'selected="selected"';?>>North Carolina</option>
+                  <option value="ND" <?php if ($state=="ND") echo 'selected="selected"';?>>North Dakota</option>
+                  <option value="NE" <?php if ($state=="NE") echo 'selected="selected"';?>>Nebraska</option>
+                  <option value="NH" <?php if ($state=="NH") echo 'selected="selected"';?>>New Hampshire</option>
+                  <option value="NJ" <?php if ($state=="NJ") echo 'selected="selected"';?>>New Jersey</option>
+                  <option value="NM" <?php if ($state=="NM") echo 'selected="selected"';?>>New Mexico</option>
+                  <option value="NV" <?php if ($state=="NV") echo 'selected="selected"';?>>Nevada</option>
+                  <option value="NY" <?php if ($state=="NY") echo 'selected="selected"';?>>New York</option>
+                  <option value="OH" <?php if ($state=="OH") echo 'selected="selected"';?>>Ohio</option>
+                  <option value="OK" <?php if ($state=="OK") echo 'selected="selected"';?>>Oklahoma</option>
+                  <option value="OR" <?php if ($state=="OR") echo 'selected="selected"';?>>Oregon</option>
+                  <option value="PA" <?php if ($state=="PA") echo 'selected="selected"';?>>Pennsylvania</option>
+                  <option value="PR" <?php if ($state=="PR") echo 'selected="selected"';?>>Puerto Rico</option>
+                  <option value="RI" <?php if ($state=="RI") echo 'selected="selected"';?>>Rhode Island</option>
+                  <option value="SC" <?php if ($state=="SC") echo 'selected="selected"';?>>South Carolina</option>
+                  <option value="SD" <?php if ($state=="SD") echo 'selected="selected"';?>>South Dakota</option>
+                  <option value="TN" <?php if ($state=="TN") echo 'selected="selected"';?>>Tennessee</option>
+                  <option value="TX" <?php if ($state=="TX") echo 'selected="selected"';?>>Texas</option>
+                  <option value="UT" <?php if ($state=="UT") echo 'selected="selected"';?>>Utah</option>
+                  <option value="VA" <?php if ($state=="VA") echo 'selected="selected"';?>>Virginia</option>
+                  <option value="VT" <?php if ($state=="VT") echo 'selected="selected"';?>>Vermont</option>
+                  <option value="WA" <?php if ($state=="WA") echo 'selected="selected"';?>>Washington</option>
+                  <option value="WI" <?php if ($state=="WI") echo 'selected="selected"';?>>Wisconsin</option>
+                  <option value="WV" <?php if ($state=="WV") echo 'selected="selected"';?>>West Virginia</option>
+                  <option value="WY" <?php if ($state=="WY") echo 'selected="selected"';?>>Wyoming</option>
+                </select>
               </div>
               <div class="form-group">
                 <input type="text" class="form-control form-control-lg" value=<?php echo $zip;?> name="zip" >
@@ -225,8 +288,62 @@ YOU CAN USE IT FOR THE UPDATE FIELD FOR BOTH THE STUDENT AND ADMINS-->
               <div class="form-group col-2">
                 <input type="text" class="form-control form-control-lg" value=<?php echo'"'.$city.'"';?> name="parent1city" >
               </div>
-              <div class="form-group col-2">
-                <input type="text" class="form-control form-control-lg" value=<?php echo'"'.$state.'"';?> name="parent1state" >
+              <div class="form-group col-2 pb-10">
+                <select class="form-control" id="state" name="state" readonly>
+                  <option value="" selected hidden>State*</option>
+                  <option value="AK" <?php if ($state=="AK") echo 'selected="selected"';?>>Alaska</option>
+                  <option value="AL" <?php if ($state=="AL") echo 'selected="selected"';?>>Alabama</option>
+                  <option value="AR" <?php if ($state=="AR") echo 'selected="selected"';?>>Arkansas</option>
+                  <option value="AZ" <?php if ($state=="AZ") echo 'selected="selected"';?>>Arizona</option>
+                  <option value="CA" <?php if ($state=="CA") echo 'selected="selected"';?>>California</option>
+                  <option value="CO" <?php if ($state=="CO") echo 'selected="selected"';?>>Colorado</option>
+                  <option value="CT" <?php if ($state=="CT") echo 'selected="selected"';?>>Connecticut</option>
+                  <option value="DC" <?php if ($state=="DC") echo 'selected="selected"';?>>District of Columbia</option>
+                  <option value="DE" <?php if ($state=="DE") echo 'selected="selected"';?>>Delaware</option>
+                  <option value="FL" <?php if ($state=="FL") echo 'selected="selected"';?>>Florida</option>
+                  <option value="GA" <?php if ($state=="GA") echo 'selected="selected"';?>>Georgia</option>
+                  <option value="HI" <?php if ($state=="HI") echo 'selected="selected"';?>>Hawaii</option>
+                  <option value="IA" <?php if ($state=="IA") echo 'selected="selected"';?>>Iowa</option>
+                  <option value="ID" <?php if ($state=="ID") echo 'selected="selected"';?>>Idaho</option>
+                  <option value="IL" <?php if ($state=="IL") echo 'selected="selected"';?>>Illinois</option>
+                  <option value="IN" <?php if ($state=="IN") echo 'selected="selected"';?>>Indiana</option>
+                  <option value="KS" <?php if ($state=="KS") echo 'selected="selected"';?>>Kansas</option>
+                  <option value="KY" <?php if ($state=="KY") echo 'selected="selected"';?>>Kentucky</option>
+                  <option value="LA" <?php if ($state=="LA") echo 'selected="selected"';?>>Louisiana</option>
+                  <option value="MA" <?php if ($state=="MA") echo 'selected="selected"';?>>Massachusetts</option>
+                  <option value="MD" <?php if ($state=="MD") echo 'selected="selected"';?>>Maryland</option>
+                  <option value="ME" <?php if ($state=="ME") echo 'selected="selected"';?>>Maine</option>
+                  <option value="MI" <?php if ($state=="MI") echo 'selected="selected"';?>>Michigan</option>
+                  <option value="MN" <?php if ($state=="MN") echo 'selected="selected"';?>>Minnesota</option>
+                  <option value="MO" <?php if ($state=="MO") echo 'selected="selected"';?>>Missouri</option>
+                  <option value="MS" <?php if ($state=="MS") echo 'selected="selected"';?>>Mississippi</option>
+                  <option value="MT" <?php if ($state=="MT") echo 'selected="selected"';?>>Montana</option>
+                  <option value="NC" <?php if ($state=="NC") echo 'selected="selected"';?>>North Carolina</option>
+                  <option value="ND" <?php if ($state=="ND") echo 'selected="selected"';?>>North Dakota</option>
+                  <option value="NE" <?php if ($state=="NE") echo 'selected="selected"';?>>Nebraska</option>
+                  <option value="NH" <?php if ($state=="NH") echo 'selected="selected"';?>>New Hampshire</option>
+                  <option value="NJ" <?php if ($state=="NJ") echo 'selected="selected"';?>>New Jersey</option>
+                  <option value="NM" <?php if ($state=="NM") echo 'selected="selected"';?>>New Mexico</option>
+                  <option value="NV" <?php if ($state=="NV") echo 'selected="selected"';?>>Nevada</option>
+                  <option value="NY" <?php if ($state=="NY") echo 'selected="selected"';?>>New York</option>
+                  <option value="OH" <?php if ($state=="OH") echo 'selected="selected"';?>>Ohio</option>
+                  <option value="OK" <?php if ($state=="OK") echo 'selected="selected"';?>>Oklahoma</option>
+                  <option value="OR" <?php if ($state=="OR") echo 'selected="selected"';?>>Oregon</option>
+                  <option value="PA" <?php if ($state=="PA") echo 'selected="selected"';?>>Pennsylvania</option>
+                  <option value="PR" <?php if ($state=="PR") echo 'selected="selected"';?>>Puerto Rico</option>
+                  <option value="RI" <?php if ($state=="RI") echo 'selected="selected"';?>>Rhode Island</option>
+                  <option value="SC" <?php if ($state=="SC") echo 'selected="selected"';?>>South Carolina</option>
+                  <option value="SD" <?php if ($state=="SD") echo 'selected="selected"';?>>South Dakota</option>
+                  <option value="TN" <?php if ($state=="TN") echo 'selected="selected"';?>>Tennessee</option>
+                  <option value="TX" <?php if ($state=="TX") echo 'selected="selected"';?>>Texas</option>
+                  <option value="UT" <?php if ($state=="UT") echo 'selected="selected"';?>>Utah</option>
+                  <option value="VA" <?php if ($state=="VA") echo 'selected="selected"';?>>Virginia</option>
+                  <option value="VT" <?php if ($state=="VT") echo 'selected="selected"';?>>Vermont</option>
+                  <option value="WA" <?php if ($state=="WA") echo 'selected="selected"';?>>Washington</option>
+                  <option value="WI" <?php if ($state=="WI") echo 'selected="selected"';?>>Wisconsin</option>
+                  <option value="WV" <?php if ($state=="WV") echo 'selected="selected"';?>>West Virginia</option>
+                  <option value="WY" <?php if ($state=="WY") echo 'selected="selected"';?>>Wyoming</option>
+                </select>
               </div>
               <div class="form-group">
                 <input type="text" class="form-control form-control-lg" value=<?php echo'"'.$zip.'"';?> name="parent1zip" >
@@ -290,8 +407,62 @@ YOU CAN USE IT FOR THE UPDATE FIELD FOR BOTH THE STUDENT AND ADMINS-->
               <div class="form-group col-2">
                 <input type="text" class="form-control form-control-lg" value=<?php echo'"'.$city.'"';?> name="parent2city" >
               </div>
-               <div class="form-group col-2">
-                <input type="text" class="form-control form-control-lg" value=<?php echo'"'.$state.'"';?> name="parent2state" >
+               <div class="form-group col-2 pb-10">
+                <select class="form-control" id="state" name="state" readonly>
+                  <option value="" selected hidden>State*</option>
+                  <option value="AK" <?php if ($state=="AK") echo 'selected="selected"';?>>Alaska</option>
+                  <option value="AL" <?php if ($state=="AL") echo 'selected="selected"';?>>Alabama</option>
+                  <option value="AR" <?php if ($state=="AR") echo 'selected="selected"';?>>Arkansas</option>
+                  <option value="AZ" <?php if ($state=="AZ") echo 'selected="selected"';?>>Arizona</option>
+                  <option value="CA" <?php if ($state=="CA") echo 'selected="selected"';?>>California</option>
+                  <option value="CO" <?php if ($state=="CO") echo 'selected="selected"';?>>Colorado</option>
+                  <option value="CT" <?php if ($state=="CT") echo 'selected="selected"';?>>Connecticut</option>
+                  <option value="DC" <?php if ($state=="DC") echo 'selected="selected"';?>>District of Columbia</option>
+                  <option value="DE" <?php if ($state=="DE") echo 'selected="selected"';?>>Delaware</option>
+                  <option value="FL" <?php if ($state=="FL") echo 'selected="selected"';?>>Florida</option>
+                  <option value="GA" <?php if ($state=="GA") echo 'selected="selected"';?>>Georgia</option>
+                  <option value="HI" <?php if ($state=="HI") echo 'selected="selected"';?>>Hawaii</option>
+                  <option value="IA" <?php if ($state=="IA") echo 'selected="selected"';?>>Iowa</option>
+                  <option value="ID" <?php if ($state=="ID") echo 'selected="selected"';?>>Idaho</option>
+                  <option value="IL" <?php if ($state=="IL") echo 'selected="selected"';?>>Illinois</option>
+                  <option value="IN" <?php if ($state=="IN") echo 'selected="selected"';?>>Indiana</option>
+                  <option value="KS" <?php if ($state=="KS") echo 'selected="selected"';?>>Kansas</option>
+                  <option value="KY" <?php if ($state=="KY") echo 'selected="selected"';?>>Kentucky</option>
+                  <option value="LA" <?php if ($state=="LA") echo 'selected="selected"';?>>Louisiana</option>
+                  <option value="MA" <?php if ($state=="MA") echo 'selected="selected"';?>>Massachusetts</option>
+                  <option value="MD" <?php if ($state=="MD") echo 'selected="selected"';?>>Maryland</option>
+                  <option value="ME" <?php if ($state=="ME") echo 'selected="selected"';?>>Maine</option>
+                  <option value="MI" <?php if ($state=="MI") echo 'selected="selected"';?>>Michigan</option>
+                  <option value="MN" <?php if ($state=="MN") echo 'selected="selected"';?>>Minnesota</option>
+                  <option value="MO" <?php if ($state=="MO") echo 'selected="selected"';?>>Missouri</option>
+                  <option value="MS" <?php if ($state=="MS") echo 'selected="selected"';?>>Mississippi</option>
+                  <option value="MT" <?php if ($state=="MT") echo 'selected="selected"';?>>Montana</option>
+                  <option value="NC" <?php if ($state=="NC") echo 'selected="selected"';?>>North Carolina</option>
+                  <option value="ND" <?php if ($state=="ND") echo 'selected="selected"';?>>North Dakota</option>
+                  <option value="NE" <?php if ($state=="NE") echo 'selected="selected"';?>>Nebraska</option>
+                  <option value="NH" <?php if ($state=="NH") echo 'selected="selected"';?>>New Hampshire</option>
+                  <option value="NJ" <?php if ($state=="NJ") echo 'selected="selected"';?>>New Jersey</option>
+                  <option value="NM" <?php if ($state=="NM") echo 'selected="selected"';?>>New Mexico</option>
+                  <option value="NV" <?php if ($state=="NV") echo 'selected="selected"';?>>Nevada</option>
+                  <option value="NY" <?php if ($state=="NY") echo 'selected="selected"';?>>New York</option>
+                  <option value="OH" <?php if ($state=="OH") echo 'selected="selected"';?>>Ohio</option>
+                  <option value="OK" <?php if ($state=="OK") echo 'selected="selected"';?>>Oklahoma</option>
+                  <option value="OR" <?php if ($state=="OR") echo 'selected="selected"';?>>Oregon</option>
+                  <option value="PA" <?php if ($state=="PA") echo 'selected="selected"';?>>Pennsylvania</option>
+                  <option value="PR" <?php if ($state=="PR") echo 'selected="selected"';?>>Puerto Rico</option>
+                  <option value="RI" <?php if ($state=="RI") echo 'selected="selected"';?>>Rhode Island</option>
+                  <option value="SC" <?php if ($state=="SC") echo 'selected="selected"';?>>South Carolina</option>
+                  <option value="SD" <?php if ($state=="SD") echo 'selected="selected"';?>>South Dakota</option>
+                  <option value="TN" <?php if ($state=="TN") echo 'selected="selected"';?>>Tennessee</option>
+                  <option value="TX" <?php if ($state=="TX") echo 'selected="selected"';?>>Texas</option>
+                  <option value="UT" <?php if ($state=="UT") echo 'selected="selected"';?>>Utah</option>
+                  <option value="VA" <?php if ($state=="VA") echo 'selected="selected"';?>>Virginia</option>
+                  <option value="VT" <?php if ($state=="VT") echo 'selected="selected"';?>>Vermont</option>
+                  <option value="WA" <?php if ($state=="WA") echo 'selected="selected"';?>>Washington</option>
+                  <option value="WI" <?php if ($state=="WI") echo 'selected="selected"';?>>Wisconsin</option>
+                  <option value="WV" <?php if ($state=="WV") echo 'selected="selected"';?>>West Virginia</option>
+                  <option value="WY" <?php if ($state=="WY") echo 'selected="selected"';?>>Wyoming</option>
+                </select>
               </div>
               <div class="form-group">
                 <input type="text" class="form-control form-control-lg" value=<?php echo'"'.$zip.'"';?> name="parent2zip" >

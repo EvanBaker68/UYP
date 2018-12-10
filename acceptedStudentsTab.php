@@ -24,7 +24,8 @@
     }
 
 
- include 'menubar.php'; 
+ setcookie("menubar", 2, time() + 86400, "/");
+ include 'menubar.php';  
  session_start(); 
  $connect = mysqli_connect("localhost", "root", "", "DB3335"); 
 

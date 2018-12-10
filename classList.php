@@ -25,7 +25,7 @@ include 'menubar.php';
   $result = $connect->query("Select * FROM class ORDER BY year DESC");
   
 
-  echo '<br><center><form method="post" action="addClassForm.php"><button class=" col-3 btn-success btn-block" type="submit" name="addClassButton">Add New Class</button></form></center><br>';
+  echo '<br><center><form method="post" action="addClassInfo.php"><button class=" col-3 btn-success btn-block" type="submit" name="addClassButton">Add New Class</button></form></center><br>';
 
       echo '<div class="table-responsive" >  
            <table class="table table-bordered"  >  
