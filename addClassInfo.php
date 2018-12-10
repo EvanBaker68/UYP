@@ -21,65 +21,55 @@ setcookie("menubar", 0, time() + 86400, "/");
 include 'menubar.php'; 
 ?>
 
-  <form class="form-studentapp" action="verifyApplication.php" method="post">
+  <form class="form-studentapp" action="verifyAddClass.php" method="post">
     <div class="container my-3 text-center">
       <div class="row justify-content-around">
         <div class="col-10">
           <h1>New Class</h1>
           <p>Fill out this form to add a class section</p>
-          <p>* indicates a required field.</p>
+          <p>All required fields are indicated with an *</p>
           <?php if (isset($_COOKIE["emptyFields"]) && $_COOKIE["emptyFields"] == 1) 
           echo '<div class="container"><div class="alert alert-danger">One or more required fields is missing.</div></div>';
+                if (isset($_COOKIE["invalidCap"]) && $_COOKIE["invalidCap"] == 1) 
+          echo '<div class="container"><div class="alert alert-danger">Please enter a valid capacity.</div></div>';
+                if (isset($_COOKIE["invalidCost"]) && $_COOKIE["invalidCost"] == 1) 
+          echo '<div class="container"><div class="alert alert-danger">Please enter a valid cost.</div></div>';
+                if (isset($_COOKIE["invalidCRN"]) && $_COOKIE["invalidCRN"] == 1) 
+          echo '<div class="container"><div class="alert alert-danger">Please enter a valid CRN.</div></div>';
           ?>
             <div class="row">
-              <div class="col-4">
+              <div class="col-sm">
                   <div class="form-group">
      
                     <input type="text" class="form-control form-control-lg" placeholder="Course Name*" name="courseName">
                   </div>
               </div>
-         <div class="row">
-              <div class="form-group">   	
-                    <input type="text" class="form-control form-control-lg" placeholder="CRN" name="Course Reg. Number (CRN)">
+           <div class="form-group">
+                 <input type="text" class="form-control form-control-lg" placeholder="Class Capacity*" name="cap">
               </div>
          </div>
+   <div class="row">
+    <div class="form-group-2">    
+                    <input type="text" class="form-control form-control-lg" placeholder="CRN*" name="CRN">
+                </div>
+
+   <div class="row">
+    <div>
+              <p>Time Slot*</p>
+            <label class="radio-inline"><input type="radio" id="timeSlot1" name="timeSlot" value="9:45" checked>9:45</label>
+            <label class="radio-inline"><input type="radio" id="timeSlot2" name="timeSlot" value="1:15">1:15</label>
+          </div>
+                     
          <div class="row">
               <div>
-          		<p>Session:</p>
-        		<label class="radio-inline"><input type="radio" id="session1" name="session1" value="Session 1" checked>S1</label>
-        		<label class="radio-inline"><input type="radio" id="session2" name="session2" value="Session 2">S2</label>
-		        <label class="radio-inline"><input type="radio" id="session3" name="session3" value="Session 3">S3</label>
+              <p>Session*</p>
+            <label class="radio-inline"><input type="radio" id="session1" name="session" value="1" checked>S1</label>
+            <label class="radio-inline"><input type="radio" id="session2" name="session" value="2">S2</label>
+            <label class="radio-inline"><input type="radio" id="session3" name="session" value="3">S3</label>
             </div>
-            <div class="col-4">
-             	
-            </div>
-            </div>
-            <div >
-            
-          		<p>Course Level:</p>
-        		<label class="radio-inline"><input type="radio" id="level1" name="level1" value="Level 1" checked>Lvl 1</label>
-        		<label class="radio-inline"><input type="radio" id="level2" name="level2" value="Level 2">Lvl 2</label>
-		        <label class="radio-inline"><input type="radio" id="level3" name="level3" value="Level 3">Lvl 3</label>
-            </div>    
-            
-            <div>
-          		<p>Time Slot:</p>
-       		 	<label class="radio-inline"><input type="radio" id="timeSlot1" name="timeSlot" value="9:45" checked>9:45</label>
-        		<label class="radio-inline"><input type="radio" id="timeSlot2" name="timeSlot" value="1:15">1:15</label>
-       		</div>
-                     
-            <div class="form-group">
-                
-                 <input type="text" class="form-control form-control-lg" placeholder="Class room, eg MM101*" name="classRoom">
-            </div>
-           
+  <div class="row">
+    <div class="form-group col-4 pb-10">
               
-            <div class="form-group">
-                 <input type="text" class="form-control form-control-lg" placeholder="Class Capacity*" name="cap">
-            </div>
-             
-            <div class="form-group col-4 pb-10">
-             	
                 <select class="form-control" id="year" name="year">
                   <option value="" selected hidden>Year*</option>
                   <option value="2017">2017</option>
@@ -90,8 +80,27 @@ include 'menubar.php';
                   <option value="2022">2022</option>
                   <option value="2023">2023</option>
                   </select>
+               </div>
+            <div class="col-4">
+    <div class="form-group">
+                
+                 <input type="text" class="form-control form-control-lg" placeholder="Class room, eg MM101*" name="classRoom">
+            </div>            
+            <div class="row">
+    <div class="form-group">
+     
+                    <input type="text" class="form-control form-control-lg" placeholder="Instructor Name*" name="instructorName">
+                  </div>
+              
             </div>
-            
+            </div>
+              <div >
+              <p>Course Level*</p>
+            <label class="radio-inline"><input type="radio" id="level1" name="level" value="1" checked>Lvl 1</label>
+            <label class="radio-inline"><input type="radio" id="level2" name="level" value="2">Lvl 2</label>
+            <label class="radio-inline"><input type="radio" id="level3" name="level" value="3">Lvl 3</label>
+              </div>    
+         
             <div class="form-group col-2">
                  
                  <input type="text" class="form-control form-control-lg" placeholder="Price*" name="cost">
