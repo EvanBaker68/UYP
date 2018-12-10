@@ -26,7 +26,7 @@ include 'menubar.php';
         <div class="col-10">
           <h1>New Class</h1>
           <p>Fill out this form to add a class section</p>
-          <p>All required fields are indicated with an *</p>
+          <p>An asterisk (*) indicates a required field.</p>
           <?php if (isset($_COOKIE["emptyFields"]) && $_COOKIE["emptyFields"] == 1) 
           echo '<div class="container"><div class="alert alert-danger">One or more required fields is missing.</div></div>';
                 if (isset($_COOKIE["invalidCap"]) && $_COOKIE["invalidCap"] == 1) 
@@ -36,39 +36,46 @@ include 'menubar.php';
                 if (isset($_COOKIE["invalidCRN"]) && $_COOKIE["invalidCRN"] == 1) 
           echo '<div class="container"><div class="alert alert-danger">Please enter a valid CRN.</div></div>';
           ?>
-            <div class="row">
+            <div class="form-row">
               <div class="col-sm">
-                  <div class="form-group">
-     
+                  <div class="form-group col-sm">
                     <input type="text" class="form-control form-control-lg" placeholder="Course Name*" name="courseName">
                   </div>
-              </div>
-           <div class="form-group">
-                 <input type="text" class="form-control form-control-lg" placeholder="Class Capacity*" name="cap">
-              </div>
-         </div>
-   <div class="row">
-    <div class="form-group-2">    
+                  <div class="form-group col-sm">
                     <input type="text" class="form-control form-control-lg" placeholder="CRN*" name="CRN">
+                  </div>
+                  <div class="form-group col-sm">
+                
+                  <input type="text" class="form-control form-control-lg" placeholder="Instructor Name*" name="instructorName">
                 </div>
-
-   <div class="row">
-    <div>
-              <p>Time Slot*</p>
-            <label class="radio-inline"><input type="radio" id="timeSlot1" name="timeSlot" value="9:45" checked>9:45</label>
-            <label class="radio-inline"><input type="radio" id="timeSlot2" name="timeSlot" value="1:15">1:15</label>
+              </div>
           </div>
-                     
-         <div class="row">
+          
+          <div class="row">
+              <div class="col-8">
+                
+              <div class="form-group col-4">
               <div>
-              <p>Session*</p>
-            <label class="radio-inline"><input type="radio" id="session1" name="session" value="1" checked>S1</label>
-            <label class="radio-inline"><input type="radio" id="session2" name="session" value="2">S2</label>
-            <label class="radio-inline"><input type="radio" id="session3" name="session" value="3">S3</label>
+                <select class="form-control form-control-lg" id="session" name="session">
+                  <option value="" selected hidden>Session*</option>
+                  <option value="2017">Session 1</option>
+                  <option value="2018">Session 2</option>
+                  <option value="2019">Session 3</option>
+                </select>
+              </div>
             </div>
-  <div class="row">
-    <div class="form-group col-4 pb-10">
-                <select class="form-control" id="year" name="year">
+              <div class="form-group col-4">
+                 <input type="text" class="form-control form-control-lg" placeholder="Room*" name="classRoom">
+              </div>
+              <div class="form-group col-4">  
+                    <input type="text" class="form-control form-control-lg" placeholder="Capacity*" name="cap">
+                </div>
+          </div>
+        </div>
+                     
+    <div class="form-row">
+              <div class="col-xs-4 form-group">
+                <select class="form-control form-control-lg" id="year" name="year">
                   <option value="" selected hidden>Year*</option>
                   <option value="2017">2017</option>
                   <option value="2018">2018</option>
@@ -78,31 +85,28 @@ include 'menubar.php';
                   <option value="2022">2022</option>
                   <option value="2023">2023</option>
                   </select>
-               </div>
-            <div class="col-4">
-    <div class="form-group">
-                
-                 <input type="text" class="form-control form-control-lg" placeholder="Class room, eg MM101*" name="classRoom">
-            </div>            
-            <div class="row">
-    <div class="form-group">
-     
-                    <input type="text" class="form-control form-control-lg" placeholder="Instructor Name*" name="instructorName">
-                  </div>
-              
-            </div>
-            </div>
-              <div >
-              <p>Course Level*</p>
-            <label class="radio-inline"><input type="radio" id="level1" name="level" value="1" checked>Lvl 1</label>
-            <label class="radio-inline"><input type="radio" id="level2" name="level" value="2">Lvl 2</label>
-            <label class="radio-inline"><input type="radio" id="level3" name="level" value="3">Lvl 3</label>
-              </div>    
-         
-            <div class="form-group col-2">   
-                 <input type="text" class="form-control form-control-lg" placeholder="Price*" name="cost">
-            </div>             
-           
+              </div>
+              <div class="col-xs-4 form-group">
+                <select class="form-control form-control-lg" id="timeSlot" name="timeSlot">
+                  <option value="" selected hidden>Time Slot*</option>
+                  <option value="9:45">9:45</option>
+                  <option value="1:15">1:15</option>
+                </select>
+              </div>
+              <div class="col-xs-4 form-group">
+                <select class="form-control form-control-lg" id="level" name="level">
+                  <option value="" selected hidden>Level*</option>
+                  <option value="Level 1">lvl1</option>
+                  <option value="Level 2">lvl2</option>
+                  <option value="Level 3">lvl3</option>
+                </select>
+              </div>
+              <div>
+                <input type="text" class="form-control form-control-lg" placeholder="Price*" name="cost">
+              </div>
+    </div>          
+        
+                                  
           <button name="submit" class="btn btn-success btn-block" type="submit">Enter Class</button>
           <!-- <input type="submit" value="Enter Class" class="btn btn-outline-secondary btn-block"> -->
         
