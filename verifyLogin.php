@@ -18,6 +18,7 @@ $stmt->execute();
 $stmt->bind_result($nRows,$id);
 $stmt->fetch();
 $count=$nRows;
+var_dump($nRows);
 
 //Checks for hardcoded admin username and password
 if($username == "admin" && $password == "password"){
