@@ -93,10 +93,10 @@ if($error == true){
 else{
 
  $connect = mysqli_connect("localhost", "root", "", "DB3335"); 
- $stmt = $connect->prepare("INSERT INTO class(CRN, session, level, className, timeSlot, room, instructor,
- year,cost,capacity,remainingSpots) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+ $stmt = $connect->prepare("INSERT INTO class(CRN, session, level, className, timeSlot, classRoom, instructor,
+ year,cost,cap,remainingSpots) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
- $stmt->bind_param("ssisissiiii",$CRN,$session,$level,$courseName,$timeSlot,$classRoom,$instructorName,$year,$cost,$cap,$cap);
+ $stmt->bind_param("ssisissiii",$CRN,$session,$level,$courseName,$timeSlot,$classRoom,$instructorName,$year,$cost,$cap);
  $stmt->execute();
 
 
