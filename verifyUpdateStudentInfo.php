@@ -121,48 +121,46 @@ else{
 }
 
 if($error == true){
-    header('Location: studentApp.php');
+    // header('Location: studentApp.php');
 }
 
 
 $id = substr(md5(microtime()),rand(0,26),6);
-$parent1ID = substr(md5(microtime()),rand(0,26),6);
-$parent2ID = substr(md5(microtime()),rand(0,26),6);
 var_dump($id);
 
 
- $stmt = $connect->prepare("INSERT INTO studentApp(studentID, fName,lName,middleInitial,suffix,nickname
- ,address,state,city,zip,birthday,gender,race,typeOfSchool,schoolName,schoolDistrict
- ,upcomingGrade,expectedGradYear,expectedHighSchool,studentEmail,studentPhone,hasSibling,accepted,GTProgramStatus,
- sibling1Name, sibling2Name, sibling3Name, sibling4Name, parent1ID, parent2ID) 
- VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+ $stmt = $connect->prepare("UPDATE studentApp SET fName = ?,lName = ?,middleInitial = ?,suffix = ?,nickname
+  = ?,address = ?,state = ?,city = ?,zip = ?,birthday = ?,gender = ?,race = ?,typeOfSchool = ?,schoolName = ?,schoolDistrict
+  = ?,upcomingGrade = ?,expectedGradYear = ?,expectedHighSchool = ?,studentEmail = ?,studentPhone = ?,hasSibling = ?,accepted = ?,GTProgramStatus = ?,
+ sibling1Name = ?,sibling2Name = ?,sibling3Name = ?,sibling4Name = ? WHERE studentID = ?");
 
 if($stmt == false){
   setcookie("incorrectInput", 1, time() + 86400, "/");
   // header('Location: studentApp.php');
 }
 
- $stmt->bind_param("ssssssssssssssssiissiisssss",$id,$fname, $lname, $MI, $suffix, $nickname, $studentAddress,
+ $stmt->bind_param("sssssssssssssssiisssiissssss",$fname, $lname, $MI, $suffix, $nickname, $studentAddress,
  $state, $city, $zip, $birthday, $gender, $race, $schoolType, $schoolName, $schoolDistrict, $upcomingGrade,
  $expectedGradYear, $expectedHighSchool, $studentEmail, $studentPhone, $sibling, $accepted, $GT, $sibling1, $sibling2, 
- $sibling3, $sibling4,$parent1ID,$parent2ID);
+ $sibling3, $sibling4,$_COOKIE['id']);
+ $stmt->execute();
+ 
+
+ $connect = mysqli_connect("localhost", "root", "", "DB3335"); 
+ $stmt = $connect->prepare("UPDATE parent SET parentName = ?, address = ?, city = ?, state = ?,
+  zip = ?, email = ?, cellPhone = ?, homePhone = ?, workPhone = ? WHERE parentID = ?)");
+
+ $stmt->bind_param("ssssssssss",$parent1name, $parent1address, $parent1city, $parent1state, $parent1zip,
+ $parent1email, $parent1Cell, $parent1Home, $parent1Work, $parent1ID);
  $stmt->execute();
 
- $stmt = $connect->prepare("INSERT INTO parent(parentName, studentId, address, city, state, zip, email, 
-  cellPhone, homePhone, workPhone, parentID) VALUES(?,?,?,?,?,?,?,?,?,?,?)");
 
- $stmt->bind_param("ssssssssss",$parent1name,$id, $parent1address, $parent1city, $parent1state, $parent1zip,
- $parent1email, $parent1Cell, $parent1Work, $parent1Home,$parent1ID);
 
- //  $stmt->bind_param("s",$parent1name,$id, $parent1address, $parent1city, $parent1state, $parent1zip,
- // $parent1email, $parent1Cell, $parent1Work, $parent1Home);
- $stmt->execute();
+ $stmt = $connect->prepare("UPDATE parent SET parentName = ?, address = ?, city = ?, state = ?,
+  zip = ?, email = ?, cellPhone = ?, workPhone = ?, homePhone = ? WHERE parentID = ?)");
 
- $stmt = $connect->prepare("INSERT INTO parent(parentName, studentId, address, city, state, zip, email, 
- cellPhone, homePhone, workPhone) VALUES(?,?,?,?,?,?,?,?,?,?,?)");
-
- $stmt->bind_param("ssssssssss",$parent2name,$id, $parent2address, $parent2city, $parent2state, $parent2zip,
- $parent2email, $parent2Cell, $parent2Work, $parent2Home,$parent2ID);
+ $stmt->bind_param("ssssssssss",$parent2name, $parent2address, $parent2city, $parent2state, $parent2zip,
+ $parent2email, $parent2Cell, $parent2Work, $parent2Home, $parent2ID);
  $stmt->execute();
 
 
