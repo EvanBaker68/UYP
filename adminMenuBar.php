@@ -21,7 +21,10 @@
             </li>
             </ul>
             <li class="nav-item">
-              <a class="nav-link" href="adminSInfo.php">Enter Student Info</a>
+              <a class="nav-link" href="EnterID.php">Enter Student Info</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="addClassInfo.php">Add Class Info</a>
             </li>
             </ul>
         </div>

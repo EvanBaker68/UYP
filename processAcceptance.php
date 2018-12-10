@@ -100,6 +100,12 @@ if (isset($_POST['acceptButton'])) {
 	their login information.</h3></center>';
 
   setcookie("acceptStudent", 0, time() + 86400, "/");
+
+  $stmt= $connect->prepare("INSERT INTO studentAccepted (studentID, stuUserName)
+  VALUES (?,?)");
+  $stmt->bind_param("ss",$_COOKIE['acceptStudent'], $extendedUsername);
+  $stmt->execute();
+
 } 
 
 

@@ -25,7 +25,7 @@
   var_dump($missingFieldsError);
 
   if($missingFieldsError == true){
-    setcookie("emptyFields", 1, time() + 86400, "/");
+    setcookie("emptyAdminFields", 1, time() + 86400, "/");
     header('Location: adminSInfo.php');
   }
 
@@ -71,19 +71,7 @@
     header("Location: adminSInfo.php");
   }
 
-  $stmt = $connect->prepare("Select COUNT(*), studentID FROM studentAccepted WHERE studentID = ?");
-  $stmt->bind_param("s",$stuID);
-
-  $stmt->execute();
-
-  $stmt->bind_result($nRows,$id);
-  $stmt->fetch();
-  $count=$nRows;
-
-  if($count == 1){
-    $stmt = $connect->prepare("Update studentAccepted, Set yearAccepted = $yearAccepted, Set startGrade = $gradeAccepted, Set studentstatus = $stat, Set fundingStatus = $gfund, Set mentor = $ment, Set healthNotes = $Hnotes, Set GTProgram = $gift, Set English = $english, Set NatlClearHouse = $clearinghouse, Set grantStatus = $grant, Where studentID = $stuID");
-
-    //$stmt->bind_param("iiiiiiiisss", $yearAccepted, $gradeAccepted, $stat, $gfund, $ment, $Hnotes, $gift, $english, $clearinghouse, $grant, $stuID);
+  $stmt = $connect->prepare("Update studentAccepted, Set yearAccepted = $yearAccepted, Set startGrade = $gradeAccepted, Set studentstatus = $stat, Set fundingStatus = $gfund, Set mentor = $ment, Set healthNotes = $Hnotes, Set GTProgram = $gift, Set English = $english, Set NatlClearHouse = $clearinghouse, Set grantStatus = $grant, Where studentID = $stuID");
 
     $stmt->execute();
 
@@ -124,23 +112,6 @@
 
       $stmt->execute();
     }
-  }else{
-    $stmt = $connect->prepare("INSERT INTO studentAccepted(studentID, stuUserName, startGrade, studentstatus, fundingStatus, mentor, healthNotes, GTProgram, English, NatlClearHouse, otherNotes, grantStatus, yearAccepted) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)");
-    $stmt->bind_param("ssiiiiiiisisi", $stuID, $stuUser, $gradeAccepted, $stat, $gfund, $ment, $Hnotes, $gift, $english, $nch, $otherNotes, $grant, $yearAccepted);
-    $stmt->execute();
-
-    if($ment == 0){
-      $stmt = $connect->prepare("INSERT INTO mentor(studentID, mentorName) VALUES(?,?)");
-      $stmt->bind_param("ss", $stuID, $mentorName);
-      $stmt->execute();
-    }
-
-    if($healthNotes == 0){
-      $stmt = $connect->prepare("INSERT INTO health(studentID, disability, healthConcern, 504notes, healthNotes) VALUES(?,?,?,?,?)");
-      $stmt->bind_param("siiss", $stuID, $disability, $health, $notes504, $notesHealth);
-
-      }
-  }
 
 
  // $stmt = $connect->prepare("INSERT INTO TEST(username, password) VALUES(?, ?)");

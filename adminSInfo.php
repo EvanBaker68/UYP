@@ -19,6 +19,100 @@
 <?php 
 setcookie("menubar", 2, time() + 86400, "/");
 include 'menubar.php'; 
+  
+  $connect = mysqli_connect("localhost", "root", "", "DB3335"); 
+  $stmt= $connect->prepare("SELECT * FROM studentAccepted WHERE studentID = ?");
+  $stmt->bind_param("s",$_COOKIE['IDstudent']);
+  $stmt->execute();
+  $stmt -> bind_result($studentID,$stuUser,$gradeAccepted,$stat,$gfund,$ment,$Hnotes,$gift,$english,$clearinghouse,$otherNotes,$grant,$yearAccepted);
+  $stmt -> fetch();
+
+  $stmt= $connect->prepare("SELECT * FROM health WHERE studentID = ?");
+  $stmt->bind_param("s",$_COOKIE['IDstudent']);
+  $stmt->execute();
+  $stmt -> bind_result($stuID,$disability,$health,$notes504,$notesHealth);
+  $stmt -> fetch();
+
+  $stmt= $connect->prepare("SELECT * FROM studentApp WHERE studentID = ?");
+  $stmt->bind_param("s",$_COOKIE['IDstudent']);
+  $stmt->execute();
+  $stmt -> bind_result($temp,$temp,$temp,$temp,$temp,$temp,$temp,$temp,$temp,$temp,$temp,$temp,$temp,$temp,$temp,$temp,$temp,$temp,$temp,$temp,$temp,$hasSibling,$temp,$temp,$sibling1Name,$sibling2Name,$sibling3Name,$sibling4Name);
+  $stmt -> fetch();
+
+  if(!empty($student1Name)){
+    $stmt= $connect->prepare("SELECT * FROM sibling WHERE studentID = ? AND siblingName = ?");
+    $stmt->bind_param("ss",$_COOKIE['IDstudent'],$sibling1Name);
+    $stmt->execute();
+    $stmt -> bind_result($temp,$sibling1Name,$sibling1ID);
+    $stmt -> fetch();
+  }
+
+  if(!empty($student2Name)){
+    $stmt= $connect->prepare("SELECT * FROM sibling WHERE studentID = ? AND siblingName = ?");
+    $stmt->bind_param("ss",$_COOKIE['IDstudent'],$sibling2Name);
+    $stmt->execute();
+    $stmt -> bind_result($temp,$sibling3Name,$sibling2ID);
+    $stmt -> fetch();
+  }
+
+  if(!empty($student3Name)){
+    $stmt= $connect->prepare("SELECT * FROM sibling WHERE studentID = ? AND siblingName = ?");
+    $stmt->bind_param("ss",$_COOKIE['IDstudent'],$sibling3Name);
+    $stmt->execute();
+    $stmt -> bind_result($temp,$sibling3Name,$sibling3ID);
+    $stmt -> fetch();
+  }
+
+  if(!empty($student4Name)){
+    $stmt= $connect->prepare("SELECT * FROM sibling WHERE studentID = ? AND siblingName = ?");
+    $stmt->bind_param("ss",$_COOKIE['IDstudent'],$sibling4Name);
+    $stmt->execute();
+    $stmt -> bind_result($temp,$sibling4Name,$sibling4ID);
+    $stmt -> fetch();
+  }
+
+  if($ment == 0){
+    $stmt= $connect->prepare("SELECT * FROM mentor WHERE studentID = ?");
+    $stmt->bind_param("s",$_COOKIE['IDstudent']);
+    $stmt->execute();
+    $stmt -> bind_result($temp,$mentorName);
+    $stmt -> fetch();
+  }
+
+  if(empty($mentorName))
+    $mentorName = "N/A";
+    if(empty($grant))
+    $grant = "N/A";
+    if($disability == 1)
+    $notes504 = "N/A";
+    if($health == 1)
+    $notesHealth = "N/A";
+    if(empty($otherNotes))
+    $otherNotes = "N/A";
+    if(empty($siblingt1Name)){
+      $sibling1Name = "N/A";
+      $sibling1ID = "N/A";
+    }
+    if(empty($siblingt2Name)){
+      $sibling2Name = "N/A";
+      $sibling2ID = "N/A";
+    }
+    if(empty($siblingt3Name)){
+      $sibling3Name = "N/A";
+      $sibling3ID = "N/A";
+    }
+    if(empty($siblingt4Name)){
+      $sibling4Name = "N/A";
+      $sibling4ID = "N/A";
+    }
+    if(empty($notes504))
+      $notes504 = "N/A";
+    if(empty($notesHealth))
+      $notesHealth = "N/A";
+    if(empty($nch))
+      $nch = "N/A";
+    if(empty($otherNotes))
+      $otherNotes = "N/A";
 ?>
 
   <form class="form-studentapp" action="verifyEnteredInfo.php" method="post">
@@ -29,20 +123,48 @@ include 'menubar.php';
           <p>* indicates a required field.</p>
           <div class="row">
             <div class="form-group col-4">
-              <input type="text" class="form-control form-control-lg" placeholder="Student ID*" name="stuID">
-            </div>
-            <div class="form-group col-4">
-              <input type="text" class="form-control form-control-lg" placeholder="Student Username*" name="stuUser">
+              <input type="text" class="form-control form-control-lg" placeholder=<?php echo'"Username*: '.$stuUser.'"';?> name="stuUser">
             </div>
 
-            <div class="form-group col-4">
-              <input type="text" class="form-control form-control-lg" placeholder="Year Accepted*" name="yearAccepted">
+            <div class="form-group col-4 pb-10">
+                <select class="form-control" id="yearAccepted" name="yearAccepted">
+                  <option value="" selected hidden>Year Accepted*</option>
+                  <option value="2019">2019</option>
+                  <option value="2018">2018</option>
+                  <option value="2017">2017</option>
+                  <option value="2016">2016</option>
+                  <option value="2015">2015</option>
+                  <option value="2014">2014</option>
+                  <option value="2013">2013</option>
+                  <option value="2012">2012</option>
+                  <option value="2011">2011</option>
+                  <option value="2010">2010</option>
+                  <option value="2009">2009</option>
+                  <option value="2008">2008</option>
+                  <option value="2007">2007</option>
+                </select>
             </div>
-            <div class="form-group col-4">
-              <input type="text" class="form-control form-control-lg" placeholder="Grade Accepted*" name="gradeAccepted">
+            <div class="form-group col-4 pb-10">
+                <select class="form-control" id="gradeAccepted" name="yearAccepted">
+                  <option value="" selected hidden>Grade Accepted*</option>
+                  <option value="12">12</option>
+                  <option value="11">11</option>
+                  <option value="10">10</option>
+                  <option value="9">9</option>
+                  <option value="8">8</option>
+                  <option value="7">7</option>
+                  <option value="6">6</option>
+                  <option value="5">5</option>
+                  <option value="4">4</option>
+                </select>
             </div>
-            <div class="form-group col-4">
-               <input type="text" class="form-control form-control-lg" placeholder="Status*" name="stat">
+            <div class="form-group col-4 pb-10">
+                <select class="form-control" id="stat" name="stat">
+                  <option value="" selected hidden>Status*</option>
+                  <option value="Active">1</option>
+                  <option value="Inactive">0</option>
+                  <option value="Graduated">2</option>
+                </select>
             </div>
           </div class="row">
           <div>
@@ -53,7 +175,7 @@ include 'menubar.php';
           <div>
             <div class="form-group">
               <p>If so, please enter mentor name:</p>
-              <input type="text" class="form-control form-control-lg" name="mentorName" placeholder="Mentor Name">
+              <input type="text" class="form-control form-control-lg" placeholder=<?php echo'"Mentor Name: '.$mentorName.'"';?> name="mentorName">
             </div>
           </div>
           <div>
@@ -64,59 +186,67 @@ include 'menubar.php';
           <div>
             <div class="form-group">
             <p>If so, please enter the grant name:</p>
-            <input type="text" class="form-control form-control-lg" name="grant" placeholder="Grant Name">
+            <input type="text" class="form-control form-control-lg" placeholder=<?php echo'"Grant Name: '.$grant.'"';?> name="grant">
             </div>
           </div>
           <p>If student has sibling(s) in the program please enter sibling ID's:</p>
           <div class="row">
             <div class="form-group col-4">
-              <input type="text" class="form-control form-control-lg" placeholder="Sibling 1" name="sib1">
+              <input type="text" class="form-control form-control-lg" placeholder=<?php echo'"Sibling 1: '.$sibling1Name.'"';?> name="sibling1Name">
             </div>
             <div class="form-group col-4">
-              <input type="text" class="form-control form-control-lg" placeholder="Sibling 1 ID" name="sib1id">
+              <input type="text" class="form-control form-control-lg" placeholder=<?php echo'"Sibling 1 ID: '.$sibling1ID.'"';?> name="sibling1ID">
             </div>
           </div class="row">
-              <div class="row">
-                <div class="form-group col-4">
-                  <input type="text" class="form-control form-control-lg" placeholder="Sibling 2" name="sib2">
-                </div>
-                <div class="form-group col-4">
-                  <input type="text" class="form-control form-control-lg" placeholder="Sibling 2 ID" name="sib2id">
-                </div>
-              </div class="row"> 
-              <div class="row">
-                <div class="form-group col-4">
-                  <input type="text" class="form-control form-control-lg" placeholder="Sibling 3" name="sib3">
-                </div>
-                <div class="form-group col-4">
-                  <input type="text" class="form-control form-control-lg" placeholder="Sibling 3 ID" name="sib3id">
-                </div>
-              </div class="row">
+          <div class="row">
+            <div class="form-group col-4">
+              <input type="text" class="form-control form-control-lg" placeholder=<?php echo'"Sibling 2: '.$sibling2Name.'"';?> name="sibling2Name">
+            </div>
+            <div class="form-group col-4">
+              <input type="text" class="form-control form-control-lg" placeholder=<?php echo'"Sibling 2 ID: '.$sibling2ID.'"';?> name="sibling2ID">
+            </div>
+          </div class="row">
+          <div class="row">
+            <div class="form-group col-4">
+              <input type="text" class="form-control form-control-lg" placeholder=<?php echo'"Sibling 3: '.$sibling3Name.'"';?> name="sibling3Name">
+            </div>
+            <div class="form-group col-4">
+              <input type="text" class="form-control form-control-lg" placeholder=<?php echo'"Sibling 3 ID: '.$sibling3ID.'"';?> name="sibling3ID">
+            </div>
+          </div class="row">
+          <div class="row">
+            <div class="form-group col-4">
+              <input type="text" class="form-control form-control-lg" placeholder=<?php echo'"Sibling 4: '.$sibling4Name.'"';?> name="sibling4Name">
+            </div>
+            <div class="form-group col-4">
+              <input type="text" class="form-control form-control-lg" placeholder=<?php echo'"Sibling 4 ID: '.$sibling4ID.'"';?> name="sibling4ID">
+            </div>
+          </div class="row">
           <div>
              <p>Does student have any health information to be entered?</p>
             <label class="radio-inline"><input type="radio" name="Hnotes" value="0">Yes</label>
             <label class="radio-inline"><input type="radio" name="Hnotes" value="1" checked>No</label>
           </div>
           <div>
-             <p>Does student have any disabilities?</p>
+             <p>If so, does student have any disabilities?</p>
             <label class="radio-inline"><input type="radio" name="disability" value="0">Yes</label>
             <label class="radio-inline"><input type="radio" name="disability" value="1" checked>No</label>
           </div>
           <div>
             <div class="form-group">
               <p>If so, please enter 504 notes:</p>
-              <input type="text" class="form-control form-control-lg" name="notes504" placeholder="Notes">
+              <input type="text" class="form-control form-control-lg" placeholder=<?php echo'"Notes: '.$notes504.'"';?> name="notes504">
             </div>
           </div>
           <div>
-             <p>Does student have any health concerns?</p>
+             <p>Does student have any other health concerns?</p>
             <label class="radio-inline"><input type="radio" name="health" value="0">Yes</label>
             <label class="radio-inline"><input type="radio" name="health" value="1" checked>No</label>
           </div>
           <div>
             <div class="form-group">
               <p>If so, please enter any relevant notes:</p>
-              <input type="text" class="form-control form-control-lg" name="notesHealth" placeholder="Notes">
+              <input type="text" class="form-control form-control-lg" placeholder=<?php echo'"Notes: '.$notesHealth.'"';?> name="notesHealth">
             </div>
           </div>
           <div>
@@ -137,19 +267,19 @@ include 'menubar.php';
           <div>
             <div class="form-group">
               <p>If so, please enter information:</p>
-              <input type="text" class="form-control form-control-lg" name="clearinghouse" placeholder="Notes">
+              <input type="text" class="form-control form-control-lg" placeholder=<?php echo'"Notes: '.$nch.'"';?> name="nch">
             </div>
           </div>
           <div>
             <div class="form-group">
               <p>Enter any other notes:</p>
-              <input type="text" class="form-control form-control-lg" name="otherNotes" placeholder="Notes">
+              <input type="text" class="form-control form-control-lg" placeholder=<?php echo'"Notes: '.$otherNotes.'"';?> name="otherNotes">
             </div>
           </div>
           <div>
           <button name="submit" class="btn btn-success btn-block" type="submit">Submit Information</button>
-          <?php if (isset($_COOKIE["emptyFields"]) && $_COOKIE["emptyFields"] == 1) 
-          echo '<div class="container"><div class="alert alert-danger">Either the entered username or password is incorrect. Please try again.</div></div>';
+          <?php if (isset($_COOKIE["emptyAdminFields"]) && $_COOKIE["emptyAdminFields"] == 1) 
+          echo '<div class="container"><div class="alert alert-danger">Some required fields are empty.</div></div>';
           ?></span>
           <!-- <input type="submit" value="Submit Application" class="btn btn-outline-secondary btn-block"> -->
         </div>
