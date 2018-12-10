@@ -41,7 +41,7 @@ include 'menubar.php';
   $stmt= $connect->prepare("SELECT * FROM studentApp WHERE studentID = ?");
   $stmt->bind_param("s",$_COOKIE['IDstudent']);
   $stmt->execute();
-  $stmt -> bind_result($temp,$temp,$temp,$temp,$temp,$temp,$temp,$temp,$temp,$temp,$temp,$temp,$temp,$temp,$temp,$temp,$temp,$temp,$temp,$temp,$temp,$hasSibling,$temp,$temp,$sibling1Name,$sibling2Name,$sibling3Name,$sibling4Name);
+  $stmt -> bind_result($temp,$temp,$temp,$temp,$temp,$temp,$temp,$temp,$temp,$temp,$temp,$temp,$temp,$temp,$temp,$temp,$temp,$temp,$temp,$temp,$temp,$temp,$temp,$temp,$sibling1Name,$sibling2Name,$sibling3Name,$sibling4Name,$temp,$temp,$temp,$temp);
   $stmt -> fetch();
   $stmt -> free_result();
 

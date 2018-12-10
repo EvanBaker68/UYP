@@ -23,7 +23,9 @@ include 'menubar.php';
   $stmt->bind_param("s",$_COOKIE['acceptStudent']);
   $stmt->execute();
   $stmt -> bind_result($studentID,$fName,$lName,$MI,$suffix,$nickname,$address,$state,$city,$zip,$birthday,
-  	$gender,$race,$typeOfSchool,$schoolName,$schoolDistrict,$upcomingGrade,$expectedGradYear,$expectedHighSchool,$studentEmail,$studentPhone,$hasSibling,$accepted,$GTProgramStatus,$sibling1Name,$sibling2Name,$sibling3Name,$sibling4Name,$approvalAdmin,$acceptedYear);
+    $gender,$race,$typeOfSchool,$schoolName,$schoolDistrict,$upcomingGrade,$expectedGradYear,$expectedHighSchool,
+    $studentEmail,$studentPhone,$hasSibling,$accepted,$GTProgramStatus,$sibling1Name,$sibling2Name,$sibling3Name,$sibling4Name,
+    $approvalAdminName,$acceptedYear,$parent1ID,$parent2ID);
   $stmt -> fetch();
 
 
@@ -53,7 +55,7 @@ include 'menubar.php';
   	$sibling4Name = "N/A";
   // var_dump($student);
 ?>
-
+<form class="form-studentapp" action="verifyAdminApp.php" method="post">
 <div class="container my-3 text-center">
       <div class="row justify-content-around">
         <div class="col-10">
@@ -69,26 +71,38 @@ include 'menubar.php';
                   </div>
               </div>
               <div class="form-group col-2 pb-10">
-                  <div class="form-group">
-                    <input type="text" class="form-control form-control-lg" placeholder=<?php echo'"MI: '.$MI.'"';?> name="MI">
-                  </div>
+                <select class="form-control" id="MI" name="MI">
+                  <option value="" selected hidden>MI</option>
+                  <?php
+                    $letter = "A";
+                    for($x = 0; $x < 26; $x++){
+
+                      if($letter == $MI){
+                        echo'<option value="'.$letter.'"selected="selected">'.$letter.'</optoin>';
+                      }else{
+                        echo '<option value="'.$letter.'">'.$letter.'</option>';
+                      }
+                      $letter++;
+                    }
+
+                  ?>
+                </select>
               </div>
               <div class="col-2">
                   <div class="form-group">
                     <input type="text" class="form-control form-control-lg" placeholder=<?php echo'"Suffix: '.$suffix.'"';?> name="suffix">
               </div>
             </div>
-              <div class="form-group">
+              <div class="form-group col-6">
                 <input type="text" class="form-control form-control-lg" placeholder=<?php echo'"Preferred Name: '.$nickname.'"';?> name="nickname">
               </div>
-              <div class="form-group">
+              <div class="form-group col-6">
                 <input type="text" class="form-control form-control-lg" placeholder=<?php echo'"Address '.$address.'"';?> name="studentAddress">
               </div>
-          <div class="row">
-              <div class="form-group col-2">
+              <div class="form-group col-3">
                 <input type="text" class="form-control form-control-lg" placeholder=<?php echo'"City: '.$city.'"';?> name="city">
               </div>
-          <div class="form-group col-2 pb-10">
+          <div class="form-group col-3 pb-10">
                 <select class="form-control" id="state" name="state">
                   <option value="" selected hidden>State*</option>
                   <option value="AK" <?php if ($state=="AK") echo 'selected="selected"';?>>Alaska</option>
@@ -145,7 +159,7 @@ include 'menubar.php';
                   <option value="WY" <?php if ($state=="WY") echo 'selected="selected"';?>>Wyoming</option>
                 </select>
             </div>
-              <div class="form-group">
+              <div class="form-group col-6">
                 <input type="text" class="form-control form-control-lg" placeholder=<?php echo'"Zip: '.$zip.'"';?> name="zip">
               </div>
           </div>
@@ -182,12 +196,12 @@ include 'menubar.php';
         <div class="row">
           <div class="col-4">
               <div class="form-group">
-                <input type="text" name="schoolName" class="form-control form-control-lg" placeholder=<?php echo'"School: '.$schoolName.'"';?> readonly>
+                <input type="text" name="schoolName" class="form-control form-control-lg" placeholder=<?php echo'"School: '.$schoolName.'"';?>>
                 </div>
           </div>
           <div class="col-4">
                   <div class="form-group">
-                    <input type="text" class="form-control form-control-lg" name="schoolDistrict" placeholder=<?php echo'"School District: '.$schoolDistrict.'"';?> readonly>
+                    <input type="text" class="form-control form-control-lg" name="schoolDistrict" placeholder=<?php echo'"School District: '.$schoolDistrict.'"';?>>
                   </div>
               </div>
               <div class="form-group col-4 pb-10">
@@ -221,7 +235,7 @@ include 'menubar.php';
           <div class="col-4">
             <form class="mb-4">
               <div class="form-group">
-                <input type="text" name="expectedHighSchool" class="form-control form-control-lg" placeholder=<?php echo'"Expected High School: '.$expectedHighSchool.'"';?> readonly>
+                <input type="text" name="expectedHighSchool" class="form-control form-control-lg" placeholder=<?php echo'"Expected High School: '.$expectedHighSchool.'"';?>>
               </div>
             </form>
           </div>
@@ -254,16 +268,16 @@ YOU CAN USE IT FOR THE UPDATE FIELD FOR BOTH THE STUDENT AND ADMINS-->
           <div>
             <div class="form-group">
             <p>If so, please list their names</p>
-            <input type="text" class="form-control form-control-lg" name="sibling1" placeholder=<?php echo'"Sibling 1 Full Name: '.$sibling1Name.'"';?> readonly>
+            <input type="text" class="form-control form-control-lg" name="sibling1" placeholder=<?php echo'"Sibling 1 Full Name: '.$sibling1Name.'"';?>>
             </div>
             <div class="form-group">
-            <input type="text" class="form-control form-control-lg" name="sibling2" placeholder=<?php echo'"Sibling 2 Full Name: '.$sibling1Name.'"';?> readonly>
+            <input type="text" class="form-control form-control-lg" name="sibling2" placeholder=<?php echo'"Sibling 2 Full Name: '.$sibling1Name.'"';?>>
             </div>
             <div class="form-group">
-            <input type="text" class="form-control form-control-lg" name="sibling3" placeholder=<?php echo'"Sibling 3 Full Name: '.$sibling1Name.'"';?> readonly>
+            <input type="text" class="form-control form-control-lg" name="sibling3" placeholder=<?php echo'"Sibling 3 Full Name: '.$sibling1Name.'"';?>>
             </div>
             <div class="form-group">
-            <input type="text" class="form-control form-control-lg" name="sibling4" placeholder=<?php echo'"Sibling 4 Full Name: '.$sibling1Name.'"';?> readonly>
+            <input type="text" class="form-control form-control-lg" name="sibling4" placeholder=<?php echo'"Sibling 4 Full Name: '.$sibling1Name.'"';?>>
             </div>
           </div>
         <div>
@@ -279,7 +293,7 @@ YOU CAN USE IT FOR THE UPDATE FIELD FOR BOTH THE STUDENT AND ADMINS-->
 			  $stmt= $connect->prepare("SELECT * FROM parent WHERE studentID = ?");
 			  $stmt->bind_param("s",$_COOKIE['acceptStudent']);
 			  $stmt->execute();
-			  $stmt -> bind_result($parentName,$studentID,$address,$city,$state,$zip,$email,$cellPhone,$workPhone,$homePhone);
+			  $stmt -> bind_result($parentName,$studentID,$address,$city,$state,$zip,$email,$cellPhone,$workPhone,$homePhone,$parentID);
 			  $stmt -> fetch();
 
 			    if(empty($parentName)){}
@@ -504,7 +518,7 @@ YOU CAN USE IT FOR THE UPDATE FIELD FOR BOTH THE STUDENT AND ADMINS-->
         </div>
       </div>
     </div>
-
+</form>
 
    <script src="js/jquery.min.js"></script>
   <script src="js/popper.min.js"></script>

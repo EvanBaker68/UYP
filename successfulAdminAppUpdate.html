@@ -21,42 +21,8 @@ setcookie("menubar", 2, time() + 86400, "/");
 include 'menubar.php'; 
 ?>
 
-  <form class="form-studentapp" action="verifyID.php" method="post">
-    <div class="container my-3 text-center">
-      <div class="row justify-content-around">
-        <div class="col-10">
-          <h1>Update Student Information</h1>
-          <div class="row">
-            <div class="form-group col">
-              <input type="text" class="form-control form-control-lg" placeholder="Student ID" name="stuID">
-            </div>
-            <div>
-            <button name="submit" class="btn btn-success btn-block" type="submit">Update Admin Entered Info</button>
-            <span class="text-danger">
-            <?php if (isset($_COOKIE["IDerror"]) && $_COOKIE["IDerror"] == 1){ 
-              echo '<div class="container"><div class="alert alert-danger">Invalid studentID.</div></div>';}
-            ?>
-            </span>
-        </div>
-      </div>
-    </div>
-  </form>
-
-    <!-- <footer id="main-footer" class="text-center p-2 fixed-bottom">
-      <div class="container">
-        <div class="row">
-          <div class="col">
-            <p>Copyright 2018 &copy; University For Young People</p>
-          </div>
-        </div>
-      </div>
-    </footer> -->
-
-    <script type="text/javascript">
-        $(function () {
-            $('#datetimepicker1').datetimepicker();
-        });
-    </script>
+<br><br><br><br><br><br>
+<center><h3>Application Update was successful.</h3></center>
 
   <script src="js/jquery.min.js"></script>
   <script src="js/popper.min.js"></script>

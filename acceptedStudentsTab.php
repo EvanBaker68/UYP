@@ -20,7 +20,7 @@
 
     if(isset($_POST['button'])){
      setcookie("acceptStudent", $_POST['button'], time() + 86400, "/");
-     header('Location: acceptStudent.php');
+     header('Location: updateStudent.php');
     }
 
 
@@ -41,7 +41,7 @@
                      <th width="25%">Name</th>  
                      <th width="15%">Grade in Fall</th> 
                      <th width="25%">Current school</th>  
-                     <th width="25%">Update Student Info</th>  
+                     <th width="25%">Update Student Application Info</th>  
                 </tr>';
 
 
@@ -56,7 +56,7 @@
                      <td class="Type" data-id14="'.$row["studentID"].'" contenteditable>'.$row["fName"].' '.$row["lName"].'</td> 
                      <td class="FirstName" data-id1="'.$row["studentID"].'" contenteditable>'.$row["upcomingGrade"].'</td>  
                      <td class="LastName" data-id2="'.$row["studentID"].'" contenteditable>'.$row["schoolName"].'</td> 
-                     <td><form method="post" action="pendingStudents.php"><button class=" btn-success btn-block" type="submit" value="'.$row["studentID"].'" name="button" >Update Student Info</input></form> </td>
+                     <td><form method="post" action="updateStudent.php"><button class=" btn-success btn-block" type="submit" value="'.$row["studentID"].'" name="button" >Update Student Application Info</input></form> </td>
                 </tr>';  
       }  
  }

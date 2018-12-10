@@ -58,7 +58,7 @@
   // var_dump($student);
 ?>
 
-<form action="verifyUpdateStudentInfo.php" method="post">
+<form action="verifyAdminApp.php" method="post">
 <div class="container my-3 text-center">
       <div class="row justify-content-around">
         <div class="col-10">

@@ -127,7 +127,9 @@ if($error == true){
 
 $id = substr(md5(microtime()),rand(0,26),6);
 $parent1ID = substr(md5(microtime()),rand(0,26),6);
+setcookie("parentID1", $parent1ID, time() + 86400, "/");
 $parent2ID = substr(md5(microtime()),rand(0,26),6);
+setcookie("parentID2", $parent2ID, time() + 86400, "/")
 var_dump($id);
 
 

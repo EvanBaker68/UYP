@@ -93,7 +93,7 @@ else{
 }
 
 if($error == true){
-    // header('Location: studentApp.php');
+  header('Location: updateStudent.php');
 }
 
 
@@ -114,7 +114,7 @@ if(!empty($lname)){
 
 }
 
-if(!empty($MI)){
+if(!empty($fname)){
   $stmt = $connect->prepare("UPDATE studentApp SET middleInitial = ? WHERE studentID = ?");
   $stmt->bind_param("ss",$MI,$stuID);
   $stmt->execute();
@@ -135,7 +135,7 @@ if(!empty($nickname)){
 
 }
 
-if(!empty($studentAddress)){
+if(!empty($fname)){
   $stmt = $connect->prepare("UPDATE studentApp SET address = ? WHERE studentID = ?");
   $stmt->bind_param("ss",$studentAddress,$stuID);
   $stmt->execute();
@@ -417,7 +417,7 @@ if(!empty($parent2Work)){
 
 //Verify that other information is correct
 
-  header('Location: successfulUpdate.php');
+  header('Location: successfulAdminAppUpdate.php');
 
  // $stmt = $connect->prepare("INSERT INTO TEST(username, password) VALUES(?, ?)");
  // $stmt->bind_param("ss",$name, $password);
