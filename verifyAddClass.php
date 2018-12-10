@@ -21,8 +21,8 @@
 
 
  session_start(); 
- $required = array('courseName', 'cap', 'CRN', 'session', 'classRoom', 'year', 'instructorName',
- 'cost');
+ $required = array('courseName', 'cap', 'CRN', 'session', 'level', 'classRoom', 'year', 'instructorName',
+ 'cost', 'timeSlot',);
 
 
 $error = false;
@@ -32,9 +32,6 @@ foreach($required as $field) {
     $missingFieldsError = true;
   }
 }
-
-
-var_dump($missingFieldsError);
 
 
 if($missingFieldsError == true){
@@ -48,17 +45,20 @@ else{
 $courseName = $_POST['courseName'];
 $cap = $_POST['cap'];
 $CRN = $_POST['CRN'];
+$cost = $_POST['cost'];
+$level = $_POST['level'];
+$timeSlot = $_POST['timeSlot'];
 $session = $_POST['session'];
 $classRoom = $_POST['classRoom'];
 $year = $_POST['year'];
 $instructorName = $_POST['instructorName'];
 
-var_dump($cost);
-var_dump($CRN);
-var_dump($cap);
+// var_dump($cost);
+// var_dump($CRN);
+// var_dump($cap);
 
-$intChecker = "/[0-9]{1,}/";
-$CRNChecker = "/[a-zA-Z0-9]{1,}/";
+$intChecker = "/[0-9]+/";
+$CRNChecker = "/^[a-zA-Z0-9]{6}$/";
 
 if(!preg_match($intChecker, $cap)){
     setcookie("invalidCap", 1, time() + 86400, "/");
@@ -76,32 +76,34 @@ else{
     setcookie("invalidCost", 0, time() + 86400, "/");
 }
 
-if(!preg_match($CRNChecker, $cap)){
+if(!preg_match($CRNChecker, $CRN)){
     setcookie("invalidCRN", 1, time() + 86400, "/");
     $error = true;
+    // echo '<p>incorrect</p>';
 }
 else{
+	// var_dump($CRN);
+	// echo '<p>correct</p>';
     setcookie("invalidCRN", 0, time() + 86400, "/");
 }
 
 if($error == true){
-    // header('Location: addClassInfo.php');
+    header('Location: addClassInfo.php');
 }
-
+else{
 
  $connect = mysqli_connect("localhost", "root", "", "DB3335"); 
- $stmt = $connect->prepare("INSERT INTO class(courseName, cap, CRN, session, classRoom, year, instructorName,
- cost) 
- VALUES(?, ?, ?, ?, ?, ?, ?, ?)");
+ $stmt = $connect->prepare("INSERT INTO class(CRN, session, level, className, timeSlot, room, instructor,
+ year,cost,capacity,remainingSpots) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
- $stmt->bind_param("sisisisi",$courseName,$cap,$CRN,$session,$classRoom,$year,$instructorName,$cost);
+ $stmt->bind_param("ssisissiiii",$CRN,$session,$level,$courseName,$timeSlot,$classRoom,$instructorName,$year,$cost,$cap,$cap);
  $stmt->execute();
 
 
- // header('Location: successfulAppSubmission.php');
+ header('Location: successfulClassAdd.php');
 
  $connect = null;
-
+}
 
 
 

@@ -26,7 +26,7 @@ include 'menubar.php';
 
   $stmt->execute();
 
-  $stmt -> bind_result($studentID,$stuUser,$gradeAccepted,$stat,$gfund,$ment,$Hnotes,$gift,$english,$clearinghouse,$otherNotes,$grant,$yearAccepted);
+  $stmt -> bind_result($studentID,$stuUser,$gradeAccepted,$stat,$gfund,$ment,$Hnotes,$gift,$english,$clearinghouse,$otherNotes,$yearAccepted);
   $stmt -> fetch();
   $stmt -> free_result();
 
@@ -80,6 +80,8 @@ include 'menubar.php';
     $stmt -> fetch();
     $stmt -> free_result();
   }
+
+  $mentorName = "N/A";
 
   if($ment == 2){
     $stmt= $connect->prepare("SELECT * FROM mentor WHERE studentID = ?");
@@ -137,7 +139,7 @@ include 'menubar.php';
       <div class="row justify-content-around">
         <div class="col-10">
           <h1>Student Information</h1>
-          <p><?php echo $stuUser ?></p>
+          <h2><?php echo $stuUser ?></h2>
           <div class="row">
             <div class="form-group col-4 pb-10">
                 <select class="form-control" id="yearAccepted" name="yearAccepted">

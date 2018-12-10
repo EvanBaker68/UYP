@@ -86,7 +86,7 @@
   $stmt->bind_param("is",$gradeAccepted,$stuID);
   $stmt->execute();
 
-  $stmt = $connect->prepare("UPDATE studentAccepted SET studentStatus=? WHERE studentID =?");
+  $stmt = $connect->prepare("UPDATE studentAccepted SET status=? WHERE studentID =?");
   $stmt->bind_param("is",$stat,$stuID);
   $stmt->execute();
 
@@ -119,7 +119,7 @@
   }
 
   if(!empty($grant)){
-    $stmt = $connect->prepare("UPDATE studentAccepted SET grantStatus=? WHERE studentID =?");
+    $stmt = $connect->prepare("UPDATE studentAccepted SET fundingStatus=? WHERE studentID =?");
     $stmt->bind_param("ss",$grant,$stuID);
     $stmt->execute();
   }

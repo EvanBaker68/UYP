@@ -16,47 +16,57 @@
 </head>
 <body>
 
-<?php 
-setcookie("menubar", 2, time() + 86400, "/");
-include 'menubar.php'; 
-?>
+ <?php
 
-  <form class="form-studentapp" action="verifyID.php" method="post">
-    <div class="container my-3 text-center">
-      <div class="row justify-content-around">
-        <div class="col-10">
-          <h1>Update Student Information</h1>
-          <div class="row">
-            <div class="form-group col">
-              <input type="text" class="form-control form-control-lg" placeholder="Student ID" name="stuID">
-            </div>
-            <div>
-            <button name="submit" class="btn btn-success btn-block" type="submit">Update Admin Entered Info</button>
-            <span class="text-danger">
-            <?php if (isset($_COOKIE["IDerror"]) && $_COOKIE["IDerror"] == 1){ 
-              echo '<div class="container"><div class="alert alert-danger">Invalid studentID.</div></div>';}
-            ?>
-            </span>
-        </div>
-      </div>
-    </div>
-  </form>
 
-    <!-- <footer id="main-footer" class="text-center p-2 fixed-bottom">
-      <div class="container">
-        <div class="row">
-          <div class="col">
-            <p>Copyright 2018 &copy; University For Young People</p>
-          </div>
-        </div>
-      </div>
-    </footer> -->
+    if(isset($_POST['button'])){
+     setcookie("IDstudent", $_POST['button'], time() + 86400, "/");
+     header('Location: adminSInfo.php');
+    }
 
-    <script type="text/javascript">
-        $(function () {
-            $('#datetimepicker1').datetimepicker();
-        });
-    </script>
+
+ setcookie("menubar", 2, time() + 86400, "/");
+ include 'menubar.php';  
+ session_start(); 
+ $connect = mysqli_connect("localhost", "root", "", "DB3335"); 
+
+
+ echo "<br><br>";
+
+ $result = $connect->query("Select * FROM studentApp WHERE accepted = 1");
+
+      echo '<div class="table-responsive" >  
+           <table class="table table-bordered"  >  
+                <tr style="width: 100%; background-color: #C0C0C0;">  
+                     <th width="10%">User ID</th>  
+                     <th width="25%">Name</th>  
+                     <th width="15%">Grade in Fall</th> 
+                     <th width="25%">Current school</th>  
+                     <th width="25%">Update Student Application Info</th>  
+                </tr>';
+
+
+
+ if(mysqli_num_rows($result) > 0)  
+ {  
+      while($row = mysqli_fetch_array($result))  
+      {  
+           echo '  
+                <tr>  
+                     <td>'.$row["studentID"].'</td>  
+                     <td class="Type" data-id14="'.$row["studentID"].'" contenteditable>'.$row["fName"].' '.$row["lName"].'</td> 
+                     <td class="FirstName" data-id1="'.$row["studentID"].'" contenteditable>'.$row["upcomingGrade"].'</td>  
+                     <td class="LastName" data-id2="'.$row["studentID"].'" contenteditable>'.$row["schoolName"].'</td> 
+                     <td><form method="post" action="EnterID.php"><button class=" btn-success btn-block" type="submit" value="'.$row["studentID"].'" name="button" >Enter Information</input></form> </td>
+                </tr>';  
+      }  
+ }
+
+  echo '</table></div>';
+ $connect = null;
+ // header('Location: createaccount.php');
+ ?>
+
 
   <script src="js/jquery.min.js"></script>
   <script src="js/popper.min.js"></script>

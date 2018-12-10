@@ -17,7 +17,6 @@
 <body>
 
 <?php 
-setcookie("menubar", 0, time() + 86400, "/");
 include 'menubar.php'; 
 ?>
 
@@ -100,8 +99,7 @@ include 'menubar.php';
             <label class="radio-inline"><input type="radio" id="level3" name="level" value="3">Lvl 3</label>
               </div>    
          
-            <div class="form-group col-2">
-                 
+            <div class="form-group col-2">   
                  <input type="text" class="form-control form-control-lg" placeholder="Price*" name="cost">
             </div>             
            
