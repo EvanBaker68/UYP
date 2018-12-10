@@ -58,7 +58,7 @@
   // var_dump($student);
 ?>
 
-<form action="verifyAdminApp.php" method="post">
+<form action="verifyUpdateStudentInfo.php" method="post">
 <div class="container my-3 text-center">
       <div class="row justify-content-around">
         <div class="col-10">
@@ -104,21 +104,21 @@
                 <input type="text" class="form-control form-control-lg" value=<?php echo $city;?> name="city" >
               </div>
               <div class="form-group col-2 pb-10">
-                <select class="form-control" id="state" name="state" readonly>
+                <select class="form-control" id="state" name="state">
                   <option value="" selected hidden>State*</option>
-                  <option value="AK" <?php if ($state=="AK") echo 'selected="selected"';?>>Alaska</option>
-                  <option value="AL" <?php if ($state=="AL") echo 'selected="selected"';?>>Alabama</option>
-                  <option value="AR" <?php if ($state=="AR") echo 'selected="selected"';?>>Arkansas</option>
-                  <option value="AZ" <?php if ($state=="AZ") echo 'selected="selected"';?>>Arizona</option>
-                  <option value="CA" <?php if ($state=="CA") echo 'selected="selected"';?>>California</option>
-                  <option value="CO" <?php if ($state=="CO") echo 'selected="selected"';?>>Colorado</option>
-                  <option value="CT" <?php if ($state=="CT") echo 'selected="selected"';?>>Connecticut</option>
-                  <option value="DC" <?php if ($state=="DC") echo 'selected="selected"';?>>District of Columbia</option>
-                  <option value="DE" <?php if ($state=="DE") echo 'selected="selected"';?>>Delaware</option>
-                  <option value="FL" <?php if ($state=="FL") echo 'selected="selected"';?>>Florida</option>
-                  <option value="GA" <?php if ($state=="GA") echo 'selected="selected"';?>>Georgia</option>
-                  <option value="HI" <?php if ($state=="HI") echo 'selected="selected"';?>>Hawaii</option>
-                  <option value="IA" <?php if ($state=="IA") echo 'selected="selected"';?>>Iowa</option>
+                  <option value="AK" <?php if ($state=='AK') echo 'selected="selected"';?>>Alaska</option>
+                  <option value="AL" <?php if ($state=='AL') echo 'selected="selected"';?>>Alabama</option>
+                  <option value="AR" <?php if ($state=='AR') echo 'selected="selected"';?>>Arkansas</option>
+                  <option value="AZ" <?php if ($state=='AZ') echo 'selected="selected"';?>>Arizona</option>
+                  <option value="CA" <?php if ($state==CA) echo 'selected="selected"';?>>California</option>
+                  <option value="CO" <?php if ($state==CO) echo 'selected="selected"';?>>Colorado</option>
+                  <option value="CT" <?php if ($state==CT) echo 'selected="selected"';?>>Connecticut</option>
+                  <option value="DC" <?php if ($state==DC) echo 'selected="selected"';?>>District of Columbia</option>
+                  <option value="DE" <?php if ($state==DE) echo 'selected="selected"';?>>Delaware</option>
+                  <option value="FL" <?php if ($state==FL) echo 'selected="selected"';?>>Florida</option>
+                  <option value="GA" <?php if ($state==GA) echo 'selected="selected"';?>>Georgia</option>
+                  <option value="HI" <?php if ($state==HI) echo 'selected="selected"';?>>Hawaii</option>
+                  <option value="IA" <?php if ($state==IA) echo 'selected="selected"';?>>Iowa</option>
                   <option value="ID" <?php if ($state=="ID") echo 'selected="selected"';?>>Idaho</option>
                   <option value="IL" <?php if ($state=="IL") echo 'selected="selected"';?>>Illinois</option>
                   <option value="IN" <?php if ($state=="IN") echo 'selected="selected"';?>>Indiana</option>
@@ -289,7 +289,7 @@ YOU CAN USE IT FOR THE UPDATE FIELD FOR BOTH THE STUDENT AND ADMINS-->
                 <input type="text" class="form-control form-control-lg" value=<?php echo'"'.$city.'"';?> name="parent1city" >
               </div>
               <div class="form-group col-2 pb-10">
-                <select class="form-control" id="state" name="state" readonly>
+                <select class="form-control" id="state" name="state">
                   <option value="" selected hidden>State*</option>
                   <option value="AK" <?php if ($state=="AK") echo 'selected="selected"';?>>Alaska</option>
                   <option value="AL" <?php if ($state=="AL") echo 'selected="selected"';?>>Alabama</option>

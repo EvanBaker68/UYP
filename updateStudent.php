@@ -28,6 +28,9 @@ include 'menubar.php';
     $approvalAdminName,$acceptedYear,$parent1ID,$parent2ID);
   $stmt -> fetch();
 
+setcookie("parentID1", $parent1ID, time()+84600, "/");
+setcookie("parentID2", $parent2ID, time()+84600, "/");
+
 
   if(empty($MI)){}
   	$MI = "N/A";
@@ -104,7 +107,7 @@ include 'menubar.php';
               </div>
           <div class="form-group col-3 pb-10">
                 <select class="form-control" id="state" name="state">
-                  <option value="" selected hidden>State*</option>
+                  <option value="" selected disabled hidden>State*</option>
                   <option value="AK" <?php if ($state=="AK") echo 'selected="selected"';?>>Alaska</option>
                   <option value="AL" <?php if ($state=="AL") echo 'selected="selected"';?>>Alabama</option>
                   <option value="AR" <?php if ($state=="AR") echo 'selected="selected"';?>>Arkansas</option>
@@ -326,7 +329,7 @@ YOU CAN USE IT FOR THE UPDATE FIELD FOR BOTH THE STUDENT AND ADMINS-->
                 <input type="text" class="form-control form-control-lg" placeholder=<?php echo'"City: '.$city.'"';?> name="parent1city">
               </div>
           <div class="form-group col-2 pb-10">
-                <select class="form-control" id="state" name="state">
+                <select class="form-control" id="state" name="parent1state">
                   <option value="" selected hidden>State*</option>
                   <option value="AK" <?php if ($state=="AK") echo 'selected="selected"';?>>Alaska</option>
                   <option value="AL" <?php if ($state=="AL") echo 'selected="selected"';?>>Alabama</option>
@@ -438,7 +441,7 @@ YOU CAN USE IT FOR THE UPDATE FIELD FOR BOTH THE STUDENT AND ADMINS-->
                 <input type="text" class="form-control form-control-lg" placeholder=<?php echo'"City: '.$city.'"';?> name="parent2city">
               </div>
           <div class="form-group col-2 pb-10">
-                <select class="form-control" id="state" name="state">
+                <select class="form-control" id="state" name="parent2state">
                   <option value="" selected hidden>State*</option>
                   <option value="AK" <?php if ($state=="AK") echo 'selected="selected"';?>>Alaska</option>
                   <option value="AL" <?php if ($state=="AL") echo 'selected="selected"';?>>Alabama</option>

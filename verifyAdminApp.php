@@ -16,7 +16,7 @@
  session_start(); 
  $connect = mysqli_connect("localhost", "root", "", "DB3335");
 
-$stuID=$_COOKIE['id'];
+$stuID=$_COOKIE['acceptStudent'];
 $fname = $_POST['fname'];
 $lname = $_POST['lname'];
 $nickname = $_POST['nickname'];
@@ -69,9 +69,12 @@ $parent2Home = $_POST['parent2Home'];
 $parent1ID = $_COOKIE['parentID1'];
 $parent2ID = $_COOKIE['parentID2'];
 
+
 if(!empty($sibling1) || !empty($sibling2) || !empty($sibling3) || !empty($sibling4)){
   $hasSibling = 0;
 }
+
+$error=false;
 
 $dateChecker = "/[0-9]{4}-[0-9]{2}-[0-9]{2}/";
 $emailChecker = "/[a-zA-Z0-9]+@[a-zA-Z]+\.[a-zA-Z]+/";
@@ -416,7 +419,7 @@ if(!empty($parent2Work)){
 
 //Verify that other information is correct
 
-  header('Location: successfulAdminAppUpdate.php');
+  //header('Location: successfulAdminAppUpdate.php');
 
  // $stmt = $connect->prepare("INSERT INTO TEST(username, password) VALUES(?, ?)");
  // $stmt->bind_param("ss",$name, $password);
