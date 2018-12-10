@@ -76,7 +76,7 @@ if(!empty($sibling1) || !empty($sibling2) || !empty($sibling3) || !empty($siblin
 $dateChecker = "/[0-9]{4}-[0-9]{2}-[0-9]{2}/";
 $emailChecker = "/[a-zA-Z0-9]+@[a-zA-Z]+\.[a-zA-Z]+/";
 
-if(!preg_match($dateChecker, $birthday)){
+if(!preg_match($dateChecker, $birthday)&&!empty($birthday)){
     setcookie("invalidBirthday", 1, time() + 86400, "/");
     $error = true;
 }
@@ -84,7 +84,7 @@ else{
     setcookie("invalidBirthday", 0, time() + 86400, "/");
 }
 
-if(!preg_match($emailChecker, $parent1email)){
+if(!preg_match($emailChecker, $parent1email)&&!empty($parent1email)){
     setcookie("invalidEmail", 1, time() + 86400, "/");
     $error = true;
 }
@@ -104,7 +104,6 @@ if(!empty($fname)){
   $stmt = $connect->prepare("UPDATE studentApp SET fName = ? WHERE studentID = ?");
   $stmt->bind_param("ss",$fname,$stuID);
   $stmt->execute();
-
 }
 
 if(!empty($lname)){
