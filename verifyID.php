@@ -28,7 +28,7 @@ $count=$nRows;
 if($count == 1 ){
 	setcookie("IDerror", 0, time() + 86400, "/");
 	setcookie("menubar", 2, time() + 86400, "/");
-  setcookie("IDstudent", $stuID, time() + 86400, "/");
+  setcookie("IDstudent", $studentID, time() + 86400, "/");
 	// header() denotes a link
 	header('Location: adminSInfo.php');
 }

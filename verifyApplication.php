@@ -165,6 +165,7 @@ if($stmt == false){
  $parent2email, $parent2Cell, $parent2Work, $parent2Home,$parent2ID);
  $stmt->execute();
 
+ mysqli_commit($connect);
 
 //Verify that other information is correct
 

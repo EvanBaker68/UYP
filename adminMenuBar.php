@@ -17,9 +17,6 @@
               <a class="nav-link" href="classList.php">View Classes</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="adminSInfo.php">Enter Student Info</a>
-            </li>
-            <li class="nav-item">
               <a class="nav-link" href="EnterID.php">Enter Student Info</a>
             </li>
             <li class="nav-item">
