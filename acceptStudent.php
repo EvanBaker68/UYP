@@ -25,7 +25,7 @@
   $stmt -> bind_result($studentID,$fName,$lName,$MI,$suffix,$nickname,$address,$state,$city,$zip,$birthday,
   	$gender,$race,$typeOfSchool,$schoolName,$schoolDistrict,$upcomingGrade,$expectedGradYear,$expectedHighSchool,
   	$studentEmail,$studentPhone,$hasSibling,$accepted,$GTProgramStatus,$sibling1Name,$sibling2Name,$sibling3Name,$sibling4Name,
-    $approvalAdminName,$acceptedYear);
+    $approvalAdminName,$acceptedYear,$parent1ID,$parent2ID);
   $stmt -> fetch();
 
 
@@ -188,31 +188,31 @@ YOU CAN USE IT FOR THE UPDATE FIELD FOR BOTH THE STUDENT AND ADMINS-->
         <div>
           <h3>Information for parent/guardian #1</h3>
           <?php 
-			  $connect = mysqli_connect("localhost", "root", "", "DB3335"); 
-			  $stmt= $connect->prepare("SELECT * FROM parent WHERE studentID = ?");
-			  $stmt->bind_param("s",$_COOKIE['acceptStudent']);
-			  $stmt->execute();
-			  $stmt -> bind_result($parentName,$studentID,$address,$city,$state,$zip,$email,$cellPhone,$workPhone,$homePhone);
-			  $stmt -> fetch();
+        $connect = mysqli_connect("localhost", "root", "", "DB3335"); 
+        $stmt= $connect->prepare("SELECT * FROM parent WHERE parentID = ?");
+        $stmt->bind_param("s",$parent1ID);
+        $stmt->execute();
+        $stmt -> bind_result($parentName,$studentID,$address,$city,$state,$zip,$email,$cellPhone,$workPhone,$homePhone,$parentID);
+        $stmt -> fetch();
 
-			    if(empty($parentName)){}
-			  	$parentName = "N/A";
-			    if(empty($address))
-			  	$address = "N/A";
-			    if(empty($city))
-			  	$city = "N/A";
-			    if(empty($state))
-			  	$state = "N/A";
-			    if(empty($zip))
-			  	$zip = "N/A";
-			    if(empty($email))
-			  	$email = "N/A";
-			    if(empty($cellPhone))
-			  	$cellPhone = "N/A";
-			    if(empty($workPhone))
-			  	$workPhone = "N/A";
-			    if(empty($homePhone))
-			  	$homePhone = "N/A";
+          if(empty($parentName))
+          $parentName = "N/A";
+          if(empty($address))
+          $address = "N/A";
+          if(empty($city))
+          $city = "N/A";
+          if(empty($state))
+          $state = "N/A";
+          if(empty($zip))
+          $zip = "N/A";
+          if(empty($email))
+          $email = "N/A";
+          if(empty($cellPhone))
+          $cellPhone = "N/A";
+          if(empty($workPhone))
+          $workPhone = "N/A";
+          if(empty($homePhone))
+          $homePhone = "N/A";
           ?>
             <div class="form-group">
               <input type="text" class="form-control form-control-lg" placeholder=<?php echo'"Name: '.$parentName.'"';?> name="parent1name" readonly>
@@ -251,25 +251,31 @@ YOU CAN USE IT FOR THE UPDATE FIELD FOR BOTH THE STUDENT AND ADMINS-->
         <div>
           <h3>Information for parent/guardian #2</h3>
           <?php 
-          	$stmt -> fetch();
-          		if(empty($parentName)){}
-			  	$parentName = "N/A";
-			    if(empty($address))
-			  	$address = "N/A";
-			    if(empty($city))
-			  	$city = "N/A";
-			    if(empty($state))
-			  	$state = "N/A";
-			    if(empty($zip))
-			  	$zip = "N/A";
-			    if(empty($email))
-			  	$email = "N/A";
-			    if(empty($cellPhone))
-			  	$cellPhone = "N/A";
-			    if(empty($workPhone))
-			  	$workPhone = "N/A";
-			    if(empty($homePhone))
-			  	$homePhone = "N/A";
+        $connect = mysqli_connect("localhost", "root", "", "DB3335"); 
+        $stmt= $connect->prepare("SELECT * FROM parent WHERE parentID = ?");
+        $stmt->bind_param("s",$parent2ID);
+        $stmt->execute();
+        $stmt -> bind_result($parentName,$studentID,$address,$city,$state,$zip,$email,$cellPhone,$workPhone,$homePhone,$parentID);
+        $stmt -> fetch();
+
+          if(empty($parentName))
+          $parentName = "N/A";
+          if(empty($address))
+          $address = "N/A";
+          if(empty($city))
+          $city = "N/A";
+          if(empty($state))
+          $state = "N/A";
+          if(empty($zip))
+          $zip = "N/A";
+          if(empty($email))
+          $email = "N/A";
+          if(empty($cellPhone))
+          $cellPhone = "N/A";
+          if(empty($workPhone))
+          $workPhone = "N/A";
+          if(empty($homePhone))
+          $homePhone = "N/A";
           ?>
             <div class="form-group">
               <input type="text" class="form-control form-control-lg" placeholder=<?php echo'"Name: '.$parentName.'"';?> name="parent2name" readonly>

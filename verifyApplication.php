@@ -129,8 +129,7 @@ $id = substr(md5(microtime()),rand(0,26),6);
 $parent1ID = substr(md5(microtime()),rand(0,26),6);
 setcookie("parentID1", $parent1ID, time() + 86400, "/");
 $parent2ID = substr(md5(microtime()),rand(0,26),6);
-setcookie("parentID2", $parent2ID, time() + 86400, "/")
-var_dump($id);
+setcookie("parentID2", $parent2ID, time() + 86400, "/");
 
 
  $stmt = $connect->prepare("INSERT INTO studentApp(studentID, fName,lName,middleInitial,suffix,nickname
@@ -139,12 +138,7 @@ var_dump($id);
  sibling1Name, sibling2Name, sibling3Name, sibling4Name, parent1ID, parent2ID) 
  VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
-if($stmt == false){
-  setcookie("incorrectInput", 1, time() + 86400, "/");
-  // header('Location: studentApp.php');
-}
-
- $stmt->bind_param("ssssssssssssssssiissiisssss",$id,$fname, $lname, $MI, $suffix, $nickname, $studentAddress,
+ $stmt->bind_param("ssssssssssssssssiisssiisssssss",$id,$fname, $lname, $MI, $suffix, $nickname, $studentAddress,
  $state, $city, $zip, $birthday, $gender, $race, $schoolType, $schoolName, $schoolDistrict, $upcomingGrade,
  $expectedGradYear, $expectedHighSchool, $studentEmail, $studentPhone, $sibling, $accepted, $GT, $sibling1, $sibling2, 
  $sibling3, $sibling4,$parent1ID,$parent2ID);
@@ -153,7 +147,7 @@ if($stmt == false){
  $stmt = $connect->prepare("INSERT INTO parent(parentName, studentId, address, city, state, zip, email, 
   cellPhone, homePhone, workPhone, parentID) VALUES(?,?,?,?,?,?,?,?,?,?,?)");
 
- $stmt->bind_param("ssssssssss",$parent1name,$id, $parent1address, $parent1city, $parent1state, $parent1zip,
+ $stmt->bind_param("sssssssssss",$parent1name,$id, $parent1address, $parent1city, $parent1state, $parent1zip,
  $parent1email, $parent1Cell, $parent1Work, $parent1Home,$parent1ID);
 
  //  $stmt->bind_param("s",$parent1name,$id, $parent1address, $parent1city, $parent1state, $parent1zip,
@@ -161,7 +155,7 @@ if($stmt == false){
  $stmt->execute();
 
  $stmt = $connect->prepare("INSERT INTO parent(parentName, studentId, address, city, state, zip, email, 
- cellPhone, homePhone, workPhone) VALUES(?,?,?,?,?,?,?,?,?,?,?)");
+ cellPhone, homePhone, workPhone, parentID) VALUES(?,?,?,?,?,?,?,?,?,?,?)");
 
  $stmt->bind_param("ssssssssss",$parent2name,$id, $parent2address, $parent2city, $parent2state, $parent2zip,
  $parent2email, $parent2Cell, $parent2Work, $parent2Home,$parent2ID);

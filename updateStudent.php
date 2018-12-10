@@ -15,9 +15,10 @@
 <body>
 
 <?php
-setcookie("menubar", 2, time() + 86400, "/");
+// setcookie("menubar", 2, time() + 86400, "/");
 include 'menubar.php'; 
   
+
   $connect = mysqli_connect("localhost", "root", "", "DB3335"); 
   $stmt= $connect->prepare("SELECT * FROM studentApp WHERE studentID = ?");
   $stmt->bind_param("s",$_COOKIE['acceptStudent']);
@@ -58,6 +59,13 @@ setcookie("parentID2", $parent2ID, time()+84600, "/");
   	$sibling4Name = "N/A";
   // var_dump($student);
 ?>
+
+<center>
+  <form class="col-4" action="adminSInfo.php" method="post">
+  <button name="submit" class="btn btn-success btn-block" type="submit">Page 2</button>
+  </form>
+</center>
+
 <form class="form-studentapp" action="verifyAdminApp.php" method="post">
 <div class="container my-3 text-center">
       <div class="row justify-content-around">
@@ -516,7 +524,7 @@ YOU CAN USE IT FOR THE UPDATE FIELD FOR BOTH THE STUDENT AND ADMINS-->
                 <input type="text" class="form-control form-control-lg" placeholder=<?php echo'"Home Phone: '.$homePhone.'"';?> name="parent2Home">
               </div>
             </div>
-          <button name="submit" class="btn btn-success btn-block" type="submit">Submit Application</button>
+          <button name="submit" class="btn btn-success btn-block" type="submit">Update Information</button>
           <!-- <input type="submit" value="Submit Application" class="btn btn-outline-secondary btn-block"> -->
         </div>
       </div>

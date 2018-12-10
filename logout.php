@@ -13,7 +13,11 @@ setcookie("emptyFields", 0, time() + 86400, "/");
 setcookie("noSpotsRemaining", 0, time() + 86400, "/");
 setcookie("sameTimeSlot", 0, time() + 86400, "/");
 setcookie("sameClassSameYear", 0, time() + 86400, "/");
+ setcookie("invalidCRN", 0, time() + 86400, "/");
+     setcookie("invalidCap", 0, time() + 86400, "/");
 
+    setcookie("invalidCost", 0, time() + 86400, "/");
+  setcookie("emptyFields", 0, time() + 86400, "/");
 
 	header('Location: index.php');
 ?>

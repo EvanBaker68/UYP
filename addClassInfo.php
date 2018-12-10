@@ -58,9 +58,9 @@ include 'menubar.php';
               <div>
                 <select class="form-control form-control-lg" id="session" name="session">
                   <option value="" selected hidden>Session*</option>
-                  <option value="2017">Session 1</option>
-                  <option value="2018">Session 2</option>
-                  <option value="2019">Session 3</option>
+                  <option value="1">Session 1</option>
+                  <option value="2">Session 2</option>
+                  <option value="3">Session 3</option>
                 </select>
               </div>
             </div>
@@ -89,16 +89,16 @@ include 'menubar.php';
               <div class="col-xs-4 form-group">
                 <select class="form-control form-control-lg" id="timeSlot" name="timeSlot">
                   <option value="" selected hidden>Time Slot*</option>
-                  <option value="9:45">9:45</option>
-                  <option value="1:15">1:15</option>
+                  <option value="1">9:45</option>
+                  <option value="2">1:15</option>
                 </select>
               </div>
               <div class="col-xs-4 form-group">
                 <select class="form-control form-control-lg" id="level" name="level">
                   <option value="" selected hidden>Level*</option>
-                  <option value="Level 1">lvl1</option>
-                  <option value="Level 2">lvl2</option>
-                  <option value="Level 3">lvl3</option>
+                  <option value="1">lvl1</option>
+                  <option value="2">lvl2</option>
+                  <option value="3">lvl3</option>
                 </select>
               </div>
               <div>

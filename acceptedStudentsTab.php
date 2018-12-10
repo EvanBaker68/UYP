@@ -56,7 +56,7 @@
                      <td class="Type" data-id14="'.$row["studentID"].'" contenteditable>'.$row["fName"].' '.$row["lName"].'</td> 
                      <td class="FirstName" data-id1="'.$row["studentID"].'" contenteditable>'.$row["upcomingGrade"].'</td>  
                      <td class="LastName" data-id2="'.$row["studentID"].'" contenteditable>'.$row["schoolName"].'</td> 
-                     <td><form method="post" action="updateStudent.php"><button class=" btn-success btn-block" type="submit" value="'.$row["studentID"].'" name="button" >Update Student Application Info</input></form> </td>
+                     <td><form method="post" action="acceptedStudentsTab.php"><button class=" btn-success btn-block" type="submit" value="'.$row["studentID"].'" name="button" >Update Student Application Info</input></form> </td>
                 </tr>';  
       }  
  }

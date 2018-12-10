@@ -52,7 +52,6 @@ $session = $_POST['session'];
 $classRoom = $_POST['classRoom'];
 $year = $_POST['year'];
 $instructorName = $_POST['instructorName'];
-
 // var_dump($cost);
 // var_dump($CRN);
 // var_dump($cap);
@@ -101,6 +100,14 @@ else{
 
 
  header('Location: successfulClassAdd.php');
+ setcookie("invalidCRN", 0, time() + 86400, "/");
+     setcookie("invalidCap", 0, time() + 86400, "/");
+
+    setcookie("invalidCost", 0, time() + 86400, "/");
+  setcookie("emptyFields", 0, time() + 86400, "/");
+
+
+
 
  $connect = null;
 }
