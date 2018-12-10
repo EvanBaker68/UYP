@@ -22,7 +22,7 @@ include 'menubar.php';
 ?>
 
 <br><br><br><br><br><br>
-<center><h3>Application Update was successful.</h3></center>
+<center><h3>Application update was successful.</h3></center>
 
   <script src="js/jquery.min.js"></script>
   <script src="js/popper.min.js"></script>

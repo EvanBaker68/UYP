@@ -69,7 +69,6 @@ include 'menubar.php';
             </div>
   <div class="row">
     <div class="form-group col-4 pb-10">
-              
                 <select class="form-control" id="year" name="year">
                   <option value="" selected hidden>Year*</option>
                   <option value="2017">2017</option>
