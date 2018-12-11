@@ -116,7 +116,7 @@ if(!empty($lname)){
 
 }
 
-if(!empty($fname)){
+if(!empty($MI)){
   $stmt = $connect->prepare("UPDATE studentApp SET middleInitial = ? WHERE studentID = ?");
   $stmt->bind_param("ss",$MI,$stuID);
   $stmt->execute();
@@ -426,7 +426,7 @@ if(!empty($parent2Work)){
  // $stmt->execute();
 
  $connect = null;
- // header('Location: createaccount.php');
+ header('Location: successfulAdminUpdate.php');
 
 ?>
 

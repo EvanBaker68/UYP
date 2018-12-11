@@ -12,7 +12,7 @@
 <body>
 
 <?php
-  $stuID = $_COOKIE['IDstudent'];
+  $stuID = $_COOKIE['acceptStudent'];
   $yearAccepted = $_POST['yearAccepted'];
   $gradeAccepted = $_POST['gradeAccepted'];
   $stat = $_POST['stat'];
@@ -39,6 +39,8 @@
   $clearinghouse = $_POST['clearinghouse'];
   $otherNotes = $_POST['otherNotes'];
 
+  var_dump($yearAccepted);
+
   if(!empty($notes504)){
     $Hnotes = 2;
     $disability = 2;
@@ -63,7 +65,7 @@
 
 
   $connect = mysqli_connect("localhost", "root", "", "DB3335"); 
-  $stmt = $connect->prepare("Select COUNT(*) FROM studentApp WHERE studentID = ?");
+  $stmt = $connect->prepare("SELECT COUNT(*) FROM studentApp WHERE studentID = ?");
   $stmt->bind_param("s",$stuID);
 
   $stmt->execute();
@@ -78,33 +80,72 @@
     header("Location: adminSInfo.php");
   }
 
-  $stmt = $connect->prepare("UPDATE studentAccepted SET yearAccepted=? WHERE studentID =?");
-  $stmt->bind_param("is",$yearAccepted,$stuID);
-  $stmt->execute();
+  if(!empty($studentAccepted)){
+    $stmt = $connect->prepare("UPDATE studentAccepted SET yearAccepted=? WHERE studentID =?");
+    $stmt->bind_param("is",$yearAccepted,$stuID);
+    $stmt->execute();
+  }
 
-  $stmt = $connect->prepare("UPDATE studentAccepted SET startGrade =? WHERE studentID =?");
-  $stmt->bind_param("is",$gradeAccepted,$stuID);
-  $stmt->execute();
+  var_dump($yearAccepted,$stuID);
 
-  $stmt = $connect->prepare("UPDATE studentAccepted SET status=? WHERE studentID =?");
-  $stmt->bind_param("is",$stat,$stuID);
-  $stmt->execute();
+  if(!empty($startGrade)){
+    $stmt = $connect->prepare("UPDATE studentAccepted SET startGrade =? WHERE studentID =?");
+    $stmt->bind_param("is",$gradeAccepted,$stuID);
+    $stmt->execute();
+  }
 
-  $stmt = $connect->prepare("UPDATE studentAccepted SET mentor=? WHERE studentID =?");
-  $stmt->bind_param("is",$ment,$stuID);
-  $stmt->execute();
+  if(!empty($stat)){
+    $stmt = $connect->prepare("UPDATE studentAccepted SET status=? WHERE studentID =?");
+    $stmt->bind_param("is",$stat,$stuID);
+    $stmt->execute();
+  }
 
-  $stmt = $connect->prepare("UPDATE studentAccepted SET healthNotes=? WHERE studentID =?");
-  $stmt->bind_param("is",$Hnotes,$stuID);
-  $stmt->execute();
 
-  $stmt = $connect->prepare("UPDATE studentAccepted SET GTProgram=? WHERE studentID =?");
-  $stmt->bind_param("is",$gift,$stuID);
-  $stmt->execute();
+  if(!empty($ment)){
+    $stmt = $connect->prepare("UPDATE studentAccepted SET mentor=? WHERE studentID =?");
+    $stmt->bind_param("is",$ment,$stuID);
+    $stmt->execute();
+  }
 
-  $stmt = $connect->prepare("UPDATE studentAccepted SET English=? WHERE studentID =?");
-  $stmt->bind_param("is",$english,$stuID);
-  $stmt->execute();
+  if(!empty($mentorName)){
+    $ment=2;
+    $stmt = $connect->prepare("SELECT COUNT(*), studentID FROM mentor WHERE studentID = ?");
+    $stmt->bind_param("s",$stuID);
+    $stmt->execute();
+    $stmt->bind_result($nRows,$id);
+    $stmt->fetch();
+    $count=$nRows;
+    $stmt->free_result();
+
+    if($count==1){
+      $stmt = $connect->prepare("UPDATE mentor SET mentorName = ? WHERE studentID = ?");
+      $stmt->bind_param("ss",$mentorName,$stuID);
+      $stmt->execute();
+    }else{
+      $stmt->prepare("INSERT INTO mentor (studentID, mentorName) VALUES (?,?)");
+      $stmt->bind_param("ss",$mentorName,$stuID);
+      $stmt->execute();
+    }
+
+  }
+
+  if(!empty($Hnotes)){
+    $stmt = $connect->prepare("UPDATE studentAccepted SET healthNotes=? WHERE studentID =?");
+    $stmt->bind_param("is",$Hnotes,$stuID);
+    $stmt->execute();
+  }
+
+  if(!empty($gift)){
+    $stmt = $connect->prepare("UPDATE studentAccepted SET GTProgram=? WHERE studentID =?");
+    $stmt->bind_param("is",$gift,$stuID);
+    $stmt->execute();
+  }
+
+  if(!empty($english)){
+    $stmt = $connect->prepare("UPDATE studentAccepted SET English=? WHERE studentID =?");
+    $stmt->bind_param("is",$english,$stuID);
+    $stmt->execute();
+  }
 
   if(!empty($clearinghouse)){
     $stmt = $connect->prepare("UPDATE studentAccepted SET NatlClearHouse=? WHERE studentID =?");
@@ -119,28 +160,10 @@
   }
 
   if(!empty($grant)){
-    $stmt = $connect->prepare("UPDATE studentAccepted SET fundingStatus=? WHERE studentID =?");
+    $stmt = $connect->prepare("UPDATE studentAccepted SET grantStatus=? WHERE studentID =?");
     $stmt->bind_param("ss",$grant,$stuID);
     $stmt->execute();
   }
-
-  $stmt = $connect->prepare("SELECT COUNT(*), studentID FROM mentor WHERE studentID = ?");
-  $stmt->bind_param("s",$stuID);
-  $stmt->execute();
-  $stmt->bind_result($nRows, $id);
-  $count = $nRows;
-  $stmt->fetch();
-  $stmt->free_result();
-
-    if($count == 1 && !empty($mentorName)){
-      $stmt = $connect->prepare("UPDATE mentor SET mentorName = ? WHERE studentID = ?");
-      $stmt->bind_param("ss",$mentorName, $stuID);
-      $stmt->execute();
-    }else if($count==0 && !empty($mentorName)){
-      $stmt = $connect->prepare("INSERT INTO mentor(studentID, mentorName) VALUES(?,?)");
-      $stmt->bind_param("ss", $stuID, $mentorName);
-      $stmt->execute();
-    }
 
     $stmt = $connect->prepare("SELECT COUNT(*), studentID FROM health WHERE studentID = ?");
     $stmt->bind_param("s",$stuID);
@@ -263,10 +286,10 @@
  // $stmt = $connect->prepare("INSERT INTO TEST(username, password) VALUES(?, ?)");
  // $stmt->bind_param("ss",$name, $password);
  // $stmt->execute();
-  header('Location: successfulAdminUpdate.php');
+  //header('Location: successfulAdminUpdate.php');
 
  $connect = null;
- // header('Location: createaccount.php');
+ //header('Location: successfulAdminUpdate.php');
 
 
 ?>

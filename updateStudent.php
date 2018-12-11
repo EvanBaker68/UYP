@@ -15,7 +15,7 @@
 <body>
 
 <?php
-// setcookie("menubar", 2, time() + 86400, "/");
+setcookie("menubar", 2, time() + 86400, "/");
 include 'menubar.php'; 
   
 
@@ -33,7 +33,7 @@ setcookie("parentID1", $parent1ID, time()+84600, "/");
 setcookie("parentID2", $parent2ID, time()+84600, "/");
 
 
-  if(empty($MI)){}
+  if(empty($MI))
   	$MI = "N/A";
     if(empty($suffix))
   	$suffix = "N/A";
@@ -84,19 +84,32 @@ setcookie("parentID2", $parent2ID, time()+84600, "/");
               <div class="form-group col-2 pb-10">
                 <select class="form-control" id="MI" name="MI">
                   <option value="" selected hidden>MI</option>
-                  <?php
-                    $letter = "A";
-                    for($x = 0; $x < 26; $x++){
-
-                      if($letter == $MI){
-                        echo'<option value="'.$letter.'"selected="selected">'.$letter.'</optoin>';
-                      }else{
-                        echo '<option value="'.$letter.'">'.$letter.'</option>';
-                      }
-                      $letter++;
-                    }
-
-                  ?>
+                    <option value="A" <?php if ($MI=="A") echo 'selected="selected"';?>>A</option>
+                    <option value="B" <?php if ($MI=="B") echo 'selected="selected"';?>>B</option>
+                    <option value="C" <?php if ($MI=="C") echo 'selected="selected"';?>>C</option>
+                    <option value="D" <?php if ($MI=="D") echo 'selected="selected"';?>>D</option>
+                    <option value="E" <?php if ($MI=="E") echo 'selected="selected"';?>>E</option>
+                    <option value="F" <?php if ($MI=="F") echo 'selected="selected"';?>>F</option>
+                    <option value="G" <?php if ($MI=="G") echo 'selected="selected"';?>>G</option>
+                    <option value="H" <?php if ($MI=="H") echo 'selected="selected"';?>>H</option>
+                    <option value="I" <?php if ($MI=="I") echo 'selected="selected"';?>>I</option>
+                    <option value="J" <?php if ($MI=="J") echo 'selected="selected"';?>>J</option>
+                    <option value="K" <?php if ($MI=="K") echo 'selected="selected"';?>>K</option>
+                    <option value="L" <?php if ($MI=="L") echo 'selected="selected"';?>>L</option>
+                    <option value="M" <?php if ($MI=="M") echo 'selected="selected"';?>>M</option>
+                    <option value="N" <?php if ($MI=="N") echo 'selected="selected"';?>>N</option>
+                    <option value="O" <?php if ($MI=="O") echo 'selected="selected"';?>>O</option>
+                    <option value="P" <?php if ($MI=="P") echo 'selected="selected"';?>>P</option>
+                    <option value="Q" <?php if ($MI=="Q") echo 'selected="selected"';?>>Q</option>
+                    <option value="R" <?php if ($MI=="R") echo 'selected="selected"';?>>R</option>
+                    <option value="S" <?php if ($MI=="S") echo 'selected="selected"';?>>S</option>
+                    <option value="T" <?php if ($MI=="T") echo 'selected="selected"';?>>T</option>
+                    <option value="U" <?php if ($MI=="U") echo 'selected="selected"';?>>U</option>
+                    <option value="V" <?php if ($MI=="V") echo 'selected="selected"';?>>V</option>
+                    <option value="W" <?php if ($MI=="W") echo 'selected="selected"';?>>W</option>
+                    <option value="X" <?php if ($MI=="X") echo 'selected="selected"';?>>X</option>
+                    <option value="Y" <?php if ($MI=="Y") echo 'selected="selected"';?>>Y</option>
+                    <option value="Z" <?php if ($MI=="Z") echo 'selected="selected"';?>>Z</option>
                 </select>
               </div>
               <div class="col-2">
@@ -193,8 +206,8 @@ setcookie("parentID2", $parent2ID, time()+84600, "/");
           <div class="form-group col-2 pb-10">
                 <select class="form-control" id="gender" name="gender">
                   <option value="" selected hidden>Gender*</option>
-                  <option value="Male">Male</option>
-                  <option value="Female">Female</option>
+                  <option value="M" <?php if ($gender=="M") echo 'selected="selected"';?>>Male</option>
+                  <option value="F" <?php if ($gender=="F") echo 'selected="selected"';?>>Female</option>
                 </select>
             </div>
         </div>
@@ -218,13 +231,15 @@ setcookie("parentID2", $parent2ID, time()+84600, "/");
               <div class="form-group col-4 pb-10">
                   <select class="form-control" id="upcomingGrade" name="upcomingGrade">
                     <option value="" selected hidden>Grade in upcoming fall*</option>
-                    <?php
-                    for ($x = 4; $x <= 12; $x++) {
-
-                      echo '<option value="'.$x.'">'.$x.'</option>';
-                      }
-
-                    ?>
+                    <option value="4" <?php if ($upcomingGrade==4) echo 'selected="selected"';?>>4</option>
+                    <option value="5" <?php if ($upcomingGrade==5) echo 'selected="selected"';?>>5</option>
+                    <option value="6" <?php if ($upcomingGrade==6) echo 'selected="selected"';?>>6</option>
+                    <option value="7" <?php if ($upcomingGrade==7) echo 'selected="selected"';?>>7</option>
+                    <option value="8" <?php if ($upcomingGrade==8) echo 'selected="selected"';?>>8</option>
+                    <option value="9" <?php if ($upcomingGrade==9) echo 'selected="selected"';?>>9</option>
+                    <option value="10" <?php if ($upcomingGrade==10) echo 'selected="selected"';?>>10</option>
+                    <option value="11" <?php if ($upcomingGrade==11) echo 'selected="selected"';?>>11</option>
+                    <option value="12" <?php if ($upcomingGrade==12) echo 'selected="selected"';?>>12</option>
                   </select>
               </div>
         </div>
@@ -236,9 +251,12 @@ setcookie("parentID2", $parent2ID, time()+84600, "/");
                 <?php
                 $year = date("Y");
                   for ($x = 0; $x < 30; $x++) {
-
-                    echo '<option value="'.($year + $x).'">'.($year + $x).'</option>';
+                    if($x+$year == $expectedGradYear){
+                      echo '<option value="'.($year + $x).'"selected="selected">'.($year + $x).'</option>';
+                    }else{
+                      echo '<option value="'.($year + $x).'">'.($year + $x).'</option>';
                     }
+                  }
 
                 ?>
               </select>
@@ -419,7 +437,7 @@ YOU CAN USE IT FOR THE UPDATE FIELD FOR BOTH THE STUDENT AND ADMINS-->
           <h3>Information for parent/guardian #2</h3>
           <?php 
           	$stmt -> fetch();
-          		if(empty($parentName)){}
+          		if(empty($parentName))
 			  	$parentName = "N/A";
 			    if(empty($address))
 			  	$address = "N/A";
