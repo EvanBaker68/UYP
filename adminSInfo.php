@@ -19,19 +19,19 @@
 <?php 
 setcookie("menubar", 2, time() + 86400, "/");
 include 'menubar.php'; 
-  
+
   $connect = mysqli_connect("localhost", "root", "", "DB3335"); 
   $stmt= $connect->prepare("SELECT * FROM studentAccepted WHERE studentID = ?");
   $stmt->bind_param("s",$_COOKIE['acceptStudent']);
 
   $stmt->execute();
 
-  $stmt -> bind_result($studentID,$stuUser,$gradeAccepted,$stat,$gfund,$ment,$Hnotes,$gift,$english,$clearinghouse,$otherNotes,$yearAccepted);
+  $stmt -> bind_result($studentID,$stuUser,$gradeAccepted,$stat,$gfund,$ment,$Hnotes,$gift,$english,$clearinghouse,$otherNotes,$grant,$yearAccepted);
   $stmt -> fetch();
   $stmt -> free_result();
 
   $stmt= $connect->prepare("SELECT * FROM health WHERE studentID = ?");
-  $stmt->bind_param("s",$_COOKIE['IDstudent']);
+  $stmt->bind_param("s",$_COOKIE['acceptStudent']);
   $stmt->execute();
   $stmt -> bind_result($studentID,$disability,$health,$notes504,$notesHealth);
   $stmt -> fetch();
@@ -39,7 +39,7 @@ include 'menubar.php';
 
 
   $stmt= $connect->prepare("SELECT * FROM studentApp WHERE studentID = ?");
-  $stmt->bind_param("s",$_COOKIE['IDstudent']);
+  $stmt->bind_param("s",$_COOKIE['acceptStudent']);
   $stmt->execute();
   $stmt -> bind_result($temp,$temp,$temp,$temp,$temp,$temp,$temp,$temp,$temp,$temp,$temp,$temp,$temp,$temp,$temp,$temp,$temp,$temp,$temp,$temp,$temp,$temp,$temp,$temp,$sibling1Name,$sibling2Name,$sibling3Name,$sibling4Name,$temp,$temp,$temp,$temp);
   $stmt -> fetch();
@@ -47,7 +47,7 @@ include 'menubar.php';
 
   if(!empty($student1Name)){
     $stmt= $connect->prepare("SELECT * FROM sibling WHERE studentID = ? AND siblingName = ?");
-    $stmt->bind_param("ss",$_COOKIE['IDstudent'],$sibling1Name);
+    $stmt->bind_param("ss",$_COOKIE['acceptStudent'],$sibling1Name);
     $stmt->execute();
     $stmt -> bind_result($temp,$sibling1Name,$sibling1ID);
     $stmt -> fetch();
@@ -56,7 +56,7 @@ include 'menubar.php';
 
   if(!empty($student2Name)){
     $stmt= $connect->prepare("SELECT * FROM sibling WHERE studentID = ? AND siblingName = ?");
-    $stmt->bind_param("ss",$_COOKIE['IDstudent'],$sibling2Name);
+    $stmt->bind_param("ss",$_COOKIE['acceptStudent'],$sibling2Name);
     $stmt->execute();
     $stmt -> bind_result($temp,$sibling3Name,$sibling2ID);
     $stmt -> fetch();
@@ -65,7 +65,7 @@ include 'menubar.php';
 
   if(!empty($student3Name)){
     $stmt= $connect->prepare("SELECT * FROM sibling WHERE studentID = ? AND siblingName = ?");
-    $stmt->bind_param("ss",$_COOKIE['IDstudent'],$sibling3Name);
+    $stmt->bind_param("ss",$_COOKIE['acceptStudent'],$sibling3Name);
     $stmt->execute();
     $stmt -> bind_result($temp,$sibling3Name,$sibling3ID);
     $stmt -> fetch();
@@ -74,25 +74,24 @@ include 'menubar.php';
 
   if(!empty($student4Name)){
     $stmt= $connect->prepare("SELECT * FROM sibling WHERE studentID = ? AND siblingName = ?");
-    $stmt->bind_param("ss",$_COOKIE['IDstudent'],$sibling4Name);
+    $stmt->bind_param("ss",$_COOKIE['acceptStudent'],$sibling4Name);
     $stmt->execute();
     $stmt -> bind_result($temp,$sibling4Name,$sibling4ID);
     $stmt -> fetch();
     $stmt -> free_result();
   }
 
-  $mentorName = "N/A";
-
   if($ment == 2){
     $stmt= $connect->prepare("SELECT * FROM mentor WHERE studentID = ?");
-    $stmt->bind_param("s",$_COOKIE['IDstudent']);
+    $stmt->bind_param("s",$_COOKIE['acceptStudent']);
     $stmt->execute();
     $stmt -> bind_result($temp,$mentorN);
     $stmt -> fetch();
-    $stmt -> free_result();
+    //$stmt -> free_result();
   }
 
-  $mentorN = "N/A";
+  var_dump($mentorN);
+  var_dump($_COOKIE['acceptStudent']);
 
   if($ment == 1)
     $mentorN = "N/A";
