@@ -15,7 +15,7 @@ setcookie("sameTimeSlot", 0, time() + 86400, "/");
 setcookie("sameClassSameYear", 0, time() + 86400, "/");
  setcookie("invalidCRN", 0, time() + 86400, "/");
      setcookie("invalidCap", 0, time() + 86400, "/");
-
+    setcookie("sameClass", 0, time() + 86400, "/");
     setcookie("invalidCost", 0, time() + 86400, "/");
   setcookie("emptyFields", 0, time() + 86400, "/");
 

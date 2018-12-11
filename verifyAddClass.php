@@ -59,6 +59,21 @@ $instructorName = $_POST['instructorName'];
 $intChecker = "/[0-9]+/";
 $CRNChecker = "/^[a-zA-Z0-9]{6}$/";
 
+ $connect = mysqli_connect("localhost", "root", "", "DB3335"); 
+ $stmt = $connect->prepare("SELECT COUNT(*) FROM class WHERE session = ? AND level = ? AND className = ?");
+
+ $stmt->bind_param("sss",$session,$level,$courseName);
+ $stmt->execute();
+ $stmt -> bind_result($numSameClasses);
+ $stmt -> fetch();
+
+if($numSameClasses > 0){
+    setcookie("sameClass", 1, time() + 86400, "/");
+    $error = true;
+}else{
+    setcookie("sameClass", 0, time() + 86400, "/");
+}
+
 if(!preg_match($intChecker, $cap)){
     setcookie("invalidCap", 1, time() + 86400, "/");
     $error = true;
@@ -91,18 +106,19 @@ if($error == true){
 }
 else{
 
+// var_dump($CRN,$session,$level,$courseName,$timeSlot,$classRoom,$instructorName,$year,$cost,$cap);
  $connect = mysqli_connect("localhost", "root", "", "DB3335"); 
- $stmt = $connect->prepare("INSERT INTO class(CRN, session, level, className, timeSlot, classRoom, instructor,
- year,cost,cap,remainingSpots) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+ $stmt = $connect->prepare("INSERT INTO class(CRN, session, level, className, timeSlot, room, instructor,
+ year,cost,capacity,remainingSpots) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
- $stmt->bind_param("ssisissiii",$CRN,$session,$level,$courseName,$timeSlot,$classRoom,$instructorName,$year,$cost,$cap);
+ $stmt->bind_param("ssisissiiii",$CRN,$session,$level,$courseName,$timeSlot,$classRoom,$instructorName,$year,$cost,$cap,$cap);
  $stmt->execute();
 
 
  header('Location: successfulClassAdd.php');
  setcookie("invalidCRN", 0, time() + 86400, "/");
      setcookie("invalidCap", 0, time() + 86400, "/");
-
+    setcookie("sameClass", 0, time() + 86400, "/");
     setcookie("invalidCost", 0, time() + 86400, "/");
   setcookie("emptyFields", 0, time() + 86400, "/");
 

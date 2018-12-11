@@ -30,10 +30,12 @@ include 'menubar.php';
           <p>* indicates a required field.</p>
           <?php if (isset($_COOKIE["emptyFields"]) && $_COOKIE["emptyFields"] == 1) 
           echo '<div class="container"><div class="alert alert-danger">One or more required fields is missing.</div></div>';
-          if (isset($_COOKIE["invalidBirthday"]) && $_COOKIE["invalidBirthday"] == 1) 
+          if (isset($_COOKIE["invalidBirthdayFormat"]) && $_COOKIE["invalidBirthdayFormat"] == 1) 
           echo '<div class="container"><div class="alert alert-danger">Please enter a valid birthday.</div></div>';
-        if (isset($_COOKIE["invalidEmail"]) && $_COOKIE["invalidEmail"] == 1) 
+          if (isset($_COOKIE["invalidEmail"]) && $_COOKIE["invalidEmail"] == 1) 
           echo '<div class="container"><div class="alert alert-danger">Please enter a valid email.</div></div>';
+          if (isset($_COOKIE["invalidBirthday"]) && $_COOKIE["invalidBirthday"] == 1) 
+          echo '<div class="container"><div class="alert alert-danger">Please enter your birthday in the valid format.</div></div>';
           ?>
             <div class="row">
               <div class="col-4">
@@ -228,7 +230,7 @@ include 'menubar.php';
               <input type="text" class="form-control form-control-lg" placeholder="Student Email Address" name="studentEmail">
             </div>
             <div class="form-group">
-              <input type="text" class="form-control form-control-lg" placeholder="Student Phone Number" name="studentPhone">
+              <input type="text" class="form-control form-control-lg" placeholder="Student Phone Number (in 123-123-1234 format)" name="studentPhone">
             </div>
           <div>
             <p>Do you have any siblings in the program?</p>

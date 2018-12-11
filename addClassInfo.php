@@ -35,6 +35,8 @@ include 'menubar.php';
           echo '<div class="container"><div class="alert alert-danger">Please enter a valid cost.</div></div>';
                 if (isset($_COOKIE["invalidCRN"]) && $_COOKIE["invalidCRN"] == 1) 
           echo '<div class="container"><div class="alert alert-danger">Please enter a valid CRN.</div></div>';
+                if (isset($_COOKIE["sameClass"]) && $_COOKIE["sameClass"] == 1) 
+          echo '<div class="container"><div class="alert alert-danger">This class has already been created.</div></div>';
           ?>
             <div class="form-row">
               <div class="col-sm">
@@ -74,37 +76,39 @@ include 'menubar.php';
         </div>
                      
     <div class="form-row">
-              <div class="col-xs-4 form-group">
+              <div class="col-4 form-group">
                 <select class="form-control form-control-lg" id="year" name="year">
                   <option value="" selected hidden>Year*</option>
-                  <option value=2017>2017</option>
-                  <option value=2018>2018</option>
-                  <option value=2019>2019</option>
-                  <option value=2020>2020</option>
-                  <option value=2021>2021</option>
-                  <option value=2022>2022</option>
-                  <option value=2023>2023</option>
+                  <?php 
+                  $year = date("Y");
+                  for ($x = 0; $x < 30; $x++) {
+
+                    echo '<option value="'.($year + $x).'">'.($year + $x).'</option>';
+                    }
+                  ?>
                   </select>
               </div>
-              <div class="col-xs-4 form-group">
+              <div class="col-4 form-group">
                 <select class="form-control form-control-lg" id="timeSlot" name="timeSlot">
                   <option value="" selected hidden>Time Slot*</option>
                   <option value="1">9:45</option>
                   <option value="2">1:15</option>
                 </select>
               </div>
-              <div class="col-xs-4 form-group">
+            </div>
+            <div class="form-row">
+              <div class="col-4 form-group">
                 <select class="form-control form-control-lg" id="level" name="level">
                   <option value="" selected hidden>Level*</option>
-                  <option value="1">lvl1</option>
-                  <option value="2">lvl2</option>
-                  <option value="3">lvl3</option>
+                  <option value="1">4th-5th grade</option>
+                  <option value="2">6th-8th grade</option>
+                  <option value="3">9th-12th grade</option>
                 </select>
               </div>
               <div>
                 <input type="text" class="form-control form-control-lg" placeholder="Price*" name="cost">
               </div>
-    </div>          
+            </div>          
         
                                   
           <button name="submit" class="btn btn-success btn-block" type="submit">Enter Class</button>

@@ -19,6 +19,8 @@
  'birthday', 'gender', 'schoolName', 'upcomingGrade', 'parent1name', 'parent1email', 'parent1address',
  'parent1city', 'parent1zip', 'parent1state');
 
+
+
  $required2 = array('parent1Cell', 'parent1Work', 'parent1Home');
 
 $error = false;
@@ -101,15 +103,29 @@ $parent2Cell = $_POST['parent2Cell'];
 $parent2Work = $_POST['parent2Work'];
 $parent2Home = $_POST['parent2Home'];
 
-$dateChecker = "/[0-9]{4}-[0-9]{2}-[0-9]{2}/";
+$dateChecker = "/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/";
 $emailChecker = "/[a-zA-Z0-9]+@[a-zA-Z]+\.[a-zA-Z]+/";
 
+
+$birthdayYear = substr($birthday, 0,4);
+$birthdayMonth = substr($birthday, 5,2);
+$birthdayDay = substr($birthday, 8,2);
+
+
 if(!preg_match($dateChecker, $birthday)){
-    setcookie("invalidBirthday", 1, time() + 86400, "/");
+    setcookie("invalidBirthdayFormat", 1, time() + 86400, "/");
     $error = true;
 }
 else{
-    setcookie("invalidBirthday", 0, time() + 86400, "/");
+    setcookie("invalidBirthdayFormat", 0, time() + 86400, "/");
+}
+
+if(!checkdate($birthdayMonth, $birthdayDay, $birthdayYear)){
+    setcookie("invalidBirthday", 1, time() + 86400, "/");
+        $error = true;
+}
+else{
+      setcookie("invalidBirthday", 0, time() + 86400, "/");
 }
 
 if(!preg_match($emailChecker, $parent1email)){
@@ -165,6 +181,7 @@ setcookie("parentID2", $parent2ID, time() + 86400, "/");
 
 //Verify that other information is correct
 
+if(!$error)
   header('Location: successfulAppSubmission.php');
 
  // $stmt = $connect->prepare("INSERT INTO TEST(username, password) VALUES(?, ?)");
