@@ -39,8 +39,6 @@
   $clearinghouse = $_POST['clearinghouse'];
   $otherNotes = $_POST['otherNotes'];
 
-  var_dump($yearAccepted);
-
   if(!empty($notes504)){
     $Hnotes = 2;
     $disability = 2;
@@ -80,7 +78,7 @@
     header("Location: adminSInfo.php");
   }
 
-  if(!empty($studentAccepted)){
+  if(!empty($yearAccepted)){
     $stmt = $connect->prepare("UPDATE studentAccepted SET yearAccepted=? WHERE studentID =?");
     $stmt->bind_param("is",$yearAccepted,$stuID);
     $stmt->execute();
@@ -88,7 +86,7 @@
 
   var_dump($yearAccepted,$stuID);
 
-  if(!empty($startGrade)){
+  if(!empty($gradeAccepted)){
     $stmt = $connect->prepare("UPDATE studentAccepted SET startGrade =? WHERE studentID =?");
     $stmt->bind_param("is",$gradeAccepted,$stuID);
     $stmt->execute();
@@ -123,7 +121,7 @@
       $stmt->execute();
     }else{
       $stmt->prepare("INSERT INTO mentor (studentID, mentorName) VALUES (?,?)");
-      $stmt->bind_param("ss",$mentorName,$stuID);
+      $stmt->bind_param("ss",$stuID,$mentorName);
       $stmt->execute();
     }
 
@@ -289,7 +287,7 @@
   //header('Location: successfulAdminUpdate.php');
 
  $connect = null;
- //header('Location: successfulAdminUpdate.php');
+ header('Location: successfulAdminUpdate.php');
 
 
 ?>
